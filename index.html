@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <title>APEX – Training & Ernährung</title>
+  <meta name="theme-color" content="#0a0e14">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="APEX">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- versteckte SVG-Verläufe für den Kalorien-Ring -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="ringgrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#22cfb3"/><stop offset="1" stop-color="#6dff8f"/>
+      </linearGradient>
+      <linearGradient id="ringbad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ff7a45"/><stop offset="1" stop-color="#ff5d6c"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <div id="app">
+    <main>
+      <section id="tab-home"   class="tab active"></section>
+      <section id="tab-plan"   class="tab"></section>
+      <section id="tab-shop"   class="tab"></section>
+      <section id="tab-train"  class="tab"></section>
+      <section id="tab-awards" class="tab"></section>
+    </main>
+
+    <nav id="tabbar">
+      <button data-nav="home"><span class="ic">🏠</span>Heute</button>
+      <button data-nav="plan"><span class="ic">🍽️</span>Plan</button>
+      <button data-nav="shop"><span class="ic">🛒</span>Einkauf</button>
+      <button data-nav="train"><span class="ic">🏋️</span>Training</button>
+      <button data-nav="awards"><span class="ic">🏆</span>Erfolge</button>
+    </nav>
+  </div>
+
+  <div id="sheet-root"></div>
+  <div id="celebrate" class="celebrate"><div class="box">
+    <div class="cico">🎉</div><div class="ctitle"></div><div class="csub"></div>
+  </div></div>
+  <div id="toast"><span class="ti"></span><span class="tt"></span></div>
+  <canvas id="confetti"></canvas>
+
+  <!-- Daten -->
+  <script src="js/data-ingredients.js"></script>
+  <script src="js/data-breakfast.js"></script>
+  <script src="js/data-snacks.js"></script>
+  <script src="js/data-lunch.js"></script>
+  <script src="js/data-dinner.js"></script>
+  <script src="js/data-training.js"></script>
+  <script src="js/data-achievements.js"></script>
+  <!-- App -->
+  <script src="js/app.js"></script>
+</body>
+</html>
