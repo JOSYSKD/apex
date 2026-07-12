@@ -66,7 +66,8 @@
     dinnerNormal: "18:30", dinnerFootball: "20:15",
     trainNormal: "16:30", trainFootball: "16:00",
     footballStart: "18:30", footballEnd: "20:00", footballDays: [0, 1],
-    cold: { morning: "06:35", sportNormal: "17:20", sportFootball: "20:05" }
+    cold: { morning: "06:35", sportNormal: "17:20", sportFootball: "20:05" },
+    skin: { morning: "06:45", evening: "20:40" }
   };
   function diffLevel() { return DIFF_LEVELS[Math.min(DIFF_LEVELS.length - 1, Math.max(0, S.diff | 0))]; }
   function scaleReps(str, f) { return String(str).replace(/\d+/g, (m) => Math.max(1, Math.round(parseInt(m, 10) * f))); }
@@ -109,7 +110,7 @@
         burnedTotal: 0, deficitDays: 0, proteinDays: 0, perfectDays: 0,
         mealsChecked: 0, weeksPlanned: 0, earlyWorkouts: 0, coldShowers: 0, xp: 0, level: 1
       },
-      achievements: {}, shopChecked: {}, seenIntro: false
+      achievements: {}, shopChecked: {}, skinBought: {}, seenIntro: false
     };
     recalcTargets(st);
     return st;
@@ -117,7 +118,7 @@
   function load() {
     try {
       const r = JSON.parse(localStorage.getItem(LS));
-      if (r && r.profile) { r.stats = r.stats || {}; r.days = r.days || {}; r.plan = r.plan || {}; r.achievements = r.achievements || {}; r.shopChecked = r.shopChecked || {}; if (typeof r.diff !== "number") r.diff = 0; return r; }
+      if (r && r.profile) { r.stats = r.stats || {}; r.days = r.days || {}; r.plan = r.plan || {}; r.achievements = r.achievements || {}; r.shopChecked = r.shopChecked || {}; r.skinBought = r.skinBought || {}; if (typeof r.diff !== "number") r.diff = 0; return r; }
     } catch (e) {}
     return defaultState();
   }
@@ -427,6 +428,46 @@
       if (e.target.closest("[data-ct-reset]")) { reset(); paint(); return; }
     });
   }
+  function openSkincare() {
+    const sc = window.SKINCARE || {};
+    const steps = (arr) => (arr || []).map((s, i) => `<div class="recipe-step"><div class="num">${i + 1}</div><div class="tx">${esc(s)}</div></div>`).join("");
+    const listUl = (arr) => `<ul style="margin:0;padding-left:18px;line-height:1.7;font-size:14px">${(arr || []).map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`;
+    let prodHtml = "";
+    for (const cat of ["Basis (täglich)", "Gegen Pickel", "Optional"]) {
+      const ps = (sc.products || []).filter((p) => p.cat === cat);
+      if (!ps.length) continue;
+      prodHtml += `<div class="wkmeta" style="margin:14px 2px 4px;font-weight:800;color:var(--acc);text-transform:uppercase;letter-spacing:.05em">${esc(cat)}</div>` +
+        ps.map((p) => {
+          const on = !!(S.skinBought && S.skinBought[p.n]);
+          return `<div class="mealrow" data-action="toggle-skin" data-p="${esc(p.n)}">
+            <div class="check ${on ? "on" : ""}">${on ? "✓" : ""}</div>
+            <div class="grow"><div class="mealname" style="font-size:14.5px">${esc(p.n)}</div>
+              <div class="wkmeta">${esc(p.use)} · ${esc(p.shop)}</div></div>
+            <div class="mealkcal" style="white-space:nowrap">${esc(p.price)}</div>
+          </div>`;
+        }).join("");
+    }
+    const bd = openSheet(`<div class="grip"></div>
+      <div class="sheet-head"><h2>✨ Skincare</h2><button class="closex" data-close>✕</button></div>
+      <div class="sheet-body">
+        <div class="recipe-note" style="background:rgba(109,255,143,.08);border-color:rgba(109,255,143,.25)">${esc(sc.intro || "")}</div>
+        <div class="sectitle" style="margin-top:2px">☀️ Morgens</div>
+        <div class="card">${steps(sc.morning)}</div>
+        <div class="sectitle">🌙 Abends</div>
+        <div class="card">${steps(sc.evening)}</div>
+        <div class="sectitle">📅 1–2× pro Woche</div>
+        <div class="card">${listUl(sc.weekly)}</div>
+        <div class="sectitle">✅ Grundregeln für reine Haut</div>
+        <div class="card">${listUl(sc.rules)}</div>
+        <div class="sectitle">🛒 Produkte & Einkauf</div>
+        <div class="card">${prodHtml}
+          <div class="wkmeta" style="margin-top:14px;line-height:1.5">💶 ${esc(sc.budget || "")}</div>
+        </div>
+        <div class="recipe-note">⚠️ ${esc(sc.note || "")}</div>
+        <div style="height:16px"></div>
+      </div>`, { full: true });
+    bd.addEventListener("click", (e) => { if (e.target.closest("[data-close]")) closeSheet(bd); });
+  }
 
   /* ============================================================
      RENDERING
@@ -463,6 +504,7 @@
     const items = [];
     items.push({ t: DAYPLAN.wake, ico: "☀️", title: "Aufstehen", sub: "Guten Morgen – erstmal ein großes Glas Wasser." });
     items.push({ t: DAYPLAN.cold.morning, ico: "❄️", cold: 1, title: "Kaltdusche", sub: "2–3 Min · Energie & Fokus für den Tag" });
+    items.push({ t: DAYPLAN.skin.morning, ico: "✨", skin: 1, title: "Skincare (morgens)", sub: "Reinigen · Creme · Sonnenschutz LSF 50" });
     if (DAYPLAN.school.days.indexOf(wd) >= 0) items.push({ t: DAYPLAN.school.start, ico: "🎒", title: "Schule", sub: "bis " + DAYPLAN.school.end + " Uhr · Brotzeit in der Pause um 10:00" });
     for (const key of ["breakfast", "snack", "lunch"]) {
       const s = SLOTS.find((x) => x.key === key);
@@ -473,6 +515,7 @@
     if (isFb) items.push({ t: DAYPLAN.footballStart, ico: "⚽", title: "Fußballtraining", sub: "1:30 Std im Verein (" + DAYPLAN.footballStart + "–" + DAYPLAN.footballEnd + ")" });
     items.push({ t: isFb ? DAYPLAN.cold.sportFootball : DAYPLAN.cold.sportNormal, ico: "❄️", cold: 1, title: "Kaltdusche (Regeneration)", sub: "2–3 Min kalt · Regeneration & mentale Härte" });
     { const s = SLOTS.find((x) => x.key === "dinner"); items.push({ t: isFb ? DAYPLAN.dinnerFootball : DAYPLAN.dinnerNormal, ico: s.ico, meal: 1, slot: "dinner", m: resolveMeal(plan.dinner), on: !!rec.checked.dinner, label: s.label }); }
+    items.push({ t: DAYPLAN.skin.evening, ico: "🌙", skin: 1, title: "Skincare (abends)", sub: "Reinigen · Wirkstoff · Feuchtigkeit" });
     items.push({ t: DAYPLAN.sleep, ico: "😴", title: "Schlafen gehen", sub: "9,5 Std bis 6:30 – jeden Tag zur gleichen Zeit für besten Schlaf." });
     items.sort((a, b) => a.t.localeCompare(b.t));
     return items.map((it) => {
@@ -480,6 +523,11 @@
         <div class="tl-time">${it.t}</div><div class="tl-ico" style="background:rgba(92,200,255,.12)">${it.ico}</div>
         <div class="tl-body"><div class="tl-title">${esc(it.title)}</div><div class="tl-sub">${esc(it.sub)}</div></div>
         <div style="color:var(--info);font-size:16px;padding-right:8px">›</div>
+      </div>`;
+      if (it.skin) return `<div class="tl-row" data-action="skincare">
+        <div class="tl-time">${it.t}</div><div class="tl-ico" style="background:rgba(109,255,143,.12)">${it.ico}</div>
+        <div class="tl-body"><div class="tl-title">${esc(it.title)}</div><div class="tl-sub">${esc(it.sub)}</div></div>
+        <div style="color:var(--acc);font-size:16px;padding-right:8px">›</div>
       </div>`;
       if (it.meal) return `<div class="tl-row">
         <div class="tl-time">${it.t}</div><div class="tl-ico">${it.ico}</div>
@@ -1197,6 +1245,8 @@
     else if (a === "start-workout") openWorkout(+el.dataset.wd);
     else if (a === "set-diff") { S.diff = +el.dataset.i; save(); vibrate(10); renderActive(); }
     else if (a === "cold-therapy") openColdTherapy();
+    else if (a === "skincare") openSkincare();
+    else if (a === "toggle-skin") { const n = el.dataset.p; S.skinBought[n] = !S.skinBought[n]; save(); const chk = el.querySelector(".check"); if (chk) { chk.classList.toggle("on", S.skinBought[n]); chk.textContent = S.skinBought[n] ? "✓" : ""; } vibrate(10); }
     else if (a === "auto-week") autoWeek();
     else if (a === "clear-week") confirmSheet({ title: "Woche leeren?", msg: "Alle geplanten Mahlzeiten dieser Woche werden entfernt.", ok: "Leeren", onOk: clearWeek });
     else if (a === "go-plan") go("plan");
