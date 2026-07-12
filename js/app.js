@@ -123,6 +123,16 @@
     k = Math.round(k); if (m._key) _kcalCache.set(m._key, k); return k;
   }
   function mealMacro(m, key) { let v = 0; for (const it of m.i) { const ing = ING[it[0]]; if (ing) v += ing[key] * it[1] / 100; } return Math.round(v); }
+  // Ein Plan-Slot ist entweder ein String-Verweis ("breakfast:3") oder ein angepasstes Objekt {base,n,i,t}
+  function resolveMeal(val) {
+    if (!val) return null;
+    if (typeof val === "string") return mealByKey(val);
+    if (val.i) return { _custom: true, _key: null, _type: val.base ? val.base.slice(0, val.base.indexOf(":")) : "custom", base: val.base || null, n: val.n, i: val.i, t: val.t || [] };
+    return null;
+  }
+  function itemsKcalProt(items) { let k = 0, p = 0; for (const it of items) { const ing = ING[it[0]]; if (ing) { k += ing.kcal * it[1] / 100; p += ing.p * it[1] / 100; } } return [Math.round(k), Math.round(p)]; }
+  function sameItems(a, b) { if (!a || !b || a.length !== b.length) return false; const norm = (x) => x.map((e) => e[0] + ":" + e[1]).sort().join("|"); return norm(a) === norm(b); }
+  function isCustom(val) { return val && typeof val === "object"; }
 
   /* ---------------- Tages-Berechnung ---------------- */
   function computeDay(date) {
@@ -133,7 +143,7 @@
     let eaten = 0, prot = 0, carb = 0, fat = 0;
     for (const s of SLOTS) {
       if (rec.checked[s.key] && plan[s.key]) {
-        const m = mealByKey(plan[s.key]);
+        const m = resolveMeal(plan[s.key]);
         if (m) { eaten += mealKcal(m); prot += mealMacro(m, "p"); carb += mealMacro(m, "c"); fat += mealMacro(m, "f"); }
       }
     }
@@ -143,7 +153,7 @@
   }
   function planDayKcal(wd) {
     const plan = S.plan[wd] || {}; let k = 0, p = 0;
-    for (const s of SLOTS) { const m = mealByKey(plan[s.key]); if (m) { k += mealKcal(m); p += mealMacro(m, "p"); } }
+    for (const s of SLOTS) { const m = resolveMeal(plan[s.key]); if (m) { k += mealKcal(m); p += mealMacro(m, "p"); } }
     return { k, p };
   }
 
@@ -303,12 +313,12 @@
 
     let mealsHtml = "";
     for (const s of SLOTS) {
-      const key = plan[s.key]; const m = mealByKey(key);
+      const val = plan[s.key]; const m = resolveMeal(val);
       const on = !!rec.checked[s.key];
       mealsHtml += `<div class="mealrow">
         <div class="check ${on ? "on" : ""}" data-action="toggle-meal" data-slot="${s.key}">${on ? "✓" : ""}</div>
         <div class="grow" data-action="change-meal" data-wd="${wd}" data-slot="${s.key}">
-          <div class="slotlabel">${s.ico} ${s.label}</div>
+          <div class="slotlabel">${s.ico} ${s.label}${isCustom(val) ? ' · <span style="color:var(--acc)">angepasst</span>' : ""}</div>
           <div class="mealname ${m ? "" : "empty"}">${m ? esc(m.n) : "+ Gericht wählen"}</div>
         </div>
         <div class="mealkcal">${m ? mealKcal(m) : "—"}<br><small>kcal</small></div>
@@ -397,10 +407,10 @@
           <div class="t"><b>${t.k}</b> kcal · ${t.p} g Eiweiß</div>
         </div>
         ${SLOTS.map((s) => {
-          const m = mealByKey(plan[s.key]);
+          const val = plan[s.key]; const m = resolveMeal(val);
           return `<div class="slotpick" data-action="change-meal" data-wd="${wd}" data-slot="${s.key}">
             <div class="ico">${s.ico}</div>
-            <div class="grow"><div class="slotlabel">${s.label}</div>
+            <div class="grow"><div class="slotlabel">${s.label}${isCustom(val) ? ' · <span style="color:var(--acc)">angepasst</span>' : ""}</div>
               <div class="mealname ${m ? "" : "empty"}">${m ? esc(m.n) : "Antippen zum Wählen"}</div></div>
             <div class="mealkcal">${m ? mealKcal(m) : ""}</div>
           </div>`;
@@ -416,7 +426,7 @@
     const totals = {};
     for (let wd = 0; wd < 7; wd++) {
       const plan = S.plan[wd] || {};
-      for (const s of SLOTS) { const m = mealByKey(plan[s.key]); if (!m) continue; for (const it of m.i) totals[it[0]] = (totals[it[0]] || 0) + it[1]; }
+      for (const s of SLOTS) { const m = resolveMeal(plan[s.key]); if (!m) continue; for (const it of m.i) totals[it[0]] = (totals[it[0]] || 0) + it[1]; }
     }
     return totals;
   }
@@ -569,6 +579,93 @@
   }
   function closeSheet(bd) { bd.classList.remove("show"); setTimeout(() => bd.remove(), 300); }
 
+  function defaultAmt(id) {
+    const ing = ING[id]; if (!ing) return 50;
+    if (ing.pieceG) return ing.pieceG;
+    if (ing.cat === "fett" && ing.unit === "ml") return 10;
+    if (ing.cat === "sonstiges") return 15;
+    return 50;
+  }
+  function stepFor(id, g) {
+    const ing = ING[id];
+    if (ing && ing.pieceG) return ing.pieceG;
+    if (ing && ing.unit === "ml" && ing.cat === "fett") return 5;
+    return g < 20 ? 5 : 10;
+  }
+  function amtLabel(id, g) {
+    const ing = ING[id]; if (!ing) return g + " g";
+    if (ing.pieceG) { const n = g / ing.pieceG; return g + " g (" + (Math.round(n * 10) / 10) + "×)"; }
+    return g + (ing.unit === "ml" ? " ml" : " g");
+  }
+  // Grundgericht antippen -> Zutaten anpassen (weglassen, Menge ändern, ergänzen)
+  function openCustomize(wd, slot, source) {
+    const base = resolveMeal(source);
+    if (!base) { openPicker(wd, slot); return; }
+    const originalKey = typeof source === "string" ? source : (source.base || null);
+    let items = base.i.map((e) => [e[0], e[1]]);
+    const name = base.n, tags = base.t || [];
+    let addOpen = false;
+    const slotLabel = (SLOTS.find((s) => s.key === slot) || {}).label || "";
+
+    const bd = openSheet(`<div class="grip"></div>
+      <div class="sheet-head"><h2 style="font-size:17px">${esc(name)}</h2><button class="closex" data-close>✕</button></div>
+      <div class="sheet-body" data-cbody></div>`, { full: true });
+    const body = bd.querySelector("[data-cbody]");
+
+    function renderSuggest(q) {
+      q = (q || "").toLowerCase().trim();
+      const el = body.querySelector("[data-suggest]"); if (!el) return;
+      const ids = Object.keys(ING).filter((id) => !q || ING[id].n.toLowerCase().includes(q)).slice(0, 30);
+      el.innerHTML = ids.length ? ids.map((id) => `<div class="pickrow" data-addpick="${id}">
+        <div class="grow"><div class="pn">${esc(ING[id].n)}</div><div class="pm">${ING[id].kcal} kcal/100 g · ${ING[id].p} g Eiweiß</div></div>
+        <div class="mealkcal" style="color:var(--acc);font-size:20px">＋</div></div>`).join("") : `<div class="empty-note">Nichts gefunden.</div>`;
+    }
+    function rerender() {
+      const [k, p] = itemsKcalProt(items);
+      body.innerHTML =
+        `<div class="wkmeta" style="margin:-4px 0 10px">${slotLabel} · Menge ändern, weglassen (✕) oder ergänzen.</div>
+         <div class="card tight cust-sum">
+           <div><div class="v">${k}</div><div class="k">kcal</div></div>
+           <div><div class="v">${p}</div><div class="k">g Eiweiß</div></div>
+         </div>
+         <div class="card">
+           ${items.map((it, i) => {
+             const ing = ING[it[0]]; if (!ing) return "";
+             const kc = Math.round(ing.kcal * it[1] / 100);
+             return `<div class="ing-edit">
+               <div class="grow"><div class="mealname" style="font-size:14.5px">${esc(ing.n)}</div>
+                 <div class="wkmeta">${amtLabel(it[0], it[1])} · ${kc} kcal</div></div>
+               <div class="stepper"><button data-dec="${i}">−</button><button data-inc="${i}">+</button><button class="del" data-del="${i}">✕</button></div>
+             </div>`;
+           }).join("")}
+           <button class="btn btn-ghost" style="margin-top:12px" data-addtoggle>${addOpen ? "▲ Schließen" : "➕ Zutat hinzufügen"}</button>
+           ${addOpen ? `<input class="search" style="margin-top:10px" placeholder="Zutat suchen … (z. B. Apfel)" data-addsearch><div data-suggest></div>` : ""}
+         </div>
+         <button class="btn btn-ghost" data-changemeal>🔄 Anderes Gericht wählen</button>
+         <button class="btn btn-primary" style="margin-top:8px" data-apply>✓ In den Plan übernehmen</button>
+         <div style="height:14px"></div>`;
+      if (addOpen) { const inp = body.querySelector("[data-addsearch]"); renderSuggest(""); inp.addEventListener("input", (e) => renderSuggest(e.target.value)); setTimeout(() => inp.focus(), 40); }
+    }
+    function apply() {
+      const cleaned = items.filter((it) => ING[it[0]] && it[1] > 0);
+      if (!cleaned.length) { toast("Mindestens eine Zutat nötig", "⚠️"); return; }
+      const orig = originalKey ? mealByKey(originalKey) : null;
+      const value = (originalKey && orig && sameItems(cleaned, orig.i)) ? originalKey : { base: originalKey, n: name, i: cleaned, t: tags };
+      setPlan(wd, slot, value); vibrate(15); closeSheet(bd); toast("Gericht übernommen", "✓");
+    }
+    body.addEventListener("click", (e) => {
+      const inc = e.target.closest("[data-inc]"); if (inc) { const i = +inc.dataset.inc; items[i][1] += stepFor(items[i][0], items[i][1]); rerender(); return; }
+      const dec = e.target.closest("[data-dec]"); if (dec) { const i = +dec.dataset.dec; const st = stepFor(items[i][0], items[i][1]); items[i][1] = Math.max(st, items[i][1] - st); rerender(); return; }
+      const del = e.target.closest("[data-del]"); if (del) { items.splice(+del.dataset.del, 1); rerender(); return; }
+      if (e.target.closest("[data-addtoggle]")) { addOpen = !addOpen; rerender(); return; }
+      const ap = e.target.closest("[data-addpick]"); if (ap) { const id = ap.dataset.addpick; const ex = items.find((it) => it[0] === id); if (ex) ex[1] += defaultAmt(id); else items.push([id, defaultAmt(id)]); addOpen = false; rerender(); toast(ING[id].n + " hinzugefügt", "➕"); return; }
+      if (e.target.closest("[data-changemeal]")) { closeSheet(bd); openPicker(wd, slot); return; }
+      if (e.target.closest("[data-apply]")) { apply(); return; }
+      if (e.target.closest("[data-close]")) closeSheet(bd);
+    });
+    rerender();
+  }
+
   function openPicker(wd, slotKey) {
     const slot = SLOTS.find((s) => s.key === slotKey); const set = MEALSETS[slotKey];
     const bd = openSheet(
@@ -599,7 +696,7 @@
     bd.querySelector("[data-search]").addEventListener("input", (e) => renderList(e.target.value));
     bd.addEventListener("click", (e) => {
       const pk = e.target.closest("[data-pick]");
-      if (pk) { setPlan(wd, slotKey, slotKey + ":" + pk.dataset.pick); vibrate(15); closeSheet(bd); return; }
+      if (pk) { closeSheet(bd); openCustomize(wd, slotKey, slotKey + ":" + pk.dataset.pick); return; }
       if (e.target.closest("[data-random]")) { setPlan(wd, slotKey, slotKey + ":" + Math.floor(Math.random() * set.length)); vibrate(15); closeSheet(bd); return; }
       if (e.target.closest("[data-clear]")) { setPlan(wd, slotKey, null); closeSheet(bd); return; }
       if (e.target.closest("[data-close]")) closeSheet(bd);
@@ -871,7 +968,7 @@
     if (a === "open-settings") openSettings();
     else if (a === "edit-burned") openBurned();
     else if (a === "toggle-meal") toggleMeal(el.dataset.slot);
-    else if (a === "change-meal") openPicker(+el.dataset.wd, el.dataset.slot);
+    else if (a === "change-meal") { const w = +el.dataset.wd, sl = el.dataset.slot, cur = (S.plan[w] || {})[sl]; if (cur) openCustomize(w, sl, cur); else openPicker(w, sl); }
     else if (a === "add-manual") openManual();
     else if (a === "del-manual") delManual(+el.dataset.idx);
     else if (a === "start-workout") openWorkout(+el.dataset.wd);

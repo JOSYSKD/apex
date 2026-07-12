@@ -75,14 +75,14 @@ window.MEALS_DINNER = [
   { n: "Bauernomelett mit Kartoffeln", i: [["egg", 150], ["potato", 120], ["onion", 50], ["pepper", 70], ["oliveoil", 8]], t: ["herzhaft", "protein", "warm"] },
   { n: "Shakshuka verde mit Spinat & Erbsen", i: [["egg", 150], ["spinach", 120], ["peas", 100], ["onion", 50], ["feta", 30], ["oliveoil", 8]], t: ["herzhaft", "protein", "warm", "lowcarb"] },
 
-  /* ---------- Tofu / Tempeh / vegan ---------- */
+  /* ---------- Tofu / Tofu / vegan ---------- */
   { n: "Tofu-Gemüse-Pfanne mit Sesam", i: [["tofusmoked", 150], ["broccoli", 150], ["pepper", 100], ["soysauce", 15], ["sesame", 8], ["ginger", 8]], t: ["herzhaft", "vegan", "protein", "warm", "lowcarb"] },
   { n: "Tofu-Curry mit Blumenkohlreis", i: [["tofu", 150], ["cauliflower", 200], ["coconutmilk", 60], ["currypaste", 20], ["pepper", 80]], t: ["herzhaft", "vegan", "warm", "lowcarb"] },
-  { n: "Tempeh mit Ofengemüse", i: [["tempeh", 130], ["zucchini", 120], ["pepper", 120], ["onionred", 60], ["oliveoil", 8]], t: ["herzhaft", "vegan", "protein", "warm", "lowcarb"] },
+  { n: "Tofu mit Ofengemüse", i: [["tofu", 130], ["zucchini", 120], ["pepper", 120], ["onionred", 60], ["oliveoil", 8]], t: ["herzhaft", "vegan", "protein", "warm", "lowcarb"] },
   { n: "Knuspertofu mit Erdnusssauce & Brokkoli", i: [["tofusmoked", 150], ["broccoli", 180], ["peanut", 20], ["soysauce", 15], ["ginger", 6]], t: ["herzhaft", "vegan", "protein", "warm", "lowcarb"] },
-  { n: "Sojaschnetzel-Bolognese mit Vollkornnudeln", i: [["soyveg", 40], ["pasta", 60], ["passata", 120], ["onion", 60], ["garlic", 6], ["oliveoil", 8]], t: ["herzhaft", "vegan", "protein", "warm"] },
+  { n: "Linsen-Bolognese mit Vollkornnudeln", i: [["lentilsred", 40], ["pasta", 60], ["passata", 120], ["onion", 60], ["garlic", 6], ["oliveoil", 8]], t: ["herzhaft", "vegan", "protein", "warm"] },
   { n: "Räuchertofu-Bowl mit Quinoa & Edamame", i: [["tofusmoked", 120], ["quinoa", 55], ["edamame", 80], ["carrot", 60], ["soysauce", 12]], t: ["herzhaft", "vegan", "protein"] },
-  { n: "Tempeh-Teriyaki mit Pak Choi", i: [["tempeh", 150], ["cabbage", 150], ["carrot", 70], ["soysauce", 15], ["sesame", 10], ["oliveoil", 6]], t: ["herzhaft", "vegan", "protein", "warm", "lowcarb"] },
+  { n: "Tofu-Teriyaki mit Pak Choi", i: [["tofu", 150], ["cabbage", 150], ["carrot", 70], ["soysauce", 15], ["sesame", 10], ["oliveoil", 6]], t: ["herzhaft", "vegan", "protein", "warm", "lowcarb"] },
   { n: "Gebackener Tofu mit Rosenkohl", i: [["tofu", 160], ["broccoli", 200], ["soysauce", 12], ["oliveoil", 6], ["sesame", 6]], t: ["herzhaft", "vegan", "protein", "warm", "lowcarb"] },
 
   /* ---------- Hülsenfrüchte / vegetarisch ---------- */
@@ -96,7 +96,7 @@ window.MEALS_DINNER = [
 
   /* ---------- Halloumi / Käse-vegetarisch ---------- */
   { n: "Gebratener Halloumi mit Ofengemüse", i: [["halloumi", 120], ["zucchini", 120], ["pepper", 100], ["eggplant", 80], ["oliveoil", 8]], t: ["herzhaft", "vegetarisch", "warm", "lowcarb"] },
-  { n: "Halloumi-Salat mit Granatapfel", i: [["halloumi", 100], ["rocket", 50], ["cucumber", 100], ["pomegranate", 40], ["oliveoil", 8]], t: ["herzhaft", "vegetarisch", "kalt", "lowcarb"] },
+  { n: "Halloumi-Salat mit Trauben", i: [["halloumi", 100], ["rocket", 50], ["cucumber", 100], ["grape", 40], ["oliveoil", 8]], t: ["herzhaft", "vegetarisch", "kalt", "lowcarb"] },
   { n: "Caprese-Salat mit Avocado", i: [["cheesemozz", 100], ["tomato", 150], ["avocado", 60], ["rocket", 30], ["oliveoil", 8]], t: ["vegetarisch", "kalt", "lowcarb"] },
   { n: "Blumenkohl-Käse-Auflauf", i: [["cauliflower", 250], ["cheese", 50], ["cheesecreamlt", 40], ["egg", 60], ["herbs", 5]], t: ["vegetarisch", "protein", "warm", "lowcarb"] },
 

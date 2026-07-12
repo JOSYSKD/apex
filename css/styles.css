@@ -259,3 +259,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .pill{display:inline-block;padding:4px 10px;border-radius:999px;background:var(--card2);border:1px solid var(--line);font-size:12px;font-weight:700}
 .macro-line{display:flex;gap:14px;justify-content:center;margin-top:4px;font-size:12px;color:var(--muted);font-weight:700}
 .macro-line b{color:var(--text)}
+
+/* Gericht anpassen */
+.cust-sum{display:flex;gap:34px;justify-content:center;padding:8px 4px}
+.cust-sum .v{font-size:28px;font-weight:900;text-align:center}
+.cust-sum .k{font-size:11px;color:var(--muted);text-align:center;text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.ing-edit{display:flex;align-items:center;gap:10px;padding:11px 2px;border-bottom:1px solid var(--line)}
+.ing-edit:last-of-type{border-bottom:none}
+.stepper{display:flex;align-items:center;gap:6px;flex:0 0 auto}
+.stepper button{width:34px;height:34px;border-radius:10px;background:var(--card2);border:1px solid var(--line2);
+  font-size:18px;font-weight:800;display:grid;place-items:center}
+.stepper button:active{transform:scale(.94)}
+.stepper button.del{color:var(--bad);font-size:14px}

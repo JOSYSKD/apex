@@ -53,8 +53,6 @@ const RAW_ING = {
   trout:         ["Forelle", 120, 20, 0, 4, "protein", null, "g"],
   tofu:          ["Tofu natur", 145, 16, 2, 9, "protein", null, "g"],
   tofusmoked:    ["Räuchertofu", 170, 18, 2, 10, "protein", null, "g"],
-  tempeh:        ["Tempeh", 190, 20, 8, 11, "protein", null, "g"],
-  soyveg:        ["Sojaschnetzel (trocken)", 345, 50, 22, 1.5, "protein", null, "g"],
   lentils:       ["Linsen (gekocht)", 116, 9, 20, 0.4, "protein", null, "g"],
   lentilsred:    ["Rote Linsen (roh)", 350, 24, 50, 1.5, "protein", null, "g"],
   chickpeas:     ["Kichererbsen (Dose)", 120, 7, 18, 2.6, "protein", null, "g"],
@@ -152,7 +150,6 @@ const RAW_ING = {
   lime:          ["Limette", 30, 0.7, 11, 0.2, "obst", 70, "Stück"],
   raisins:       ["Rosinen", 299, 3, 79, 0.5, "obst", null, "g"],
   date:          ["Datteln", 282, 2.5, 75, 0.4, "obst", null, "g"],
-  pomegranate:   ["Granatapfelkerne", 83, 1.7, 19, 1.2, "obst", null, "g"],
 
   /* ---------- Sonstiges / Würze / Vorrat ---------- */
   honey:         ["Honig", 304, 0.3, 82, 0, "sonstiges", null, "g"],
