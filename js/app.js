@@ -337,7 +337,24 @@
       <div class="sheet-head"><h2>❄️ Kältetherapie</h2><button class="closex" data-close>✕</button></div>
       <div class="sheet-body">
         <div class="recipe-meta"><span class="pill">🌅 06:35 morgens</span><span class="pill">🏋️ nach dem Sport</span><span class="pill">⏱️ 2–3 Min</span></div>
-        <div class="sectitle" style="margin-top:2px">Warum kalt duschen?</div>
+        <div class="sectitle" style="margin-top:2px">🧊 Dusch-Timer</div>
+        <div class="card">
+          <div class="cold-timer">
+            <div class="ct-ring"><svg viewBox="0 0 120 120" width="184" height="184">
+              <circle class="bg" cx="60" cy="60" r="52"></circle>
+              <circle class="fg" cx="60" cy="60" r="52" data-ct-ring stroke-dashoffset="0"></circle>
+            </svg><div class="ct-num" data-ct-num>2:00</div></div>
+            <div class="ct-presets">
+              <button data-ct="30">0:30</button><button data-ct="60">1:00</button>
+              <button data-ct="90">1:30</button><button data-ct="120">2:00</button><button data-ct="180">3:00</button>
+            </div>
+            <div class="ct-controls">
+              <button class="btn btn-primary" data-ct-start>▶︎ Start</button>
+              <button class="btn btn-ghost" data-ct-reset>Zurücksetzen</button>
+            </div>
+          </div>
+        </div>
+        <div class="sectitle">Warum kalt duschen?</div>
         <div class="card"><ul style="margin:0;padding-left:18px;line-height:1.7;font-size:14px">
           <li>Sofort wach, klar & fokussiert (Dopamin-Kick)</li>
           <li>Schnellere Regeneration nach Training & Fußball</li>
@@ -363,6 +380,32 @@
         <div style="height:14px"></div>
       </div>`, { full: true });
     bd.addEventListener("click", (e) => { if (e.target.closest("[data-close]")) closeSheet(bd); });
+    wireColdTimer(bd);
+  }
+  function wireColdTimer(bd) {
+    const ring = bd.querySelector("[data-ct-ring]"), num = bd.querySelector("[data-ct-num]"), startBtn = bd.querySelector("[data-ct-start]");
+    if (!ring) return;
+    const C = 2 * Math.PI * 52; ring.style.strokeDasharray = C.toFixed(1);
+    let total = 120, left = 120, iv = null;
+    const fmt = (s) => Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
+    function draw() { num.textContent = left <= 0 ? "Fertig 💪" : fmt(left); ring.style.strokeDashoffset = (C * (1 - (total ? Math.max(0, left) / total : 0))).toFixed(1); }
+    function stop() { if (iv) clearInterval(iv); iv = null; startBtn.textContent = "▶︎ Start"; }
+    function setTotal(t) { stop(); total = left = t; draw(); bd.querySelectorAll("[data-ct]").forEach((b) => b.classList.toggle("on", +b.dataset.ct === t)); }
+    function tick() {
+      if (!document.body.contains(num)) { stop(); return; }
+      left--; draw();
+      if (left <= 0) { stop(); beep(); setTimeout(beep, 260); vibrate([90, 60, 90, 60, 140]); num.textContent = "Fertig 💪"; toast("Kältetherapie geschafft! 🥶💪", "❄️"); }
+    }
+    draw(); bd.querySelectorAll("[data-ct]").forEach((b) => b.classList.toggle("on", +b.dataset.ct === total));
+    bd.addEventListener("click", (e) => {
+      const p = e.target.closest("[data-ct]"); if (p) { setTotal(+p.dataset.ct); return; }
+      if (e.target.closest("[data-ct-start]")) {
+        if (iv) { stop(); return; }
+        if (left <= 0) left = total;
+        startBtn.textContent = "⏸ Pause"; vibrate(15); beep(); iv = setInterval(tick, 1000); return;
+      }
+      if (e.target.closest("[data-ct-reset]")) { setTotal(total); return; }
+    });
   }
 
   /* ============================================================

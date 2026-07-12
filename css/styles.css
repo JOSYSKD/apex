@@ -308,3 +308,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .diffchip .di{font-size:19px}
 .diffchip span{white-space:nowrap}
 .diffchip.on{background:linear-gradient(100deg,var(--a1),var(--a2));color:#04241a;border-color:transparent;box-shadow:0 6px 16px rgba(55,227,162,.25)}
+
+/* Dusch-Timer (Kältetherapie) */
+.cold-timer{display:flex;flex-direction:column;align-items:center;gap:16px;padding:4px 0}
+.ct-ring{position:relative;width:184px;height:184px}
+.ct-ring svg{transform:rotate(-90deg)}
+.ct-ring .bg{fill:none;stroke:rgba(255,255,255,.08);stroke-width:10}
+.ct-ring .fg{fill:none;stroke:#5cc8ff;stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset .35s linear;filter:drop-shadow(0 0 6px rgba(92,200,255,.5))}
+.ct-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.ct-presets{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.ct-presets button{padding:8px 13px;border-radius:11px;background:var(--card2);border:1px solid var(--line);font-weight:800;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.ct-presets button.on{background:#5cc8ff;color:#04222f;border-color:transparent}
+.ct-controls{display:flex;gap:10px;width:100%}
