@@ -41,6 +41,39 @@
     light:    { f: 1.375, label: "Leicht aktiv (1–3×/Woche)" },
     moderate: { f: 1.55,  label: "Moderat aktiv (3–5×/Woche)" }
   };
+  // Trainings-Schwierigkeit: repF = Faktor auf Wiederholungen, setB = Sätze extra, restB = Pause ±Sek.
+  const DIFF_LEVELS = [
+    { n: "Anfänger",        ico: "🌱", repF: 0.60, setB: 0, restB: 20 },
+    { n: "Amateur",         ico: "🙂", repF: 0.72, setB: 0, restB: 15 },
+    { n: "Fortgeschritten", ico: "💪", repF: 0.85, setB: 0, restB: 10 },
+    { n: "Erfahren",        ico: "🔥", repF: 1.00, setB: 0, restB: 5 },
+    { n: "Erfahren+",       ico: "🔥", repF: 1.12, setB: 0, restB: 0 },
+    { n: "Halbprofi",       ico: "⚡", repF: 1.25, setB: 1, restB: 0 },
+    { n: "Profi",           ico: "⚡", repF: 1.40, setB: 1, restB: -5 },
+    { n: "Profi+",          ico: "🏆", repF: 1.55, setB: 1, restB: -8 },
+    { n: "Experte",         ico: "🏅", repF: 1.72, setB: 2, restB: -10 },
+    { n: "Legende",         ico: "👑", repF: 1.90, setB: 2, restB: -12 },
+    { n: "Roboter",         ico: "🤖", repF: 2.10, setB: 3, restB: -15 },
+    { n: "Hacker",          ico: "💻", repF: 2.30, setB: 3, restB: -18 },
+    { n: "God",             ico: "😇", repF: 2.55, setB: 4, restB: -20 },
+    { n: "Machine",         ico: "🦾", repF: 2.85, setB: 4, restB: -25 }
+  ];
+  // Tagesablauf: feste Empfehlungszeiten (Aufstehen 6:30). Mo (0) & Di (1) = Fußball.
+  const DAYPLAN = {
+    wake: "06:30", sleep: "22:15",
+    times: { breakfast: "07:00", snack: "10:00", lunch: "12:45" },
+    dinnerNormal: "19:00", dinnerFootball: "20:00",
+    trainNormal: "17:00", trainFootball: "16:15",
+    footballStart: "18:00", footballEnd: "19:30", footballDays: [0, 1]
+  };
+  function diffLevel() { return DIFF_LEVELS[Math.min(DIFF_LEVELS.length - 1, Math.max(0, S.diff | 0))]; }
+  function scaleReps(str, f) { return String(str).replace(/\d+/g, (m) => Math.max(1, Math.round(parseInt(m, 10) * f))); }
+  function scaledDay(wd) {
+    const d = TRAINING.days[wd]; if (!d || d.type === "rest") return d;
+    const L = diffLevel();
+    const blocks = (d.blocks || []).map((b) => ({ ...b, sets: Math.max(1, b.sets + L.setB), reps: scaleReps(b.reps, L.repF), rest: b.rest ? Math.max(10, b.rest + L.restB) : b.rest }));
+    return { ...d, blocks, kcal: Math.round(d.kcal * (0.7 + 0.35 * L.repF)), minutes: Math.round(d.minutes * (0.8 + 0.28 * L.repF)) };
+  }
   const QUOTES = [
     { t: "Der Körper erreicht, was der Geist glaubt.", a: "Napoleon Hill" },
     { t: "Disziplin ist, das zu tun, was getan werden muss – auch wenn du keine Lust hast.", a: "APEX" },
@@ -67,7 +100,7 @@
   function defaultState() {
     const st = {
       profile: { weight: 72, height: 185, age: 22, sex: "m", activity: "base", deficit: 500 },
-      budget: 0, protein: 0,
+      budget: 0, protein: 0, diff: 0,
       plan: {}, days: {},
       stats: {
         workoutsTotal: 0, currentStreak: 0, bestStreak: 0, lastActive: "",
@@ -82,7 +115,7 @@
   function load() {
     try {
       const r = JSON.parse(localStorage.getItem(LS));
-      if (r && r.profile) { r.stats = r.stats || {}; r.days = r.days || {}; r.plan = r.plan || {}; r.achievements = r.achievements || {}; r.shopChecked = r.shopChecked || {}; return r; }
+      if (r && r.profile) { r.stats = r.stats || {}; r.days = r.days || {}; r.plan = r.plan || {}; r.achievements = r.achievements || {}; r.shopChecked = r.shopChecked || {}; if (typeof r.diff !== "number") r.diff = 0; return r; }
     } catch (e) {}
     return defaultState();
   }
@@ -259,7 +292,7 @@
 
   function completeWorkout(wd) {
     const rec = dayRec(); const already = rec.workoutDone; rec.workoutDone = true;
-    const day = TRAINING.days[wd] || {};
+    const day = TRAINING.days[wd] || {}; const sd = scaledDay(wd) || day;
     if (!already) {
       S.stats.workoutsTotal = (S.stats.workoutsTotal || 0) + 1;
       if (new Date().getHours() < 9) S.stats.earlyWorkouts = (S.stats.earlyWorkouts || 0) + 1;
@@ -267,7 +300,28 @@
       pendingCele.push({ ico: day.emoji || "💪", title: "Training geschafft!", sub: (day.focus || "") + " – stark durchgezogen!" });
     }
     refresh(); renderActive(); flushCele();
-    if (!already && day.type !== "rest" && day.kcal) askAddBurned(day.kcal);
+    if (!already && day.type !== "rest") openWorkoutFeedback(sd.kcal || day.kcal);
+  }
+  function openWorkoutFeedback(kcal) {
+    const cur = diffLevel();
+    const bd = openSheet(`<div class="grip"></div>
+      <div class="sheet-body" style="padding-bottom:22px">
+        <h2 style="margin-bottom:6px">Wie war dieses Training?</h2>
+        <p class="muted" style="margin:0 0 16px;line-height:1.5">Dein Feedback passt die Schwierigkeit automatisch an.<br>Aktuelle Stufe: <b style="color:var(--acc)">${cur.ico} ${esc(cur.n)}</b></p>
+        <button class="btn btn-ghost" style="margin-bottom:8px" data-fb="easy">😅 Zu leicht – nächstes Mal härter</button>
+        <button class="btn btn-primary" style="margin-bottom:8px" data-fb="perfect">✅ Perfekt – genau richtig</button>
+        <button class="btn btn-ghost" data-fb="hard">😮‍💨 Zu schwer – nächstes Mal leichter</button>
+      </div>`);
+    bd.addEventListener("click", (e) => {
+      const b = e.target.closest("[data-fb]"); if (!b) return;
+      const before = S.diff | 0;
+      if (b.dataset.fb === "easy") S.diff = Math.min(DIFF_LEVELS.length - 1, before + 1);
+      else if (b.dataset.fb === "hard") S.diff = Math.max(0, before - 1);
+      save(); const L = diffLevel();
+      toast(S.diff !== before ? "Nächstes Mal: " + L.ico + " " + L.n : "Stufe bleibt: " + L.ico + " " + L.n, "🎚️");
+      vibrate(15); closeSheet(bd); renderActive();
+      if (kcal) askAddBurned(kcal);
+    });
   }
   function markWeekPlanned() {
     S.stats.weeksPlanned = (S.stats.weeksPlanned || 0) + 1;
@@ -304,31 +358,55 @@
   }
 
   /* ---------- HEUTE ---------- */
+  function buildTimeline(wd) {
+    const rec = dayRec(); const plan = S.plan[wd] || {};
+    const isFb = DAYPLAN.footballDays.indexOf(wd) >= 0;
+    const d = scaledDay(wd); const done = rec.workoutDone;
+    const items = [];
+    items.push({ t: DAYPLAN.wake, ico: "☀️", title: "Aufstehen", sub: "Guten Morgen – erstmal ein großes Glas Wasser." });
+    for (const key of ["breakfast", "snack", "lunch"]) {
+      const s = SLOTS.find((x) => x.key === key);
+      items.push({ t: DAYPLAN.times[key], ico: s.ico, meal: 1, slot: key, m: resolveMeal(plan[key]), on: !!rec.checked[key], label: s.label });
+    }
+    if (d && d.type !== "rest") items.push({ t: isFb ? DAYPLAN.trainFootball : DAYPLAN.trainNormal, ico: d.emoji, training: 1, done, focus: d.focus, minutes: d.minutes, kcal: d.kcal, optional: isFb });
+    else items.push({ t: DAYPLAN.trainNormal, ico: "🌱", title: "Aktive Erholung", sub: "Spaziergang & Dehnen – heute wächst der Muskel." });
+    if (isFb) items.push({ t: DAYPLAN.footballStart, ico: "⚽", title: "Fußballtraining", sub: "1:30 Std im Verein (" + DAYPLAN.footballStart + "–" + DAYPLAN.footballEnd + ")" });
+    { const s = SLOTS.find((x) => x.key === "dinner"); items.push({ t: isFb ? DAYPLAN.dinnerFootball : DAYPLAN.dinnerNormal, ico: s.ico, meal: 1, slot: "dinner", m: resolveMeal(plan.dinner), on: !!rec.checked.dinner, label: s.label }); }
+    items.push({ t: DAYPLAN.sleep, ico: "😴", title: "Schlafen gehen", sub: "~8 Std Schlaf bis 6:30 – Regeneration ist Teil des Trainings." });
+    items.sort((a, b) => a.t.localeCompare(b.t));
+    return items.map((it) => {
+      if (it.meal) return `<div class="tl-row">
+        <div class="tl-time">${it.t}</div><div class="tl-ico">${it.ico}</div>
+        <div class="tl-body" data-action="view-recipe" data-wd="${wd}" data-slot="${it.slot}">
+          <div class="tl-title ${it.m ? "" : "muted"}">${it.m ? esc(it.m.n) : "Gericht wählen"}</div>
+          <div class="tl-sub">${it.label}${it.m ? " · " + mealKcal(it.m) + " kcal" : " · antippen"}</div>
+        </div>
+        ${it.m ? `<div class="check ${it.on ? "on" : ""}" data-action="toggle-meal" data-slot="${it.slot}">${it.on ? "✓" : ""}</div>` : `<div style="color:var(--acc);font-size:20px;padding-right:6px">＋</div>`}
+      </div>`;
+      if (it.training) return `<div class="tl-row" data-action="start-workout" data-wd="${wd}">
+        <div class="tl-time">${it.t}</div><div class="tl-ico">${it.ico}</div>
+        <div class="tl-body"><div class="tl-title">APEX-Training${it.done ? " ✓" : ""}</div>
+          <div class="tl-sub">${esc(it.focus)} · ~${it.minutes} Min · ~${it.kcal} kcal${it.optional ? " · optional (heute Fußball)" : ""}</div></div>
+        <div style="color:var(--muted2);font-size:19px;padding-right:6px">${it.done ? "✓" : "▶︎"}</div>
+      </div>`;
+      return `<div class="tl-row dim">
+        <div class="tl-time">${it.t}</div><div class="tl-ico">${it.ico}</div>
+        <div class="tl-body"><div class="tl-title">${esc(it.title)}</div><div class="tl-sub">${esc(it.sub || "")}</div></div>
+      </div>`;
+    }).join("");
+  }
+
   function renderHome() {
     const c = computeDay(); const st = S.stats; const rec = dayRec();
-    const wd = todayWd(); const plan = S.plan[wd] || {};
+    const wd = todayWd();
     const cap = c.budget + c.burned;
     const frac = cap > 0 ? c.eaten / cap : 0;
     const R = 100, C = 2 * Math.PI * R;
     const off = C * (1 - Math.min(frac, 1));
     const over = c.room < 0;
     const q = QUOTES[(new Date().getDate() + new Date().getMonth()) % QUOTES.length];
-    const day = TRAINING.days[wd] || {}; const done = rec.workoutDone;
 
-    let mealsHtml = "";
-    for (const s of SLOTS) {
-      const val = plan[s.key]; const m = resolveMeal(val);
-      const on = !!rec.checked[s.key];
-      mealsHtml += `<div class="mealrow">
-        <div class="check ${on ? "on" : ""}" data-action="toggle-meal" data-slot="${s.key}">${on ? "✓" : ""}</div>
-        <div class="grow" data-action="view-recipe" data-wd="${wd}" data-slot="${s.key}">
-          <div class="slotlabel">${s.ico} ${s.label}${isCustom(val) ? ' · <span style="color:var(--acc)">angepasst</span>' : ""}</div>
-          <div class="mealname ${m ? "" : "empty"}">${m ? esc(m.n) : "+ Gericht wählen"}</div>
-        </div>
-        <div class="mealkcal">${m ? mealKcal(m) : "—"}<br><small>kcal</small></div>
-      </div>`;
-    }
-    let manualHtml = rec.manual.map((e, i) => `<div class="mealrow">
+    const manualHtml = rec.manual.map((e, i) => `<div class="mealrow">
         <div class="check on" style="cursor:default">✓</div>
         <div class="grow"><div class="slotlabel">➕ Manuell</div><div class="mealname">${esc(e.n)}</div></div>
         <div class="mealkcal">${e.kcal}<br><small>kcal</small></div>
@@ -363,26 +441,12 @@
         <div class="bar"><div class="bar-fill prot" style="width:${Math.min(100, S.protein ? c.prot / S.protein * 100 : 0)}%"></div></div>
       </div>
 
-      <div class="sectitle">Heute essen · ${WEEKDAYS[wd]}</div>
-      <div class="card">
-        ${mealsHtml}
-        ${manualHtml}
-        <button class="btn btn-ghost" style="margin-top:12px" data-action="add-manual">➕ Essen manuell eintragen</button>
-      </div>
+      <div class="sectitle">Dein Tag · ${WEEKDAYS[wd]}</div>
+      <div class="card">${buildTimeline(wd)}</div>
+      ${manualHtml ? `<div class="card">${manualHtml}</div>` : ""}
+      <button class="btn btn-ghost" data-action="add-manual">➕ Zusätzliches Essen eintragen</button>
 
-      <div class="sectitle">Dein Training</div>
-      <div class="card">
-        <div class="row">
-          <div class="wkicon">${day.emoji || "🏋️"}</div>
-          <div class="grow"><div class="slotlabel">${WEEKDAYS[wd]} · ${esc(day.sub || "")}</div>
-            <div class="mealname">${esc(day.focus || "")}</div>
-            <div class="wkmeta">${day.type === "rest" ? "Aktive Erholung" : "ca. " + day.minutes + " Min · ~" + day.kcal + " kcal"}</div></div>
-        </div>
-        <button class="btn ${done ? "btn-ghost" : "btn-primary"}" style="margin-top:12px" data-action="start-workout" data-wd="${wd}">
-          ${done ? "✓ Erledigt – nochmal ansehen" : "▶︎ Training starten"}</button>
-      </div>
-
-      <div class="card streakcard">
+      <div class="card streakcard" style="margin-top:14px">
         <div class="flame">🔥</div>
         <div class="grow"><div class="mealname">${st.currentStreak || 0}-Tage-Streak</div>
         <div class="wkmeta">Bester Streak: ${st.bestStreak || 0} · ${st.workoutsTotal || 0} Trainings gesamt</div></div>
@@ -499,13 +563,19 @@
 
   /* ---------- TRAINING ---------- */
   function renderTrain() {
+    const L = diffLevel();
     let html = topbar("Training", false) +
       `<div class="card">
         <div class="mealname">${esc(TRAINING.meta.name || "")}</div>
         <div class="wkmeta">${esc(TRAINING.meta.goal || "")}</div>
+      </div>
+      <div class="card">
+        <div class="between"><div class="mealname">🎚️ Schwierigkeit</div><div class="pill" style="color:var(--acc)">${L.ico} ${esc(L.n)}</div></div>
+        <div class="wkmeta" style="margin-top:6px">Stufe ${(S.diff | 0) + 1}/${DIFF_LEVELS.length} · passt sich nach jedem Training an dein Feedback an. Höhere Stufe = mehr Wiederholungen & Sätze, kürzere Pausen.</div>
+        <div class="diffscroll">${DIFF_LEVELS.map((x, i) => `<button class="diffchip ${i === (S.diff | 0) ? "on" : ""}" data-action="set-diff" data-i="${i}"><span class="di">${x.ico}</span><span>${esc(x.n)}</span></button>`).join("")}</div>
       </div>`;
     for (let wd = 0; wd < TRAINING.days.length; wd++) {
-      const d = TRAINING.days[wd]; const isToday = wd === todayWd();
+      const d = scaledDay(wd); const isToday = wd === todayWd();
       const done = (S.days[todayStr()] && isToday) ? S.days[todayStr()].workoutDone : false;
       html += `<div class="card wkday" data-action="start-workout" data-wd="${wd}">
         <div class="row">
@@ -525,6 +595,7 @@
     html += `<div class="sectitle">So wirst du stärker</div><div class="card"><ul style="margin:0;padding-left:18px;line-height:1.6;color:var(--muted);font-size:14px">` +
       (TRAINING.meta.progression || []).map((p) => `<li>${esc(p)}</li>`).join("") + `</ul></div><div style="height:8px"></div>`;
     document.getElementById("tab-train").innerHTML = html;
+    const onChip = document.querySelector("#tab-train .diffchip.on"); if (onChip) onChip.scrollIntoView({ inline: "center", block: "nearest" });
   }
 
   /* ---------- ERFOLGE ---------- */
@@ -873,7 +944,7 @@
 
   /* ---------- WORKOUT-PLAYER ---------- */
   function openWorkout(wd) {
-    const d = TRAINING.days[wd]; if (!d) return;
+    const d = scaledDay(wd); if (!d) return;
     const done = new Array((d.blocks || []).length).fill(0);
     const warm = (d.warmup && d.warmup.length) ? `<div class="card tight"><div class="slotlabel">🔥 Aufwärmen</div><ul style="margin:8px 0 0;padding-left:18px;line-height:1.6;font-size:14px">${d.warmup.map((w) => `<li>${esc(w)}</li>`).join("")}</ul></div>` : "";
     const blocksHtml = (d.blocks || []).map((b, i) => `
@@ -889,7 +960,7 @@
       `<div class="grip"></div>
        <div class="sheet-head"><h2>${d.emoji} ${esc(d.focus)}</h2><button class="closex" data-close>✕</button></div>
        <div class="sheet-body">
-         <div class="wkmeta" style="margin:-4px 0 12px">${d.day} · ${d.type === "rest" ? "Aktive Erholung" : "~" + d.minutes + " Min · ~" + d.kcal + " kcal"}</div>
+         <div class="wkmeta" style="margin:-4px 0 12px">${d.day} · ${d.type === "rest" ? "Aktive Erholung" : "~" + d.minutes + " Min · ~" + d.kcal + " kcal · " + diffLevel().ico + " " + diffLevel().n}</div>
          ${warm}
          ${blocksHtml ? '<div class="card">' + blocksHtml + "</div>" : ""}
          ${fin}
@@ -1017,6 +1088,7 @@
     else if (a === "add-manual") openManual();
     else if (a === "del-manual") delManual(+el.dataset.idx);
     else if (a === "start-workout") openWorkout(+el.dataset.wd);
+    else if (a === "set-diff") { S.diff = +el.dataset.i; save(); vibrate(10); renderActive(); }
     else if (a === "auto-week") autoWeek();
     else if (a === "clear-week") confirmSheet({ title: "Woche leeren?", msg: "Alle geplanten Mahlzeiten dieser Woche werden entfernt.", ok: "Leeren", onOk: clearWeek });
     else if (a === "go-plan") go("plan");
