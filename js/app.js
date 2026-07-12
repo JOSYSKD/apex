@@ -63,9 +63,9 @@
     wake: "06:30", sleep: "21:00",
     school: { start: "07:30", end: "13:00", days: [0, 1, 2, 3, 4] },
     times: { breakfast: "07:00", snack: "10:00", lunch: "14:30" },
-    dinnerNormal: "18:30", dinnerFootball: "19:45",
+    dinnerNormal: "18:30", dinnerFootball: "20:15",
     trainNormal: "16:30", trainFootball: "16:00",
-    footballStart: "18:00", footballEnd: "19:30", footballDays: [0, 1]
+    footballStart: "18:30", footballEnd: "20:00", footballDays: [0, 1]
   };
   function diffLevel() { return DIFF_LEVELS[Math.min(DIFF_LEVELS.length - 1, Math.max(0, S.diff | 0))]; }
   function scaleReps(str, f) { return String(str).replace(/\d+/g, (m) => Math.max(1, Math.round(parseInt(m, 10) * f))); }
