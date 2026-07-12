@@ -107,7 +107,7 @@
       stats: {
         workoutsTotal: 0, currentStreak: 0, bestStreak: 0, lastActive: "",
         burnedTotal: 0, deficitDays: 0, proteinDays: 0, perfectDays: 0,
-        mealsChecked: 0, weeksPlanned: 0, earlyWorkouts: 0, xp: 0, level: 1
+        mealsChecked: 0, weeksPlanned: 0, earlyWorkouts: 0, coldShowers: 0, xp: 0, level: 1
       },
       achievements: {}, shopChecked: {}, seenIntro: false
     };
@@ -342,12 +342,14 @@
           <div class="cold-timer">
             <div class="ct-ring"><svg viewBox="0 0 120 120" width="184" height="184">
               <circle class="bg" cx="60" cy="60" r="52"></circle>
-              <circle class="fg" cx="60" cy="60" r="52" data-ct-ring stroke-dashoffset="0"></circle>
-            </svg><div class="ct-num" data-ct-num>2:00</div></div>
-            <div class="ct-presets">
-              <button data-ct="30">0:30</button><button data-ct="60">1:00</button>
-              <button data-ct="90">1:30</button><button data-ct="120">2:00</button><button data-ct="180">3:00</button>
-            </div>
+              <circle class="fg warm" cx="60" cy="60" r="52" data-ct-ring stroke-dashoffset="0"></circle>
+            </svg><div class="ct-num"><span class="ct-phase" data-ct-phase>🔥 bereit</span><span class="ct-time" data-ct-time>2:00</span></div></div>
+            <div class="ct-group"><span class="ct-lbl">🔥 Erst warm duschen</span><div class="ct-presets">
+              <button data-warm="0">0:00</button><button data-warm="60">1:00</button><button data-warm="120">2:00</button><button data-warm="180">3:00</button>
+            </div></div>
+            <div class="ct-group"><span class="ct-lbl">🥶 Dann kalt</span><div class="ct-presets">
+              <button data-cold="30">0:30</button><button data-cold="60">1:00</button><button data-cold="90">1:30</button><button data-cold="120">2:00</button><button data-cold="180">3:00</button>
+            </div></div>
             <div class="ct-controls">
               <button class="btn btn-primary" data-ct-start>▶︎ Start</button>
               <button class="btn btn-ghost" data-ct-reset>Zurücksetzen</button>
@@ -383,28 +385,46 @@
     wireColdTimer(bd);
   }
   function wireColdTimer(bd) {
-    const ring = bd.querySelector("[data-ct-ring]"), num = bd.querySelector("[data-ct-num]"), startBtn = bd.querySelector("[data-ct-start]");
+    const ring = bd.querySelector("[data-ct-ring]"), timeEl = bd.querySelector("[data-ct-time]"), phaseEl = bd.querySelector("[data-ct-phase]"), startBtn = bd.querySelector("[data-ct-start]");
     if (!ring) return;
     const C = 2 * Math.PI * 52; ring.style.strokeDasharray = C.toFixed(1);
-    let total = 120, left = 120, iv = null;
-    const fmt = (s) => Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
-    function draw() { num.textContent = left <= 0 ? "Fertig 💪" : fmt(left); ring.style.strokeDashoffset = (C * (1 - (total ? Math.max(0, left) / total : 0))).toFixed(1); }
-    function stop() { if (iv) clearInterval(iv); iv = null; startBtn.textContent = "▶︎ Start"; }
-    function setTotal(t) { stop(); total = left = t; draw(); bd.querySelectorAll("[data-ct]").forEach((b) => b.classList.toggle("on", +b.dataset.ct === t)); }
-    function tick() {
-      if (!document.body.contains(num)) { stop(); return; }
-      left--; draw();
-      if (left <= 0) { stop(); beep(); setTimeout(beep, 260); vibrate([90, 60, 90, 60, 140]); num.textContent = "Fertig 💪"; toast("Kältetherapie geschafft! 🥶💪", "❄️"); }
+    let warm = 120, cold = 120, phase = "idle", left = warm, total = warm, iv = null;
+    const fmt = (s) => Math.floor(Math.max(0, s) / 60) + ":" + String(Math.max(0, s) % 60).padStart(2, "0");
+    function paint() {
+      bd.querySelectorAll("[data-warm]").forEach((b) => b.classList.toggle("on", +b.dataset.warm === warm));
+      bd.querySelectorAll("[data-cold]").forEach((b) => b.classList.toggle("on", +b.dataset.cold === cold));
     }
-    draw(); bd.querySelectorAll("[data-ct]").forEach((b) => b.classList.toggle("on", +b.dataset.ct === total));
+    function draw() {
+      timeEl.textContent = phase === "done" ? "💪" : fmt(left);
+      ring.style.strokeDashoffset = (C * (1 - (total ? Math.max(0, left) / total : 0))).toFixed(1);
+      ring.classList.toggle("warm", phase !== "cold");
+      phaseEl.textContent = phase === "warm" ? "🔥 Warm-Phase" : phase === "cold" ? "🥶 Kalt-Phase – durchhalten!" : phase === "done" ? "Geschafft!" : "🔥 bereit";
+    }
+    function stop() { if (iv) clearInterval(iv); iv = null; startBtn.textContent = "▶︎ Start"; }
+    function reset() { stop(); phase = "idle"; total = left = (warm > 0 ? warm : cold); draw(); }
+    function tick() {
+      if (!document.body.contains(timeEl)) { stop(); return; }
+      left--;
+      if (left <= 0) {
+        if (phase === "warm") { beep(); vibrate([140, 90, 220]); phase = "cold"; total = left = cold; draw(); return; }
+        stop(); phase = "done"; draw();
+        beep(); setTimeout(beep, 260); vibrate([90, 60, 90, 60, 160]);
+        S.stats.coldShowers = (S.stats.coldShowers || 0) + 1; save(); checkAchievements();
+        toast("Kältetherapie geschafft! 🥶💪", "❄️"); flushCele();
+        return;
+      }
+      draw();
+    }
+    reset(); paint();
     bd.addEventListener("click", (e) => {
-      const p = e.target.closest("[data-ct]"); if (p) { setTotal(+p.dataset.ct); return; }
+      const w = e.target.closest("[data-warm]"); if (w) { warm = +w.dataset.warm; if (phase === "idle" || phase === "done") reset(); paint(); return; }
+      const c = e.target.closest("[data-cold]"); if (c) { cold = +c.dataset.cold; if (phase === "idle" || phase === "done") reset(); paint(); return; }
       if (e.target.closest("[data-ct-start]")) {
         if (iv) { stop(); return; }
-        if (left <= 0) left = total;
-        startBtn.textContent = "⏸ Pause"; vibrate(15); beep(); iv = setInterval(tick, 1000); return;
+        if (phase === "idle" || phase === "done") { phase = warm > 0 ? "warm" : "cold"; total = left = (warm > 0 ? warm : cold); }
+        draw(); startBtn.textContent = "⏸ Pause"; vibrate(15); beep(); iv = setInterval(tick, 1000); return;
       }
-      if (e.target.closest("[data-ct-reset]")) { setTotal(total); return; }
+      if (e.target.closest("[data-ct-reset]")) { reset(); paint(); return; }
     });
   }
 
@@ -706,6 +726,7 @@
         <div class="statbox"><div class="v">${st.deficitDays || 0}</div><div class="k">Defizit-Tage</div></div>
         <div class="statbox"><div class="v">${st.proteinDays || 0}</div><div class="k">Protein-Tage</div></div>
         <div class="statbox"><div class="v">${st.perfectDays || 0}</div><div class="k">Perfekte Tage</div></div>
+        <div class="statbox"><div class="v">${st.coldShowers || 0}</div><div class="k">❄️ Kaltduschen</div></div>
       </div>
       <div class="sectitle">Errungenschaften</div>
       <div class="ach-grid">`;

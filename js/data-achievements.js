@@ -39,7 +39,13 @@ window.ACHIEVEMENTS = [
   { id: "plan_1",     icon: "🛒", title: "Vorbereitet",       desc: "Ersten Wochenplan erstellt",   stat: "weeksPlanned", target: 1, xp: 50 },
   { id: "plan_8",     icon: "🧾", title: "Meal-Prep-Meister", desc: "8 Wochen durchgeplant",        stat: "weeksPlanned", target: 8, xp: 250 },
   { id: "meals_100",  icon: "🍽️", title: "Sattmacher",       desc: "100 Mahlzeiten abgehakt",      stat: "mealsChecked", target: 100, xp: 200 },
-  { id: "early_5",    icon: "🌅", title: "Frühaufsteher",     desc: "5 Trainings vor 9 Uhr morgens", stat: "earlyWorkouts", target: 5, xp: 120 }
+  { id: "early_5",    icon: "🌅", title: "Frühaufsteher",     desc: "5 Trainings vor 9 Uhr morgens", stat: "earlyWorkouts", target: 5, xp: 120 },
+
+  // Kältetherapie
+  { id: "cold_1",   icon: "🚿", title: "Kalt erwischt",  desc: "Erste Kältedusche durchgezogen", stat: "coldShowers", target: 1,   xp: 50 },
+  { id: "cold_10",  icon: "❄️", title: "Eiskalt dabei",  desc: "10 Kaltduschen durchgehalten",   stat: "coldShowers", target: 10,  xp: 150 },
+  { id: "cold_30",  icon: "🧊", title: "Frosthart",      desc: "30 Kaltduschen durchgehalten",   stat: "coldShowers", target: 30,  xp: 350 },
+  { id: "cold_100", icon: "🥶", title: "Eisberg",        desc: "100 Kaltduschen durchgehalten",  stat: "coldShowers", target: 100, xp: 900 }
 ];
 
 window.LEVELS = [

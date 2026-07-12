@@ -315,7 +315,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .ct-ring svg{transform:rotate(-90deg)}
 .ct-ring .bg{fill:none;stroke:rgba(255,255,255,.08);stroke-width:10}
 .ct-ring .fg{fill:none;stroke:#5cc8ff;stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset .35s linear;filter:drop-shadow(0 0 6px rgba(92,200,255,.5))}
-.ct-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.ct-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.ct-phase{font-size:12px;font-weight:800;color:var(--muted);margin-bottom:3px}
+.ct-time{font-size:42px;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.ct-ring .fg.warm{stroke:#ff9f45;filter:drop-shadow(0 0 6px rgba(255,159,69,.5))}
+.ct-group{width:100%}
+.ct-lbl{display:block;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:7px;text-transform:uppercase;letter-spacing:.05em}
 .ct-presets{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .ct-presets button{padding:8px 13px;border-radius:11px;background:var(--card2);border:1px solid var(--line);font-weight:800;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
 .ct-presets button.on{background:#5cc8ff;color:#04222f;border-color:transparent}
