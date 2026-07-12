@@ -12,6 +12,10 @@
     lunch:     window.MEALS_LUNCH || [],
     dinner:    window.MEALS_DINNER || []
   };
+  const RECIPES = {};
+  for (const arr of [window.RECIPES_BREAKFAST, window.RECIPES_SNACK, window.RECIPES_LUNCH, window.RECIPES_DINNER]) {
+    if (arr) for (const r of arr) if (r && r.n) RECIPES[r.n] = r;
+  }
   const TRAINING = window.TRAINING || { meta: {}, days: [] };
   const ACHIEVEMENTS = window.ACHIEVEMENTS || [];
   const LEVELS = window.LEVELS || [{ level: 1, xp: 0, title: "—" }];
@@ -317,7 +321,7 @@
       const on = !!rec.checked[s.key];
       mealsHtml += `<div class="mealrow">
         <div class="check ${on ? "on" : ""}" data-action="toggle-meal" data-slot="${s.key}">${on ? "✓" : ""}</div>
-        <div class="grow" data-action="change-meal" data-wd="${wd}" data-slot="${s.key}">
+        <div class="grow" data-action="view-recipe" data-wd="${wd}" data-slot="${s.key}">
           <div class="slotlabel">${s.ico} ${s.label}${isCustom(val) ? ' · <span style="color:var(--acc)">angepasst</span>' : ""}</div>
           <div class="mealname ${m ? "" : "empty"}">${m ? esc(m.n) : "+ Gericht wählen"}</div>
         </div>
@@ -578,6 +582,46 @@
     return bd;
   }
   function closeSheet(bd) { bd.classList.remove("show"); setTimeout(() => bd.remove(), 300); }
+
+  // Rezept / Kochanleitung ansehen (von "Heute")
+  function openRecipe(wd, slot, source) {
+    const m = resolveMeal(source); if (!m) { openPicker(wd, slot); return; }
+    const rec = RECIPES[m.n];
+    const k = mealKcal(m), p = mealMacro(m, "p"), custom = isCustom(source);
+    const eaten = !!dayRec().checked[slot];
+    const ingRows = m.i.map((it) => {
+      const ing = ING[it[0]]; if (!ing) return "";
+      const amt = ing.pieceG ? (Math.max(1, Math.round(it[1] / ing.pieceG)) + "×") : (it[1] + (ing.unit === "ml" ? " ml" : " g"));
+      return `<div class="ing-list-row"><span>${esc(ing.n)}</span><b>${amt}</b></div>`;
+    }).join("");
+    const steps = rec && rec.s && rec.s.length
+      ? rec.s.map((st, i) => `<div class="recipe-step"><div class="num">${i + 1}</div><div class="tx">${esc(st)}</div></div>`).join("")
+      : `<div class="empty-note">Für dieses Gericht ist noch keine Schritt-Anleitung hinterlegt.<br>Zutaten frisch zubereiten und nach Geschmack anrichten.</div>`;
+    const bd = openSheet(`<div class="grip"></div>
+      <div class="sheet-head"><h2 style="font-size:17px">${esc(m.n)}</h2><button class="closex" data-close>✕</button></div>
+      <div class="sheet-body">
+        <div class="recipe-meta"><span class="pill">⏱️ ${esc(rec && rec.t ? rec.t : "—")}</span><span class="pill">🔥 ${k} kcal</span><span class="pill">🥩 ${p} g Eiweiß</span><span class="pill">1 Portion</span></div>
+        ${custom ? '<div class="recipe-note">ℹ️ Du hast dieses Grundrezept angepasst – die Schritte beziehen sich aufs Originalgericht, die Mengen unten auf deine Version.</div>' : ""}
+        <div class="sectitle" style="margin-top:2px">🧺 Zutaten</div>
+        <div class="card">${ingRows}</div>
+        <div class="sectitle">👨‍🍳 Zubereitung</div>
+        <div class="card">${steps}</div>
+        ${rec && rec.tip ? `<div class="recipe-tip"><b>💡 Tipp:</b> ${esc(rec.tip)}</div>` : ""}
+        <div style="height:14px"></div>
+        <button class="btn ${eaten ? "btn-ghost" : "btn-primary"}" data-eaten>${eaten ? "↩︎ Als „nicht gegessen“ markieren" : "✓ Als gegessen markieren"}</button>
+        <div class="btn-row" style="margin-top:8px">
+          <button class="btn btn-ghost" style="flex:1" data-adjust>✏️ Zutaten anpassen</button>
+          <button class="btn btn-ghost" style="flex:1" data-change>🔄 Anderes Gericht</button>
+        </div>
+        <div style="height:16px"></div>
+      </div>`, { full: true });
+    bd.addEventListener("click", (e) => {
+      if (e.target.closest("[data-eaten]")) { toggleMeal(slot); closeSheet(bd); return; }
+      if (e.target.closest("[data-adjust]")) { closeSheet(bd); openCustomize(wd, slot, source); return; }
+      if (e.target.closest("[data-change]")) { closeSheet(bd); openPicker(wd, slot); return; }
+      if (e.target.closest("[data-close]")) closeSheet(bd);
+    });
+  }
 
   function defaultAmt(id) {
     const ing = ING[id]; if (!ing) return 50;
@@ -969,6 +1013,7 @@
     else if (a === "edit-burned") openBurned();
     else if (a === "toggle-meal") toggleMeal(el.dataset.slot);
     else if (a === "change-meal") { const w = +el.dataset.wd, sl = el.dataset.slot, cur = (S.plan[w] || {})[sl]; if (cur) openCustomize(w, sl, cur); else openPicker(w, sl); }
+    else if (a === "view-recipe") { const w = +el.dataset.wd, sl = el.dataset.slot, cur = (S.plan[w] || {})[sl]; if (cur) openRecipe(w, sl, cur); else openPicker(w, sl); }
     else if (a === "add-manual") openManual();
     else if (a === "del-manual") delManual(+el.dataset.idx);
     else if (a === "start-workout") openWorkout(+el.dataset.wd);

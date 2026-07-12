@@ -1,5 +1,5 @@
 /* APEX Service Worker – Offline-Fähigkeit */
-const CACHE = "apex-v2";
+const CACHE = "apex-v3";
 const ASSETS = [
   "./",
   "./index.html",
@@ -11,6 +11,10 @@ const ASSETS = [
   "./js/data-dinner.js",
   "./js/data-training.js",
   "./js/data-achievements.js",
+  "./js/data-breakfast-recipes.js",
+  "./js/data-snacks-recipes.js",
+  "./js/data-lunch-recipes.js",
+  "./js/data-dinner-recipes.js",
   "./js/app.js",
   "./manifest.webmanifest",
   "./icons/icon-192.png",

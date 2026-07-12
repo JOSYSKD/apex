@@ -271,3 +271,19 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   font-size:18px;font-weight:800;display:grid;place-items:center}
 .stepper button:active{transform:scale(.94)}
 .stepper button.del{color:var(--bad);font-size:14px}
+
+/* Rezept / Kochanleitung */
+.recipe-meta{display:flex;gap:8px;flex-wrap:wrap;margin:-2px 0 12px}
+.ing-list-row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.ing-list-row:last-child{border-bottom:none}
+.ing-list-row b{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--acc)}
+.recipe-step{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.recipe-step:last-child{border-bottom:none}
+.recipe-step .num{width:27px;height:27px;border-radius:9px;background:linear-gradient(100deg,var(--a1),var(--a2));
+  color:#04241a;font-weight:900;display:grid;place-items:center;flex:0 0 auto;font-size:13px;margin-top:1px}
+.recipe-step .tx{font-size:14.5px;line-height:1.5}
+.recipe-tip{background:rgba(255,176,32,.1);border:1px solid rgba(255,176,32,.28);border-radius:14px;
+  padding:12px 14px;font-size:14px;line-height:1.5}
+.recipe-tip b{color:var(--warn)}
+.recipe-note{background:rgba(92,200,255,.08);border:1px solid rgba(92,200,255,.25);border-radius:12px;
+  padding:10px 13px;font-size:13px;line-height:1.45;color:var(--muted);margin-bottom:12px}
