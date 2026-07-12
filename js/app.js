@@ -65,7 +65,8 @@
     times: { breakfast: "07:00", snack: "10:00", lunch: "14:30" },
     dinnerNormal: "18:30", dinnerFootball: "20:15",
     trainNormal: "16:30", trainFootball: "16:00",
-    footballStart: "18:30", footballEnd: "20:00", footballDays: [0, 1]
+    footballStart: "18:30", footballEnd: "20:00", footballDays: [0, 1],
+    cold: { morning: "06:35", sportNormal: "17:20", sportFootball: "20:05" }
   };
   function diffLevel() { return DIFF_LEVELS[Math.min(DIFF_LEVELS.length - 1, Math.max(0, S.diff | 0))]; }
   function scaleReps(str, f) { return String(str).replace(/\d+/g, (m) => Math.max(1, Math.round(parseInt(m, 10) * f))); }
@@ -331,6 +332,38 @@
     pendingCele.push({ ico: "🛒", title: "Wochenplan abgehakt!", sub: "Alles eingekauft – bereit für eine starke Woche." });
     refresh(); renderActive(); flushCele();
   }
+  function openColdTherapy() {
+    const bd = openSheet(`<div class="grip"></div>
+      <div class="sheet-head"><h2>❄️ Kältetherapie</h2><button class="closex" data-close>✕</button></div>
+      <div class="sheet-body">
+        <div class="recipe-meta"><span class="pill">🌅 06:35 morgens</span><span class="pill">🏋️ nach dem Sport</span><span class="pill">⏱️ 2–3 Min</span></div>
+        <div class="sectitle" style="margin-top:2px">Warum kalt duschen?</div>
+        <div class="card"><ul style="margin:0;padding-left:18px;line-height:1.7;font-size:14px">
+          <li>Sofort wach, klar & fokussiert (Dopamin-Kick)</li>
+          <li>Schnellere Regeneration nach Training & Fußball</li>
+          <li>Stärkt Immunsystem und Kreislauf</li>
+          <li>Kurbelt den Stoffwechsel an (braunes Fett)</li>
+          <li>Trainiert mentale Härte & Disziplin</li>
+        </ul></div>
+        <div class="sectitle">So geht's</div>
+        <div class="card">
+          <div class="recipe-step"><div class="num">1</div><div class="tx">Normal warm duschen und fertig waschen.</div></div>
+          <div class="recipe-step"><div class="num">2</div><div class="tx">Wasser auf kalt drehen – ruhig weiteratmen, langsam ein und aus.</div></div>
+          <div class="recipe-step"><div class="num">3</div><div class="tx">Zuerst Beine & Arme, dann Brust, zuletzt Nacken – nie direkt am Kopf starten.</div></div>
+          <div class="recipe-step"><div class="num">4</div><div class="tx">2–3 Minuten kalt halten, dann abtrocknen und von selbst aufwärmen.</div></div>
+        </div>
+        <div class="sectitle">Aufbau (langsam steigern)</div>
+        <div class="card"><ul style="margin:0;padding-left:18px;line-height:1.7;font-size:14px">
+          <li>Woche 1: die letzten 30 Sek. kalt abschließen</li>
+          <li>Woche 2–3: auf 1–2 Min steigern</li>
+          <li>Ab Woche 4: volle 2–3 Min komplett kalt</li>
+        </ul></div>
+        <div class="recipe-tip"><b>💡 Tipp:</b> Morgens für Energie, nach dem Sport für die Regeneration. Konsequenz schlägt Dauer – lieber jeden Tag kurz als selten lang.</div>
+        <div class="recipe-note" style="margin-top:12px">⚠️ Bei Herz- oder Kreislaufproblemen vorher ärztlich abklären.</div>
+        <div style="height:14px"></div>
+      </div>`, { full: true });
+    bd.addEventListener("click", (e) => { if (e.target.closest("[data-close]")) closeSheet(bd); });
+  }
 
   /* ============================================================
      RENDERING
@@ -366,6 +399,7 @@
     const d = scaledDay(wd); const done = rec.workoutDone;
     const items = [];
     items.push({ t: DAYPLAN.wake, ico: "☀️", title: "Aufstehen", sub: "Guten Morgen – erstmal ein großes Glas Wasser." });
+    items.push({ t: DAYPLAN.cold.morning, ico: "❄️", cold: 1, title: "Kaltdusche", sub: "2–3 Min · Energie & Fokus für den Tag" });
     if (DAYPLAN.school.days.indexOf(wd) >= 0) items.push({ t: DAYPLAN.school.start, ico: "🎒", title: "Schule", sub: "bis " + DAYPLAN.school.end + " Uhr · Brotzeit in der Pause um 10:00" });
     for (const key of ["breakfast", "snack", "lunch"]) {
       const s = SLOTS.find((x) => x.key === key);
@@ -374,10 +408,16 @@
     if (d && d.type !== "rest") items.push({ t: isFb ? DAYPLAN.trainFootball : DAYPLAN.trainNormal, ico: d.emoji, training: 1, done, focus: d.focus, minutes: d.minutes, kcal: d.kcal, optional: isFb });
     else items.push({ t: DAYPLAN.trainNormal, ico: "🌱", title: "Aktive Erholung", sub: "Spaziergang & Dehnen – heute wächst der Muskel." });
     if (isFb) items.push({ t: DAYPLAN.footballStart, ico: "⚽", title: "Fußballtraining", sub: "1:30 Std im Verein (" + DAYPLAN.footballStart + "–" + DAYPLAN.footballEnd + ")" });
+    items.push({ t: isFb ? DAYPLAN.cold.sportFootball : DAYPLAN.cold.sportNormal, ico: "❄️", cold: 1, title: "Kaltdusche (Regeneration)", sub: "2–3 Min kalt · Regeneration & mentale Härte" });
     { const s = SLOTS.find((x) => x.key === "dinner"); items.push({ t: isFb ? DAYPLAN.dinnerFootball : DAYPLAN.dinnerNormal, ico: s.ico, meal: 1, slot: "dinner", m: resolveMeal(plan.dinner), on: !!rec.checked.dinner, label: s.label }); }
     items.push({ t: DAYPLAN.sleep, ico: "😴", title: "Schlafen gehen", sub: "9,5 Std bis 6:30 – jeden Tag zur gleichen Zeit für besten Schlaf." });
     items.sort((a, b) => a.t.localeCompare(b.t));
     return items.map((it) => {
+      if (it.cold) return `<div class="tl-row" data-action="cold-therapy">
+        <div class="tl-time">${it.t}</div><div class="tl-ico" style="background:rgba(92,200,255,.12)">${it.ico}</div>
+        <div class="tl-body"><div class="tl-title">${esc(it.title)}</div><div class="tl-sub">${esc(it.sub)}</div></div>
+        <div style="color:var(--info);font-size:16px;padding-right:8px">›</div>
+      </div>`;
       if (it.meal) return `<div class="tl-row">
         <div class="tl-time">${it.t}</div><div class="tl-ico">${it.ico}</div>
         <div class="tl-body" data-action="view-recipe" data-wd="${wd}" data-slot="${it.slot}">
@@ -1092,6 +1132,7 @@
     else if (a === "del-manual") delManual(+el.dataset.idx);
     else if (a === "start-workout") openWorkout(+el.dataset.wd);
     else if (a === "set-diff") { S.diff = +el.dataset.i; save(); vibrate(10); renderActive(); }
+    else if (a === "cold-therapy") openColdTherapy();
     else if (a === "auto-week") autoWeek();
     else if (a === "clear-week") confirmSheet({ title: "Woche leeren?", msg: "Alle geplanten Mahlzeiten dieser Woche werden entfernt.", ok: "Leeren", onOk: clearWeek });
     else if (a === "go-plan") go("plan");
