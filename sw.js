@@ -1,5 +1,5 @@
 /* APEX Service Worker – Offline-Fähigkeit */
-const CACHE = "apex-v4";
+const CACHE = "apex-v5";
 const ASSETS = [
   "./",
   "./index.html",

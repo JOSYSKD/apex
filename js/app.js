@@ -60,10 +60,11 @@
   ];
   // Tagesablauf: feste Empfehlungszeiten (Aufstehen 6:30). Mo (0) & Di (1) = Fußball.
   const DAYPLAN = {
-    wake: "06:30", sleep: "22:15",
-    times: { breakfast: "07:00", snack: "10:00", lunch: "12:45" },
-    dinnerNormal: "19:00", dinnerFootball: "20:00",
-    trainNormal: "17:00", trainFootball: "16:15",
+    wake: "06:30", sleep: "21:00",
+    school: { start: "07:30", end: "13:00", days: [0, 1, 2, 3, 4] },
+    times: { breakfast: "07:00", snack: "10:00", lunch: "14:30" },
+    dinnerNormal: "18:30", dinnerFootball: "19:45",
+    trainNormal: "16:30", trainFootball: "16:00",
     footballStart: "18:00", footballEnd: "19:30", footballDays: [0, 1]
   };
   function diffLevel() { return DIFF_LEVELS[Math.min(DIFF_LEVELS.length - 1, Math.max(0, S.diff | 0))]; }
@@ -170,6 +171,7 @@
   function itemsKcalProt(items) { let k = 0, p = 0; for (const it of items) { const ing = ING[it[0]]; if (ing) { k += ing.kcal * it[1] / 100; p += ing.p * it[1] / 100; } } return [Math.round(k), Math.round(p)]; }
   function sameItems(a, b) { if (!a || !b || a.length !== b.length) return false; const norm = (x) => x.map((e) => e[0] + ":" + e[1]).sort().join("|"); return norm(a) === norm(b); }
   function isCustom(val) { return val && typeof val === "object"; }
+  function mealTime(m) { const r = m && RECIPES[m.n]; return r && r.t ? r.t : null; }
 
   /* ---------------- Tages-Berechnung ---------------- */
   function computeDay(date) {
@@ -364,6 +366,7 @@
     const d = scaledDay(wd); const done = rec.workoutDone;
     const items = [];
     items.push({ t: DAYPLAN.wake, ico: "☀️", title: "Aufstehen", sub: "Guten Morgen – erstmal ein großes Glas Wasser." });
+    if (DAYPLAN.school.days.indexOf(wd) >= 0) items.push({ t: DAYPLAN.school.start, ico: "🎒", title: "Schule", sub: "bis " + DAYPLAN.school.end + " Uhr · Brotzeit in der Pause um 10:00" });
     for (const key of ["breakfast", "snack", "lunch"]) {
       const s = SLOTS.find((x) => x.key === key);
       items.push({ t: DAYPLAN.times[key], ico: s.ico, meal: 1, slot: key, m: resolveMeal(plan[key]), on: !!rec.checked[key], label: s.label });
@@ -372,14 +375,14 @@
     else items.push({ t: DAYPLAN.trainNormal, ico: "🌱", title: "Aktive Erholung", sub: "Spaziergang & Dehnen – heute wächst der Muskel." });
     if (isFb) items.push({ t: DAYPLAN.footballStart, ico: "⚽", title: "Fußballtraining", sub: "1:30 Std im Verein (" + DAYPLAN.footballStart + "–" + DAYPLAN.footballEnd + ")" });
     { const s = SLOTS.find((x) => x.key === "dinner"); items.push({ t: isFb ? DAYPLAN.dinnerFootball : DAYPLAN.dinnerNormal, ico: s.ico, meal: 1, slot: "dinner", m: resolveMeal(plan.dinner), on: !!rec.checked.dinner, label: s.label }); }
-    items.push({ t: DAYPLAN.sleep, ico: "😴", title: "Schlafen gehen", sub: "~8 Std Schlaf bis 6:30 – Regeneration ist Teil des Trainings." });
+    items.push({ t: DAYPLAN.sleep, ico: "😴", title: "Schlafen gehen", sub: "9,5 Std bis 6:30 – jeden Tag zur gleichen Zeit für besten Schlaf." });
     items.sort((a, b) => a.t.localeCompare(b.t));
     return items.map((it) => {
       if (it.meal) return `<div class="tl-row">
         <div class="tl-time">${it.t}</div><div class="tl-ico">${it.ico}</div>
         <div class="tl-body" data-action="view-recipe" data-wd="${wd}" data-slot="${it.slot}">
           <div class="tl-title ${it.m ? "" : "muted"}">${it.m ? esc(it.m.n) : "Gericht wählen"}</div>
-          <div class="tl-sub">${it.label}${it.m ? " · " + mealKcal(it.m) + " kcal" : " · antippen"}</div>
+          <div class="tl-sub">${it.label}${it.m ? " · " + mealKcal(it.m) + " kcal" + (mealTime(it.m) ? " · ⏱️ " + mealTime(it.m) : "") : " · antippen"}</div>
         </div>
         ${it.m ? `<div class="check ${it.on ? "on" : ""}" data-action="toggle-meal" data-slot="${it.slot}">${it.on ? "✓" : ""}</div>` : `<div style="color:var(--acc);font-size:20px;padding-right:6px">＋</div>`}
       </div>`;
@@ -803,7 +806,7 @@
         const m = mealByKey(slotKey + ":" + i);
         return `<div class="pickrow" data-pick="${i}">
           <div class="grow"><div class="pn">${esc(set[i].n)}</div>
-          <div class="pm">${mealKcal(m)} kcal · ${mealMacro(m, "p")} g Eiweiß</div>${tagsHtml(set[i].t)}</div>
+          <div class="pm">${mealKcal(m)} kcal · ${mealMacro(m, "p")} g Eiweiß${mealTime(m) ? " · ⏱️ " + mealTime(m) : ""}</div>${tagsHtml(set[i].t)}</div>
           <div class="mealkcal">${mealKcal(m)}</div></div>`;
       }).join("") : `<div class="empty-note">Nichts gefunden.</div>`;
     }
