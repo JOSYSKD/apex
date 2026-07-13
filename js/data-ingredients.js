@@ -190,3 +190,34 @@ for (const [id, a] of Object.entries(RAW_ING)) {
     cat: a[5], pieceG: a[6] || null, unit: a[7] || "g"
   };
 }
+
+/* Geschätzte Preise in € pro 100 g bzw. 100 ml (Deutschland).
+   Fleisch, Fisch, Wurst & Milchprodukte sind bereits auf BIO-Niveau
+   angesetzt (Josl kauft die meist in Bio). Nur grobe Schätzung. */
+window.PRICES = {
+  egg:0.75, eggwhite:0.4, chicken:1.6, chickenthigh:1.1, turkey:1.7, beefsteak:3.2, beefmince:1.6,
+  porkfillet:1.9, ham:2.3, turkeyham:2.3, bacon:2.2, salami:2.6, salmon:3.2, salmonsmoked:5.0,
+  tuna:1.6, cod:2.2, shrimp:3.2, trout:2.3, tofu:1.0, tofusmoked:1.3, lentils:0.4, lentilsred:0.5,
+  chickpeas:0.4, beans:0.3, whitebeans:0.3, proteinpowder:2.5, edamame:0.9,
+  milk:0.13, milkalmond:0.3, milksoy:0.2, quark:0.5, skyr:0.65, yogurt:0.45, yogurtgreek:0.65,
+  cottage:0.6, cheese:1.9, cheesemozz:1.3, feta:1.6, parmesan:3.2, cheesecream:1.1, cheesecreamlt:1.1,
+  halloumi:2.1, butter:1.6, creamsour:0.6,
+  oats:0.2, muesli:0.45, granola:0.85, cornflakes:0.4, wgbread:0.4, ryebread:0.4, toast:0.35, roll:0.5,
+  pretzel:0.6, crispbread:0.85, ricecake:1.1, rice:0.25, ricebrown:0.35, pasta:0.35, pastawhite:0.25,
+  potato:0.15, sweetpotato:0.3, couscous:0.4, bulgur:0.4, quinoa:0.9, tortilla:0.6, wrap:0.65,
+  polenta:0.3, gnocchi:0.45, flour:0.15, pita:0.55, ricenoodle:0.55, udon:0.6, burgerbun:0.55, sushirice:0.45,
+  tomato:0.35, tomatocherry:0.65, cucumber:0.25, pepper:0.5, onion:0.15, onionred:0.2, garlic:1.5,
+  carrot:0.15, broccoli:0.4, cauliflower:0.35, spinach:0.6, lettuce:0.45, rocket:1.3, cornsalad:1.5,
+  zucchini:0.35, eggplant:0.4, mushroom:0.6, greenbeans:0.5, peas:0.4, corn:0.4, cabbage:0.15,
+  redcabbage:0.2, kale:0.5, asparagus:1.3, leek:0.3, celery:0.4, radish:0.5, beetroot:0.3, pumpkin:0.3,
+  sauerkraut:0.3, passata:0.22, tomatopaste:0.45, gherkin:0.4, springonion:0.6, nori:3.5, pakchoi:0.6, beansprouts:0.5,
+  banana:0.2, apple:0.3, orange:0.3, berrymix:0.85, strawberry:0.85, blueberry:1.6, raspberry:1.9,
+  kiwi:0.45, pear:0.35, grape:0.55, pineapple:0.3, mango:0.55, peach:0.5, lemon:0.4, lime:0.7, raisins:0.6, date:1.1,
+  oliveoil:1.2, rapeoil:0.4, coconutoil:1.6, sesameoil:2.2, avocado:0.8, peanutbutter:0.8, almond:2.2,
+  walnut:2.6, cashew:2.6, peanut:1.0, chia:1.6, flaxseed:0.5, sunflowerseed:0.6, pumpkinseed:1.6, sesame:1.1, olives:1.3,
+  honey:1.1, jam:0.5, maple:2.2, ketchup:0.4, mustard:0.4, soysauce:0.8, vinegar:0.7, broth:0.1,
+  currypaste:1.6, coconutmilk:0.4, cocoa:1.6, chocdark:1.6, proteinbar:3.2, herbs:2.2, ginger:0.6,
+  chili:1.2, pesto:1.6, hummus:0.8, curry:2.2, bakingpowder:1.0
+};
+// Kategorien, die bei Josl in Bio gekauft werden (für den Hinweis/Aufschlag-Text)
+window.PRICE_BIO_CATS = ["protein", "milch"];

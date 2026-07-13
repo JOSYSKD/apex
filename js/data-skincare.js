@@ -28,15 +28,16 @@ window.SKINCARE = {
     "Immer nur einen neuen Wirkstoff gleichzeitig testen."
   ],
   products: [
-    { n: "CeraVe Schaumreinigung", cat: "Basis (täglich)", use: "Reinigung morgens & abends", shop: "dm · Rossmann · Apotheke", price: "ca. 12 €" },
-    { n: "CeraVe Feuchtigkeitscreme (Gesicht)", cat: "Basis (täglich)", use: "Feuchtigkeit morgens & abends", shop: "dm · Rossmann · Apotheke", price: "ca. 13 €" },
-    { n: "SUNDANCE Sonnenfluid Gesicht LSF 50", cat: "Basis (täglich)", use: "Sonnenschutz jeden Morgen", shop: "dm", price: "ca. 7 €" },
-    { n: "The Ordinary Niacinamide 10% + Zinc", cat: "Gegen Pickel", use: "gegen Talg, Poren & Rötungen (morgens)", shop: "dm · online", price: "ca. 7 €" },
-    { n: "The Ordinary Salicylic Acid 2%", cat: "Gegen Pickel", use: "gegen Mitesser & Pickel (abends, 2–3×/Woche)", shop: "dm · online", price: "ca. 8 €" },
-    { n: "Benzaknen 5% (Benzoylperoxid)", cat: "Gegen Pickel", use: "punktuell auf einzelne Pickel", shop: "Apotheke (rezeptfrei)", price: "ca. 12 €" },
-    { n: "The Ordinary AHA 30% + BHA Peeling", cat: "Optional", use: "1×/Woche Peeling (max. 10 Min)", shop: "dm · online", price: "ca. 9 €" },
-    { n: "Balea Waschgel & Feuchtigkeitscreme", cat: "Optional", use: "günstiger Einstieg statt CeraVe", shop: "dm", price: "ca. 2–3 €" }
+    { n: "CeraVe Schaumreinigung", cat: "Basis (täglich)", use: "Reinigung morgens & abends", shop: "dm · Rossmann · Apotheke", price: "ca. 12 €", eur: 12 },
+    { n: "CeraVe Feuchtigkeitscreme (Gesicht)", cat: "Basis (täglich)", use: "Feuchtigkeit morgens & abends", shop: "dm · Rossmann · Apotheke", price: "ca. 13 €", eur: 13 },
+    { n: "SUNDANCE Sonnenfluid Gesicht LSF 50", cat: "Basis (täglich)", use: "Sonnenschutz jeden Morgen", shop: "dm", price: "ca. 7 €", eur: 7 },
+    { n: "The Ordinary Niacinamide 10% + Zinc", cat: "Gegen Pickel", use: "gegen Talg, Poren & Rötungen (morgens)", shop: "dm · online", price: "ca. 7 €", eur: 7 },
+    { n: "The Ordinary Salicylic Acid 2%", cat: "Gegen Pickel", use: "gegen Mitesser & Pickel (abends, 2–3×/Woche)", shop: "dm · online", price: "ca. 8 €", eur: 8 },
+    { n: "Benzaknen 5% (Benzoylperoxid)", cat: "Gegen Pickel", use: "punktuell auf einzelne Pickel", shop: "Apotheke (rezeptfrei)", price: "ca. 12 €", eur: 12 },
+    { n: "The Ordinary AHA 30% + BHA Peeling", cat: "Optional", use: "1×/Woche Peeling (max. 10 Min)", shop: "dm · online", price: "ca. 9 €", eur: 9 },
+    { n: "Balea Waschgel & Feuchtigkeitscreme", cat: "Optional", use: "günstiger Einstieg statt CeraVe", shop: "dm", price: "ca. 3 €", eur: 3 }
   ],
+  shopsummary: "Fast alles bekommst du bei dm (auch Rossmann/Müller). Nur das Benzaknen gibt es in der Apotheke (rezeptfrei). The-Ordinary-Produkte notfalls online.",
   budget: "Grundausstattung (Reinigung + Creme + Sonnenschutz) ca. 30 € · komplett mit Wirkstoffen ca. 50 €. Ganz günstig mit Balea ab ~12 €.",
   note: "Bei starker, schmerzhafter oder zystischer Akne ist ein Hautarzt/Dermatologe die beste Adresse – er kann stärkere Mittel verschreiben."
 };
