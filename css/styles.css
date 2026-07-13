@@ -176,6 +176,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .seg{display:flex;gap:8px}
 .seg button{flex:1;padding:11px;border-radius:12px;background:var(--card);border:1px solid var(--line2);font-weight:700;font-size:13px}
 .seg button.on{background:linear-gradient(100deg,var(--a1),var(--a2));color:#04241a;border-color:transparent}
+.emojipick{display:flex;flex-wrap:wrap;gap:6px}
+.emojipick button{width:38px;height:44px;border-radius:11px;background:var(--card);border:1px solid var(--line2);font-size:19px;flex:0 0 auto}
+.emojipick button.on{background:linear-gradient(100deg,var(--a1),var(--a2));border-color:transparent;box-shadow:0 6px 16px rgba(55,227,162,.22)}
+.wdrow{display:flex;gap:6px}
+.wdrow button{flex:1;padding:10px 0;border-radius:11px;background:var(--card);border:1px solid var(--line2);font-weight:800;font-size:13px;color:var(--muted)}
+.wdrow button.on{background:linear-gradient(100deg,var(--a1),var(--a2));color:#04241a;border-color:transparent}
 
 /* number pad big display */
 .numdisp{text-align:center;font-size:46px;font-weight:900;padding:14px;font-variant-numeric:tabular-nums}

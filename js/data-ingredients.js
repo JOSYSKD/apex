@@ -31,6 +31,10 @@ const RAW_ING = {
   gnocchi:       ["Gnocchi", 160, 4, 33, 1, "kh", null, "g"],
   flour:         ["Vollkornmehl", 340, 13, 60, 2, "kh", null, "g"],
   pita:          ["Vollkorn-Pita", 275, 9, 50, 3, "kh", 70, "Stück"],
+  ricenoodle:    ["Asia-Nudeln (Mie)", 350, 11, 71, 3, "kh", null, "g"],
+  udon:          ["Udon-Nudeln (frisch)", 190, 6, 40, 0.9, "kh", null, "g"],
+  burgerbun:     ["Vollkorn-Burgerbrötchen", 270, 10, 46, 4, "kh", 80, "Stück"],
+  sushirice:     ["Sushi-Reis (roh)", 350, 6, 78, 0.6, "kh", null, "g"],
 
   /* ---------- Eiweiß: Fleisch / Fisch / Ei / Soja ---------- */
   egg:           ["Ei", 143, 12.6, 0.7, 9.9, "protein", 60, "Stück"],
@@ -84,6 +88,7 @@ const RAW_ING = {
   oliveoil:      ["Olivenöl", 884, 0, 0, 100, "fett", null, "ml"],
   rapeoil:       ["Rapsöl", 884, 0, 0, 100, "fett", null, "ml"],
   coconutoil:    ["Kokosöl", 900, 0, 0, 100, "fett", null, "ml"],
+  sesameoil:     ["Sesamöl", 884, 0, 0, 100, "fett", null, "ml"],
   avocado:       ["Avocado", 160, 2, 9, 15, "fett", 150, "Stück"],
   peanutbutter:  ["Erdnussbutter", 600, 25, 12, 50, "fett", null, "g"],
   almond:        ["Mandeln", 580, 21, 20, 49, "fett", null, "g"],
@@ -131,6 +136,10 @@ const RAW_ING = {
   passata:       ["Passierte Tomaten", 35, 1.6, 6, 0.3, "gemuese", null, "g"],
   tomatopaste:   ["Tomatenmark", 82, 4.6, 14, 0.5, "gemuese", null, "g"],
   gherkin:       ["Gewürzgurken", 15, 0.6, 2.5, 0.2, "gemuese", null, "g"],
+  springonion:   ["Frühlingszwiebeln", 32, 1.8, 7, 0.2, "gemuese", null, "g"],
+  nori:          ["Noriblätter", 130, 30, 5, 1, "gemuese", 3, "Blatt"],
+  pakchoi:       ["Pak Choi", 13, 1.5, 2.2, 0.2, "gemuese", null, "g"],
+  beansprouts:   ["Sojasprossen", 22, 3, 2, 0.2, "gemuese", null, "g"],
 
   /* ---------- Obst ---------- */
   banana:        ["Banane", 89, 1.1, 23, 0.3, "obst", 120, "Stück"],

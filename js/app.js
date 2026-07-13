@@ -102,9 +102,9 @@
 
   function defaultState() {
     const st = {
-      profile: { weight: 72, height: 185, age: 22, sex: "m", activity: "base", deficit: 500 },
+      profile: { weight: 72, height: 185, age: 22, sex: "m", activity: "base", deficit: 300 },
       budget: 0, protein: 0, diff: 0,
-      plan: {}, days: {},
+      plan: {}, days: {}, appointments: [],
       stats: {
         workoutsTotal: 0, currentStreak: 0, bestStreak: 0, lastActive: "",
         burnedTotal: 0, deficitDays: 0, proteinDays: 0, perfectDays: 0,
@@ -118,7 +118,13 @@
   function load() {
     try {
       const r = JSON.parse(localStorage.getItem(LS));
-      if (r && r.profile) { r.stats = r.stats || {}; r.days = r.days || {}; r.plan = r.plan || {}; r.achievements = r.achievements || {}; r.shopChecked = r.shopChecked || {}; r.skinBought = r.skinBought || {}; if (typeof r.diff !== "number") r.diff = 0; return r; }
+      if (r && r.profile) {
+        r.stats = r.stats || {}; r.days = r.days || {}; r.plan = r.plan || {}; r.achievements = r.achievements || {}; r.shopChecked = r.shopChecked || {}; r.skinBought = r.skinBought || {}; r.appointments = r.appointments || [];
+        if (typeof r.diff !== "number") r.diff = 0;
+        // Einmalige Umstellung auf die proteinreichen Gerichte: altes Standard-Defizit (−500) auf sanft (−300) senken, damit die kalorienreicheren Gerichte ins Budget passen.
+        if (!r.mealsV2) { if (r.profile.deficit === 500) r.profile.deficit = 300; r.mealsV2 = true; }
+        return r;
+      }
     } catch (e) {}
     return defaultState();
   }
@@ -129,7 +135,7 @@
     const bmr = 10 * p.weight + 6.25 * p.height - 5 * p.age + (p.sex === "m" ? 5 : -161);
     const maint = bmr * (ACTIVITY[p.activity] || ACTIVITY.base).f;
     st.budget = Math.max(1200, Math.round((maint - p.deficit) / 10) * 10);
-    st.protein = Math.round((p.weight * 2.0) / 5) * 5;
+    st.protein = Math.max(150, Math.round((p.weight * 2.1) / 5) * 5);
   }
 
   /* ---------------- Datum / Helfer ---------------- */
@@ -270,6 +276,18 @@
   function setBurned(v) { dayRec().burned = Math.max(0, Math.round(v || 0)); refresh(); renderActive(); }
   function addManual(name, kcal, p) { dayRec().manual.push({ n: name, kcal: Math.round(kcal || 0), p: Math.round(p || 0) }); refresh(); renderActive(); }
   function delManual(i) { dayRec().manual.splice(i, 1); refresh(); renderActive(); }
+
+  /* ---------------- Eigene Termine ---------------- */
+  function saveAppointment(ap) {
+    S.appointments = S.appointments || [];
+    const i = S.appointments.findIndex((x) => x.id === ap.id);
+    if (i >= 0) S.appointments[i] = ap; else S.appointments.push(ap);
+    save(); renderActive();
+  }
+  function delAppointment(id) {
+    S.appointments = (S.appointments || []).filter((x) => x.id !== id);
+    save(); renderActive();
+  }
 
   function autoWeek() {
     const ratios = { breakfast: 0.26, snack: 0.13, lunch: 0.34, dinner: 0.27 };
@@ -517,6 +535,10 @@
     { const s = SLOTS.find((x) => x.key === "dinner"); items.push({ t: isFb ? DAYPLAN.dinnerFootball : DAYPLAN.dinnerNormal, ico: s.ico, meal: 1, slot: "dinner", m: resolveMeal(plan.dinner), on: !!rec.checked.dinner, label: s.label }); }
     items.push({ t: DAYPLAN.skin.evening, ico: "🌙", skin: 1, title: "Skincare (abends)", sub: "Reinigen · Wirkstoff · Feuchtigkeit" });
     items.push({ t: DAYPLAN.sleep, ico: "😴", title: "Schlafen gehen", sub: "9,5 Std bis 6:30 – jeden Tag zur gleichen Zeit für besten Schlaf." });
+    for (const ap of (S.appointments || [])) {
+      const match = ap.mode === "weekly" ? (ap.days || []).indexOf(wd) >= 0 : ap.date === todayStr();
+      if (match) items.push({ t: ap.time || "12:00", ico: ap.ico || "📌", appt: 1, id: ap.id, title: ap.title || "Termin", sub: ap.sub || (ap.mode === "weekly" ? "Wöchentlicher Termin" : "Eigener Termin") });
+    }
     items.sort((a, b) => a.t.localeCompare(b.t));
     return items.map((it) => {
       if (it.cold) return `<div class="tl-row" data-action="cold-therapy">
@@ -528,6 +550,11 @@
         <div class="tl-time">${it.t}</div><div class="tl-ico" style="background:rgba(109,255,143,.12)">${it.ico}</div>
         <div class="tl-body"><div class="tl-title">${esc(it.title)}</div><div class="tl-sub">${esc(it.sub)}</div></div>
         <div style="color:var(--acc);font-size:16px;padding-right:8px">›</div>
+      </div>`;
+      if (it.appt) return `<div class="tl-row" data-action="open-appointment" data-id="${esc(it.id)}">
+        <div class="tl-time">${it.t}</div><div class="tl-ico" style="background:rgba(180,140,255,.16)">${it.ico}</div>
+        <div class="tl-body"><div class="tl-title">${esc(it.title)}</div><div class="tl-sub">${esc(it.sub)}</div></div>
+        <div style="color:var(--muted2);font-size:16px;padding-right:8px">✎</div>
       </div>`;
       if (it.meal) return `<div class="tl-row">
         <div class="tl-time">${it.t}</div><div class="tl-ico">${it.ico}</div>
@@ -597,6 +624,7 @@
 
       <div class="sectitle">Dein Tag · ${WEEKDAYS[wd]}</div>
       <div class="card">${buildTimeline(wd)}</div>
+      <button class="btn btn-ghost btn-sm" data-action="add-appointment" style="margin-bottom:10px">📌 Eigenen Termin hinzufügen</button>
       ${manualHtml ? `<div class="card">${manualHtml}</div>` : ""}
       <button class="btn btn-ghost" data-action="add-manual">➕ Zusätzliches Essen eintragen</button>
 
@@ -1022,6 +1050,56 @@
     });
   }
 
+  function openAppointment(existing) {
+    const editing = !!existing;
+    const ap = existing || { id: "ap" + Date.now().toString(36) + Math.floor(Math.random() * 1e4).toString(36), title: "", sub: "", ico: "📌", time: "12:00", mode: "once", date: todayStr(), days: [todayWd()] };
+    const EMOJIS = ["📌", "📅", "🏫", "⚽", "🎸", "🎮", "👨‍⚕️", "🦷", "🎂", "🛒", "💼", "🚌", "📚", "🎉", "🏋️", "✈️"];
+    const bd = openSheet(
+      `<div class="grip"></div>
+       <div class="sheet-head"><h2>📌 ${editing ? "Termin bearbeiten" : "Neuer Termin"}</h2><button class="closex" data-close>✕</button></div>
+       <div class="sheet-body">
+         <div class="field"><label>Titel</label><input data-title placeholder="z. B. Zahnarzt, Gitarrenstunde …" value="${esc(ap.title)}"></div>
+         <div class="field"><label>Uhrzeit</label><input data-time type="time" value="${esc(ap.time)}"></div>
+         <div class="field"><label>Symbol</label><div class="emojipick" data-emojis>${EMOJIS.map((e) => `<button type="button" data-emoji="${e}" class="${e === ap.ico ? "on" : ""}">${e}</button>`).join("")}</div></div>
+         <div class="field"><label>Notiz (optional)</label><input data-sub placeholder="Detail oder Ort …" value="${esc(ap.sub)}"></div>
+         <div class="field"><label>Wiederholung</label>
+           <div class="seg" data-mode>
+             <button type="button" data-m="once" class="${ap.mode === "once" ? "on" : ""}">Einmalig</button>
+             <button type="button" data-m="weekly" class="${ap.mode === "weekly" ? "on" : ""}">Wöchentlich</button>
+           </div>
+         </div>
+         <div class="field" data-once-wrap style="${ap.mode === "weekly" ? "display:none" : ""}"><label>Datum</label><input data-date type="date" value="${esc(ap.date || todayStr())}"></div>
+         <div class="field" data-weekly-wrap style="${ap.mode === "once" ? "display:none" : ""}"><label>Wochentage</label>
+           <div class="wdrow" data-days>${WEEKDAYS.map((w, i) => `<button type="button" data-day="${i}" class="${(ap.days || []).indexOf(i) >= 0 ? "on" : ""}">${w.slice(0, 2)}</button>`).join("")}</div>
+         </div>
+         <button class="btn btn-primary" data-save>${editing ? "Speichern" : "Termin hinzufügen"}</button>
+         ${editing ? `<button class="btn btn-ghost" style="margin-top:8px;color:var(--bad)" data-del>Termin löschen</button>` : ""}
+         <div style="height:10px"></div>
+       </div>`, { full: true });
+    let ico = ap.ico, mode = ap.mode, days = (ap.days || []).slice();
+    bd.addEventListener("click", (e) => {
+      const em = e.target.closest("[data-emoji]");
+      if (em) { ico = em.dataset.emoji; bd.querySelectorAll("[data-emoji]").forEach((b) => b.classList.toggle("on", b === em)); return; }
+      const md = e.target.closest("[data-m]");
+      if (md) { mode = md.dataset.m; bd.querySelectorAll("[data-m]").forEach((b) => b.classList.toggle("on", b === md)); bd.querySelector("[data-once-wrap]").style.display = mode === "weekly" ? "none" : ""; bd.querySelector("[data-weekly-wrap]").style.display = mode === "once" ? "none" : ""; return; }
+      const dy = e.target.closest("[data-day]");
+      if (dy) { const i = +dy.dataset.day; const at = days.indexOf(i); if (at >= 0) days.splice(at, 1); else days.push(i); dy.classList.toggle("on"); return; }
+      if (e.target.closest("[data-del]")) { delAppointment(ap.id); closeSheet(bd); vibrate(15); toast("Termin gelöscht", "🗑️"); return; }
+      if (e.target.closest("[data-save]")) {
+        const title = bd.querySelector("[data-title]").value.trim();
+        if (!title) { toast("Bitte einen Titel eingeben", "⚠️"); return; }
+        const time = bd.querySelector("[data-time]").value || "12:00";
+        const sub = bd.querySelector("[data-sub]").value.trim();
+        const date = bd.querySelector("[data-date]").value || todayStr();
+        if (mode === "weekly" && !days.length) { toast("Mindestens einen Wochentag wählen", "⚠️"); return; }
+        saveAppointment({ id: ap.id, title, sub, ico, time, mode, date, days: days.slice().sort((a, b) => a - b) });
+        closeSheet(bd); vibrate(15); toast(editing ? "Termin gespeichert" : "Termin hinzugefügt", "📌");
+        return;
+      }
+      if (e.target.closest("[data-close]")) closeSheet(bd);
+    });
+  }
+
   function openSettings() {
     const p = S.profile;
     const bd = openSheet(
@@ -1242,6 +1320,8 @@
     else if (a === "view-recipe") { const w = +el.dataset.wd, sl = el.dataset.slot, cur = (S.plan[w] || {})[sl]; if (cur) openRecipe(w, sl, cur); else openPicker(w, sl); }
     else if (a === "add-manual") openManual();
     else if (a === "del-manual") delManual(+el.dataset.idx);
+    else if (a === "add-appointment") openAppointment(null);
+    else if (a === "open-appointment") { const ap = (S.appointments || []).find((x) => x.id === el.dataset.id); if (ap) openAppointment(ap); }
     else if (a === "start-workout") openWorkout(+el.dataset.wd);
     else if (a === "set-diff") { S.diff = +el.dataset.i; save(); vibrate(10); renderActive(); }
     else if (a === "cold-therapy") openColdTherapy();

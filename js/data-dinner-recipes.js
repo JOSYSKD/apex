@@ -1,702 +1,708 @@
+/* APEX – Rezepte zu den Abendgerichten. Name identisch zu data-dinner.js. */
+
 window.RECIPES_DINNER = [
-  { n: "Ofenlachs mit Brokkoli & Süßkartoffel", t: "35 Min", s: [
-      "Den Ofen auf 200 °C Ober-/Unterhitze vorheizen.",
-      "Die Süßkartoffel (150 g) schälen, in Spalten schneiden, mit der Hälfte des Olivenöls (8 g), Salz und Pfeffer mischen und auf ein mit Backpapier belegtes Blech geben. 10 Minuten vorbacken.",
-      "Den Brokkoli (200 g) in Röschen teilen, mit dem restlichen Öl mischen und dazulegen.",
-      "Das Lachsfilet (150 g) salzen und pfeffern, mit auf das Blech legen und alles weitere 15 Minuten backen, bis der Lachs gerade gar ist.",
-      "Auf einem Teller anrichten und nach Belieben mit etwas Zitrone beträufeln."
-    ], tip: "Ein Klecks Kräuterquark passt hervorragend als frische Sauce dazu." },
-  { n: "Zitronen-Lachs auf Spinat", t: "20 Min", s: [
-      "Das Lachsfilet (160 g) trockentupfen, salzen und pfeffern.",
-      "Das Olivenöl (8 g) in einer Pfanne erhitzen und den Lachs auf der Hautseite bei mittlerer Hitze 4–5 Minuten knusprig braten, dann wenden und 2–3 Minuten fertig garen.",
-      "Den fein gehackten Knoblauch (5 g) kurz mitbraten, dann den Spinat (200 g) dazugeben und zusammenfallen lassen. Mit Salz und Pfeffer würzen.",
-      "Den Saft der Zitrone (30 g) über Lachs und Spinat träufeln.",
-      "Den Lachs auf dem Spinatbett anrichten."
-    ], tip: "Etwas frisch geriebene Zitronenschale sorgt für noch mehr Aroma." },
-  { n: "Ofenkabeljau mit Kräuterkruste & Kartoffeln", t: "40 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Die Kartoffeln (180 g) waschen, vierteln, mit der Hälfte des Olivenöls (10 g), Salz und Pfeffer mischen und 15 Minuten vorbacken.",
-      "Die frischen Kräuter (8 g) hacken und mit dem restlichen Öl und etwas Salz zu einer Paste vermengen.",
-      "Das Kabeljaufilet (200 g) salzen, aufs Blech zu den Kartoffeln legen und mit der Kräuterpaste bestreichen.",
-      "Die Cherrytomaten (120 g) dazugeben und alles weitere 15 Minuten backen, bis der Fisch zart ist.",
-      "Gemeinsam anrichten und servieren."
-    ], tip: "Ein paar Semmelbrösel unter die Kräuter gemischt geben eine knusprige Kruste." },
-  { n: "Seelachs mit Ofenkartoffeln & Spargel", t: "35 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Die Kartoffeln (200 g) waschen, in Spalten schneiden, mit der Hälfte des Olivenöls (8 g), Salz und Pfeffer mischen und 15 Minuten vorbacken.",
-      "Den Spargel (150 g) putzen, die holzigen Enden abschneiden, mit dem restlichen Öl mischen und dazulegen.",
-      "Das Seelachsfilet (180 g) salzen, pfeffern und mit auf das Blech legen.",
-      "Alles weitere 12–15 Minuten backen, bis der Fisch gar ist und der Spargel Biss behält.",
-      "Zusammen anrichten und servieren."
-    ], tip: "Weißer Spargel braucht etwas länger – dann 5 Minuten früher auf das Blech geben." },
-  { n: "Gebratene Forelle mit grünen Bohnen", t: "30 Min", s: [
-      "Die Kartoffeln (150 g) waschen, in Salzwasser 15–18 Minuten weich kochen und abgießen.",
-      "Die grünen Bohnen (200 g) putzen und in kochendem Salzwasser 8–10 Minuten bissfest garen, dann abgießen.",
-      "Die Forelle (180 g) trockentupfen, innen und außen salzen und pfeffern.",
-      "Das Olivenöl (8 g) in einer Pfanne erhitzen und die Forelle bei mittlerer Hitze pro Seite 4–5 Minuten goldbraun braten.",
-      "Mit dem Saft der Zitrone (20 g) beträufeln und mit Kartoffeln und Bohnen anrichten."
-    ], tip: "Etwas gehobelte Mandeln in Butter geschwenkt passen wunderbar zu den Bohnen." },
-  { n: "Garnelenpfanne mit Zucchini & Knoblauch", t: "20 Min", s: [
-      "Die Zucchini (200 g) waschen und in halbe Scheiben schneiden. Den Knoblauch (8 g) fein hacken, die Cherrytomaten (120 g) halbieren.",
-      "Das Olivenöl (15 g) in einer Pfanne stark erhitzen und die Garnelen (200 g) 2 Minuten pro Seite anbraten, bis sie rosa sind. Herausnehmen.",
-      "Im Bratöl die Zucchini 4–5 Minuten braten, dann Knoblauch und Tomaten kurz mitbraten.",
-      "Die Garnelen zurück in die Pfanne geben, mit Salz und Pfeffer würzen und kurz durchschwenken.",
-      "Sofort servieren."
-    ], tip: "Eine Prise Chiliflocken macht die Pfanne angenehm scharf." },
-  { n: "Garnelen-Curry mit Blumenkohlreis", t: "25 Min", s: [
-      "Den Blumenkohl (200 g) in Röschen teilen und in einer Küchenmaschine zu reiskorngroßen Stücken zerkleinern (Blumenkohlreis).",
-      "Die Currypaste (20 g) in einem Topf kurz anrösten, dann mit der Kokosmilch (80 g) ablöschen und aufkochen.",
-      "Die in Streifen geschnittene Paprika (80 g) zugeben und 5 Minuten köcheln lassen.",
-      "Die Garnelen (180 g) hineingeben und 4–5 Minuten in der Sauce garen, bis sie rosa sind. Mit Salz abschmecken.",
-      "Den Blumenkohlreis in einer Pfanne ohne Fett 4–5 Minuten anbraten und das Curry darauf anrichten."
-    ], tip: "Frischer Koriander und ein Spritzer Limette runden das Curry ab." },
-  { n: "Thunfisch-Bohnen-Salat", t: "10 Min", s: [
-      "Die weißen Bohnen (120 g) in ein Sieb geben, abspülen und abtropfen lassen.",
-      "Die rote Zwiebel (40 g) in feine Ringe, die Tomaten (100 g) in Würfel schneiden.",
-      "Den Thunfisch (120 g) abtropfen lassen und mit Bohnen, Zwiebel und Tomaten in einer Schüssel vermengen.",
-      "Mit dem Olivenöl (8 g), Salz und Pfeffer anmachen und den Rucola (40 g) unterheben.",
-      "Kurz durchziehen lassen und servieren."
-    ], tip: "Ein Spritzer Zitronensaft macht den Salat noch frischer." },
-  { n: "Lachs-Teriyaki mit Pak-Gemüse", t: "25 Min", s: [
-      "Den Brokkoli (150 g) in Röschen teilen und die Karotte (80 g) in dünne Stifte schneiden.",
-      "Die Sojasauce (15 g) mit dem geriebenen Ingwer (8 g) verrühren. Den Lachs (150 g) damit bestreichen.",
-      "Den Lachs in einer beschichteten Pfanne bei mittlerer Hitze pro Seite 3–4 Minuten braten und mit der Sauce glasieren.",
-      "Brokkoli und Karotte in derselben Pfanne mit etwas Wasser 5 Minuten bissfest dünsten.",
-      "Alles mit Sesam (8 g) bestreuen und servieren."
-    ], tip: "Etwas Honig in der Sauce sorgt für eine glänzende Teriyaki-Glasur." },
-  { n: "Kabeljau in Tomatensugo mit Oliven", t: "30 Min", s: [
-      "Die Zwiebel (60 g) und den Knoblauch (6 g) fein würfeln und im Olivenöl (12 g) glasig dünsten.",
-      "Die passierten Tomaten (150 g) angießen, aufkochen und die Oliven (40 g) zugeben. Mit Salz und Pfeffer würzen und 10 Minuten köcheln lassen.",
-      "Den Kabeljau (220 g) salzen und in das Sugo legen.",
-      "Zugedeckt bei kleiner Hitze 8–10 Minuten gar ziehen lassen, bis der Fisch in Flocken zerfällt.",
-      "Vorsichtig anrichten und servieren."
-    ], tip: "Etwas frischer Basilikum obendrauf bringt südländisches Aroma." },
-  { n: "Ofenlachs mit Quinoa & Rucola", t: "30 Min", s: [
-      "Den Quinoa (50 g) gründlich abspülen und in der doppelten Menge Salzwasser 15 Minuten weich köcheln, dann quellen lassen.",
-      "Den Ofen auf 200 °C vorheizen. Den Lachs (130 g) salzen, pfeffern, mit dem Olivenöl (5 g) beträufeln und mit den Cherrytomaten (100 g) 12–15 Minuten backen.",
-      "Den Quinoa mit dem Rucola (40 g) vermengen und mit Salz und Pfeffer abschmecken.",
-      "Den Quinoa-Salat auf einen Teller geben und den Lachs darauflegen.",
-      "Mit den Ofentomaten anrichten."
-    ], tip: "Ein Löffel Zitronensaft im Quinoa macht die Bowl schön frisch." },
-  { n: "Forelle aus dem Ofen mit Fenchelgemüse", t: "35 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Den Lauch (120 g) in Ringe und die Karotte (100 g) in Scheiben schneiden.",
-      "Das Gemüse mit dem Olivenöl (8 g), Salz und Pfeffer mischen und auf ein Blech geben.",
-      "Die Forelle (180 g) innen und außen salzen, mit Scheiben der Zitrone (30 g) füllen und auf das Gemüse legen.",
-      "Alles 20–25 Minuten backen, bis der Fisch gar und das Gemüse weich ist.",
-      "Gemeinsam anrichten und servieren."
-    ], tip: "Ein Zweig Rosmarin oder Thymian im Fisch vertieft das Aroma." },
-  { n: "Kabeljau mit Ofengemüse & Feta", t: "35 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Zucchini (120 g), Paprika (100 g) und Aubergine (100 g) in mundgerechte Stücke schneiden.",
-      "Das Gemüse mit dem Olivenöl (8 g), Salz und Pfeffer mischen, auf ein Blech geben und 15 Minuten vorbacken.",
-      "Den Kabeljau (180 g) salzen und auf das Gemüse legen, den Feta (40 g) darüberbröseln.",
-      "Alles weitere 12–15 Minuten backen, bis der Fisch gar ist.",
-      "Direkt vom Blech servieren."
-    ], tip: "Ein wenig Oregano über den Feta gestreut passt hervorragend." },
-  { n: "Hähnchenbrust mit Ofengemüse", t: "35 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Zucchini (120 g), Paprika (120 g) und rote Zwiebel (60 g) in Stücke schneiden.",
-      "Das Gemüse mit dem Olivenöl (8 g), den Kräutern (5 g), Salz und Pfeffer mischen und auf ein Blech geben.",
-      "Die Hähnchenbrust (180 g) salzen, pfeffern und mit auf das Blech legen.",
-      "Alles 25 Minuten backen, dabei einmal wenden, bis das Hähnchen durch und das Gemüse weich ist.",
-      "Gemeinsam anrichten."
-    ], tip: "Das Gericht eignet sich gut zum Vorbereiten – hält sich 2 Tage im Kühlschrank." },
-  { n: "Hähnchen-Gemüse-Pfanne asiatisch", t: "25 Min", s: [
-      "Die Hähnchenbrust (170 g) in Streifen schneiden. Brokkoli (150 g) in Röschen, Karotte (80 g) und Paprika (80 g) in Streifen schneiden.",
-      "Das Hähnchen in einer heißen Pfanne oder im Wok 4–5 Minuten kräftig anbraten, bis es Farbe nimmt.",
-      "Das Gemüse zugeben und unter Rühren 5–6 Minuten bissfest braten.",
-      "Mit der Sojasauce (15 g) und dem geriebenen Ingwer (8 g) würzen und kurz durchschwenken.",
-      "Sofort servieren."
-    ], tip: "Ein Schuss Wasser und ein Deckel machen das Gemüse zart, ohne es zu verbrennen." },
-  { n: "Hähnchen-Curry mit Blumenkohlreis", t: "30 Min", s: [
-      "Den Blumenkohl (200 g) in einer Küchenmaschine zu Reiskörnern zerkleinern (Blumenkohlreis).",
-      "Die Zwiebel (50 g) würfeln und in einem Topf anschwitzen. Die in Streifen geschnittene Hähnchenbrust (170 g) zugeben und anbraten.",
-      "Das Curry-Gewürz (6 g) und die Paprikastreifen (80 g) einrühren, kurz anrösten, dann mit der Kokosmilch (60 g) ablöschen.",
-      "10 Minuten köcheln, bis das Hähnchen gar ist. Mit Salz abschmecken.",
-      "Den Blumenkohlreis 4–5 Minuten in einer Pfanne anbraten und das Curry dazu servieren."
-    ], tip: "Frischer Koriander und ein Spritzer Limette peppen das Curry auf." },
-  { n: "Putenbrust mit Ratatouille", t: "30 Min", s: [
-      "Zucchini (120 g), Aubergine (120 g) und Paprika (100 g) in Würfel schneiden.",
-      "Das Olivenöl (8 g) in einer Pfanne erhitzen und das Gemüse 6–8 Minuten anbraten.",
-      "Die passierten Tomaten (100 g) angießen, mit Salz und Pfeffer würzen und 10 Minuten köcheln lassen.",
-      "Die Putenbrust (180 g) salzen, pfeffern und in einer zweiten Pfanne pro Seite 4–5 Minuten braten, bis sie durch ist.",
-      "Die Putenbrust in Scheiben schneiden und auf dem Ratatouille anrichten."
-    ], tip: "Ein Zweig Thymian im Ratatouille sorgt für mediterranes Aroma." },
-  { n: "Hähnchen-Bowl mit Quinoa & Avocado", t: "25 Min", s: [
-      "Den Quinoa (45 g) abspülen und in der doppelten Menge Salzwasser 15 Minuten weich köcheln.",
-      "Die Hähnchenbrust (150 g) salzen, pfeffern und in einer Pfanne pro Seite 4–5 Minuten braten, dann in Scheiben schneiden.",
-      "Die Avocado (40 g) in Spalten schneiden und die Cherrytomaten (100 g) halbieren.",
-      "Den Quinoa in eine Schüssel geben und Rucola (40 g), Avocado und Tomaten anrichten.",
-      "Das Hähnchen darauflegen, mit Salz und Pfeffer abschmecken."
-    ], tip: "Ein Dressing aus Joghurt, Zitrone und Salz macht die Bowl komplett." },
-  { n: "Putengeschnetzeltes mit Champignons", t: "25 Min", s: [
-      "Die Putenbrust (200 g) in Streifen schneiden, die Champignons (150 g) in Scheiben, die Zwiebel (60 g) in Würfel schneiden.",
-      "Das Olivenöl (6 g) in einer Pfanne erhitzen und die Putenstreifen kräftig anbraten. Herausnehmen.",
-      "Zwiebel und Champignons im Bratsatz 5 Minuten braten.",
-      "Die saure Sahne (60 g) einrühren, die Pute zurückgeben und kurz erwärmen. Mit Salz, Pfeffer und den Kräutern (5 g) würzen.",
-      "Nicht mehr kochen lassen und servieren."
-    ], tip: "Dazu passen Reis oder Vollkornnudeln, um die Sauce aufzunehmen." },
-  { n: "Hähnchenspieße mit griechischem Salat", t: "30 Min", s: [
-      "Die Hähnchenbrust (170 g) in Würfel schneiden, salzen, pfeffern und auf Spieße stecken.",
-      "Die Spieße mit etwas des Olivenöls bestreichen und in der Pfanne oder auf dem Grill rundum 8–10 Minuten braten, bis sie durch sind.",
-      "Gurke (120 g) und Tomate (120 g) würfeln, in eine Schüssel geben und die Oliven (20 g) dazugeben.",
-      "Mit dem restlichen Olivenöl (8 g gesamt), Salz und Pfeffer anmachen und den Feta (40 g) darüberbröseln.",
-      "Die Spieße auf dem Salat anrichten."
-    ], tip: "Etwas Oregano über den Salat gestreut bringt griechisches Flair." },
-  { n: "Hähnchenschenkel mit Ofengemüse", t: "40 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Karotte (120 g), Brokkoli (120 g) und Zwiebel (60 g) in Stücke schneiden.",
-      "Das Gemüse mit dem Olivenöl (6 g), Salz und Pfeffer mischen und auf ein Blech geben.",
-      "Die Hähnchenschenkel (160 g) salzen, pfeffern und mit der Hautseite nach oben auf das Blech legen.",
-      "Alles 30 Minuten backen, bis die Haut knusprig und das Fleisch durch ist.",
-      "Gemeinsam anrichten und servieren."
-    ], tip: "Etwas Paprikapulver auf der Haut sorgt für Farbe und extra Würze." },
-  { n: "Puten-Zucchini-Pfanne mit Feta", t: "25 Min", s: [
-      "Die Putenbrust (170 g) in Streifen, die Zucchini (200 g) in Halbmonde schneiden. Die Cherrytomaten (100 g) halbieren.",
-      "Das Olivenöl (8 g) in einer Pfanne erhitzen und die Putenstreifen 4–5 Minuten kräftig anbraten.",
-      "Die Zucchini zugeben und 5 Minuten mitbraten, dann die Tomaten kurz mitschwenken. Mit Salz und Pfeffer würzen.",
-      "Vom Herd nehmen und den Feta (40 g) darüberbröseln.",
-      "Kurz ziehen lassen und servieren."
-    ], tip: "Eine Handvoll frischer Basilikum macht die Pfanne besonders aromatisch." },
-  { n: "Hähnchen mit Süßkartoffel & Rosenkohl", t: "35 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Die Süßkartoffel (150 g) schälen, in Würfel schneiden, mit der Hälfte des Olivenöls (8 g), Salz und Pfeffer mischen und 10 Minuten vorbacken.",
-      "Den Brokkoli (150 g) in Röschen teilen, mit dem restlichen Öl mischen und dazulegen.",
-      "Die Hähnchenbrust (160 g) salzen, pfeffern und mit auf das Blech legen.",
-      "Alles weitere 20 Minuten backen, bis das Hähnchen durch und das Gemüse weich ist.",
-      "Gemeinsam anrichten und servieren."
-    ], tip: "Etwas Paprikapulver auf der Süßkartoffel sorgt für eine schöne Farbe." },
-  { n: "Hähnchen-Fajita-Pfanne", t: "25 Min", s: [
-      "Die Hähnchenbrust (170 g) in Streifen, die Paprika (150 g) und Zwiebel (80 g) in Streifen schneiden.",
-      "Das Olivenöl (8 g) in einer Pfanne stark erhitzen und das Hähnchen 4–5 Minuten anbraten.",
-      "Paprika und Zwiebel zugeben und 5 Minuten mitbraten.",
-      "Mit dem Curry-Gewürz (4 g), dem Chili (5 g), Salz und Pfeffer würzen und kurz durchschwenken.",
+  { n: "Ofenlachs mit Süßkartoffel & Brokkoli", t: "35 Min", s: [
+      "Heize den Ofen auf 200 °C Ober-/Unterhitze vor und lege ein Blech mit Backpapier aus.",
+      "Schäle Süßkartoffel (150 g), schneide sie in Spalten, vermenge sie mit der Hälfte von Olivenöl (8 g), Salz und Pfeffer und backe sie 10 Minuten vor.",
+      "Putze Brokkoli (180 g), schneide alles mundgerecht und verteile es mit dem restlichen Öl auf dem Blech.",
+      "Würze Lachsfilet (200 g) mit Salz und Pfeffer, lege es dazu und backe alles 15–18 Minuten, bis es gar ist.",
+      "Alles auf einem Teller anrichten und mit dem Saft von Zitrone (20 g) beträufeln – warm genießen."
+    ], tip: "Ein Klecks Kräuterquark oder Joghurt passt als frische Sauce dazu." },
+  { n: "Teriyaki-Lachs mit Sushireis & Pak Choi", t: "25 Min", s: [
+      "Koche Sushi-Reis (roh) (55 g) nach Packungsanweisung.",
+      "Verrühre Sojasauce (15 g) und Honig (8 g) zu einer Teriyaki-Sauce.",
+      "Brate Lachsfilet (200 g) in der heißen Pfanne rundum an.",
+      "Pak Choi (150 g) dazugeben und kurz mitbraten.",
+      "Die Sauce angießen und einköcheln lassen, bis sie glänzend das Protein umhüllt.",
+      "Mit Sesam (6 g) bestreuen und zusammen mit dem Reis servieren."
+    ], tip: "Die Sauce am Ende einköcheln, bis sie glänzt und leicht klebrig ist." },
+  { n: "Lachs-Poke-Bowl mit Edamame", t: "20 Min", s: [
+      "Koche Sushi-Reis (roh) (60 g) nach Packungsanweisung und lasse ihn lauwarm abkühlen.",
+      "Schneide Lachsfilet (160 g) und Edamame (TK) (100 g) in Würfel und mariniere es kurz in Sojasauce (12 g).",
+      "Avocado (40 g) und Gurke (80 g) in feine Scheiben oder Würfel schneiden.",
+      "Den Reis in eine Bowl geben und Lachsfilet (160 g) und Edamame (TK) (100 g) sowie Avocado (40 g) und Gurke (80 g) dekorativ darauf anrichten.",
+      "Mit Sesam (5 g) und Noriblätter (3 g) bestreuen und servieren."
+    ], tip: "Den Reis lauwarm statt heiß verwenden, dann bleibt die Bowl schön frisch." },
+  { n: "Sushi-Bowl mit Thunfisch & Avocado", t: "20 Min", s: [
+      "Koche Sushi-Reis (roh) (60 g) nach Packungsanweisung und lasse ihn lauwarm abkühlen.",
+      "Schneide Thunfisch (in Wasser) (150 g) und Edamame (TK) (70 g) in Würfel und mariniere es kurz in Sojasauce (12 g).",
+      "Avocado (40 g) und Gurke (80 g) in feine Scheiben oder Würfel schneiden.",
+      "Den Reis in eine Bowl geben und Thunfisch (in Wasser) (150 g) und Edamame (TK) (70 g) sowie Avocado (40 g) und Gurke (80 g) dekorativ darauf anrichten.",
+      "Mit Sesam (5 g) und Noriblätter (3 g) bestreuen und servieren."
+    ], tip: "Ordne die Zutaten getrennt an – sieht toll aus und jeder mischt selbst." },
+  { n: "Garnelen-Wok mit Mie-Nudeln", t: "20 Min", s: [
+      "Bereite Asia-Nudeln (Mie) (80 g) nach Packungsanweisung zu und lasse sie abtropfen.",
+      "Schneide Garnelen (180 g) in mundgerechte Stücke und Pak Choi (100 g) und Paprika (80 g) in feine Streifen.",
+      "Erhitze Sesamöl (8 g) im Wok sehr heiß und brate Garnelen (180 g) unter Rühren scharf an.",
+      "Das Gemüse mit Knoblauch (6 g) und Chili (4 g) dazugeben und 3–4 Minuten knackig mitbraten.",
+      "Mit Sojasauce (15 g) ablöschen, die Nudeln unterheben und alles einmal kräftig durchschwenken.",
+      "Mit Frühlingszwiebeln (20 g) bestreuen und sofort heiß servieren."
+    ], tip: "Alles klein und gleich groß schneiden, dann gart es im Wok gleichmäßig." },
+  { n: "Rote-Curry-Garnelen mit Basmatireis", t: "25 Min", s: [
+      "Setze Reis (roh) (55 g) nach Packungsanweisung auf.",
+      "Erhitze etwas Olivenöl im Topf, dünste Zwiebel (50 g) an und schneide Garnelen (190 g) in Stücke.",
+      "Garnelen (190 g) anbraten, Kokosmilch (70 g) und Currypaste (20 g) zugeben und kurz mitrösten.",
+      "Paprika (80 g) und Spinat (60 g) dazugeben und alles 10–12 Minuten sanft köcheln lassen, bis das Curry cremig ist.",
+      "Mit Salz, Pfeffer abschmecken.",
+      "Zusammen mit Reis (roh) (55 g) heiß servieren."
+    ], tip: "Die Currypaste kurz im Öl anrösten, das entfaltet das volle Aroma." },
+  { n: "Kabeljau in Tomaten-Oliven-Sugo", t: "25 Min", s: [
+      "Koche Kartoffeln (180 g) in Salzwasser weich.",
+      "Erhitze Olivenöl (8 g) in einer großen Pfanne und brate Seelachs-/Kabeljaufilet (220 g) bei kräftiger Hitze rundum an.",
+      "Gib Zwiebel (60 g) und Knoblauch (6 g) dazu und dünste es kurz glasig.",
+      "Oliven (30 g) putzen, klein schneiden, dazugeben und einige Minuten mitbraten.",
+      "Mit Passierte Tomaten (150 g) ablöschen, kurz einköcheln lassen und mit Salz und Pfeffer abschmecken.",
+      "Parmesan (20 g) darüberstreuen bzw. -bröseln und alles servieren."
+    ], tip: "Lass der Pfanne Zeit richtig heiß zu werden, dann bekommt alles eine schöne Bräunung." },
+  { n: "Ofenkabeljau mit Parmesankruste & Kartoffeln", t: "35 Min", s: [
+      "Heize den Ofen auf 200 °C Ober-/Unterhitze vor und lege ein Blech mit Backpapier aus.",
+      "Schäle Kartoffeln (280 g), schneide sie in Spalten, vermenge sie mit der Hälfte von Olivenöl (10 g), Salz und Pfeffer und backe sie 10 Minuten vor.",
+      "Putze Cherrytomaten (120 g) sowie Kräuter (frisch) (8 g), schneide alles mundgerecht und verteile es mit dem restlichen Öl auf dem Blech.",
+      "Würze Seelachs-/Kabeljaufilet (210 g) mit Salz und Pfeffer, lege es dazu und backe alles 15–18 Minuten, bis es gar ist. Streue in den letzten 5 Minuten Parmesan (20 g) darüber.",
+      "Alles auf einem Teller anrichten – warm genießen."
+    ], tip: "Röste das Gemüse ruhig scharf an – die Röstaromen machen den Unterschied." },
+  { n: "Knuspriger Ofenlachs mit Quinoa & Feta", t: "35 Min", s: [
+      "Heize den Ofen auf 200 °C Ober-/Unterhitze vor und lege ein Blech mit Backpapier aus.",
+      "Koche Quinoa (roh) (45 g) nach Packungsanweisung und stelle sie beiseite.",
+      "Putze Rucola (40 g) und Cherrytomaten (120 g), schneide alles mundgerecht und verteile es mit dem restlichen Öl auf dem Blech.",
+      "Würze Lachsfilet (180 g) mit Salz und Pfeffer, lege es dazu und backe alles 15–18 Minuten, bis es gar ist. Streue in den letzten 5 Minuten Feta (30 g) darüber.",
+      "Alles auf einem Teller anrichten und mit dem Saft von Zitrone (20 g) beträufeln – warm genießen."
+    ], tip: "Gib zum Schluss etwas Zitronenabrieb darüber, das hebt alles frisch an." },
+  { n: "Gebratene Forelle mit grünen Bohnen & Kartoffeln", t: "25 Min", s: [
+      "Koche Kartoffeln (260 g) in Salzwasser weich.",
+      "Erhitze Olivenöl (8 g) in einer großen Pfanne und brate Forelle (200 g) bei kräftiger Hitze rundum an.",
+      "Gib Knoblauch (5 g) dazu und dünste es kurz glasig.",
+      "Grüne Bohnen (200 g) putzen, klein schneiden, dazugeben und einige Minuten mitbraten.",
+      "Alles mit Zitrone (20 g) servieren."
+    ], tip: "Ein Spritzer Zitrone am Ende sorgt für Frische." },
+  { n: "Mediterraner Thunfisch-Bohnen-Salat", t: "15 Min", s: [
+      "Thunfisch (in Wasser) (140 g) und Weiße Bohnen (Dose) (140 g) bei Bedarf garen bzw. abtropfen lassen und mundgerecht vorbereiten.",
+      "Tomaten (100 g), Rucola (40 g) und Oliven (50 g) waschen, klein schneiden und in eine große Schüssel geben.",
+      "Aus Olivenöl (18 g), Salz und Pfeffer ein Dressing rühren.",
+      "Alles vorsichtig vermengen – frisch servieren."
+    ], tip: "Das Dressing erst kurz vor dem Servieren untermischen, so bleibt alles knackig." },
+  { n: "Lachs-Spinat-Pfanne mit Feta", t: "25 Min", s: [
+      "Erhitze Olivenöl (8 g) in einer großen Pfanne und brate Lachsfilet (180 g) bei kräftiger Hitze rundum an.",
+      "Gib Knoblauch (6 g) dazu und dünste es kurz glasig.",
+      "Spinat (200 g) putzen, klein schneiden, dazugeben und einige Minuten mitbraten.",
+      "Feta (40 g) darüberstreuen bzw. -bröseln und alles mit Zitrone (20 g) servieren."
+    ], tip: "Frische Kräuter erst nach dem Braten dazugeben, so bleiben sie aromatisch." },
+  { n: "Kabeljau-Curry mit Blumenkohlreis", t: "25 Min", s: [
+      "Erhitze etwas Olivenöl im Topf, dünste Zwiebel (50 g) an und schneide Seelachs-/Kabeljaufilet (240 g) in Stücke.",
+      "Seelachs-/Kabeljaufilet (240 g) anbraten, Kokosmilch (150 g) und Currypaste (18 g) zugeben und kurz mitrösten.",
+      "Blumenkohl (200 g) und Paprika (80 g) dazugeben und alles 10–12 Minuten sanft köcheln lassen, bis das Curry cremig ist.",
+      "Mit Salz, Pfeffer abschmecken.",
       "Heiß servieren."
-    ], tip: "In einem Vollkorn-Wrap mit Joghurt wird daraus eine sättigende Fajita." },
-  { n: "Putenbrust mit Blumenkohlpüree & Spinat", t: "30 Min", s: [
-      "Den Blumenkohl (200 g) in Röschen teilen und in Salzwasser 12–15 Minuten weich kochen, dann abgießen.",
-      "Den Blumenkohl mit dem Frischkäse light (50 g), Salz und Pfeffer fein pürieren.",
-      "Die Putenbrust (200 g) salzen, pfeffern und im Olivenöl (8 g) pro Seite 4–5 Minuten braten, bis sie durch ist.",
-      "Den Spinat (100 g) in derselben Pfanne kurz zusammenfallen lassen und salzen.",
-      "Püree, Spinat und Putenbrust zusammen anrichten."
-    ], tip: "Etwas Muskatnuss im Püree gibt eine feine, klassische Note." },
-  { n: "Hähnchen-Kokos-Curry mit Spinat", t: "25 Min", s: [
-      "Die Zwiebel (60 g) würfeln und in einem Topf anschwitzen. Die in Streifen geschnittene Hähnchenbrust (160 g) zugeben und anbraten.",
-      "Die Currypaste (20 g) einrühren, kurz anrösten und mit der Kokosmilch (60 g) ablöschen.",
-      "8 Minuten köcheln, bis das Hähnchen gar ist.",
-      "Den Spinat (150 g) unterrühren und zusammenfallen lassen. Mit Salz abschmecken.",
-      "Heiß servieren, nach Belieben mit Reis."
-    ], tip: "Ein Spritzer Limette bringt die Frische ins Kokoscurry." },
-  { n: "Gegrillte Hähnchenbrust mit großem Salat", t: "20 Min", s: [
-      "Die Hähnchenbrust (170 g) salzen, pfeffern und in der Pfanne oder auf dem Grill pro Seite 4–5 Minuten braten, bis sie durch ist.",
-      "Den Blattsalat (80 g) waschen und zupfen. Tomate (100 g), Gurke (100 g) und Paprika (80 g) in Stücke schneiden.",
-      "Das Gemüse mit dem Salat in einer Schüssel vermengen.",
-      "Mit dem Olivenöl (8 g), Salz und Pfeffer anmachen.",
-      "Die Hähnchenbrust in Scheiben schneiden und auf dem Salat anrichten."
-    ], tip: "Ein Esslöffel Balsamico im Dressing rundet den Salat ab." },
-  { n: "Puten-Paprika-Gulasch", t: "35 Min", s: [
-      "Die Putenbrust (200 g) in Würfel, die Zwiebel (70 g) und Paprika (150 g) in Stücke schneiden.",
-      "Das Olivenöl (8 g) in einem Topf erhitzen und die Putenwürfel rundum anbraten. Die Zwiebel mitrösten.",
-      "Das Curry-Gewürz (4 g) einrühren, dann die Paprika und die passierten Tomaten (120 g) zugeben.",
-      "Mit Salz und Pfeffer würzen und zugedeckt 20 Minuten sanft köcheln lassen.",
+    ], tip: "Mit etwas Limette abschmecken, das macht das Curry lebendig." },
+  { n: "Garnelen-Zoodles mit Knoblauch & Parmesan", t: "25 Min", s: [
+      "Erhitze Olivenöl (17 g) in einer großen Pfanne und brate Garnelen (200 g) bei kräftiger Hitze rundum an.",
+      "Gib Knoblauch (8 g) dazu und dünste es kurz glasig.",
+      "Zucchini (250 g) und Cherrytomaten (120 g) putzen, klein schneiden, dazugeben und einige Minuten mitbraten.",
+      "Parmesan (40 g) darüberstreuen bzw. -bröseln und alles servieren."
+    ], tip: "Lass der Pfanne Zeit richtig heiß zu werden, dann bekommt alles eine schöne Bräunung." },
+  { n: "Räucherlachs-Bowl mit Avocado & Ei", t: "20 Min", s: [
+      "Koche Sushi-Reis (roh) (50 g) nach Packungsanweisung und lasse ihn lauwarm abkühlen.",
+      "Schneide Räucherlachs (120 g) in Würfel und mariniere es kurz in Sojasauce (10 g).",
+      "Avocado (50 g), Gurke (100 g) und Rucola (40 g) in feine Scheiben oder Würfel schneiden.",
+      "Den Reis in eine Bowl geben und Räucherlachs (120 g) sowie Avocado (50 g), Gurke (100 g) und Rucola (40 g) dekorativ darauf anrichten.",
+      "Nach Geschmack würzen und servieren."
+    ], tip: "Ein Spritzer Limette und etwas Sriracha bringen extra Kick." },
+  { n: "Ofenforelle mit Lauchgemüse & Kartoffeln", t: "35 Min", s: [
+      "Heize den Ofen auf 200 °C Ober-/Unterhitze vor und lege ein Blech mit Backpapier aus.",
+      "Schäle Kartoffeln (180 g), schneide sie in Spalten, vermenge sie mit der Hälfte von Olivenöl (8 g), Salz und Pfeffer und backe sie 10 Minuten vor.",
+      "Putze Lauch (120 g) und Karotten (100 g), schneide alles mundgerecht und verteile es mit dem restlichen Öl auf dem Blech.",
+      "Würze Forelle (210 g) mit Salz und Pfeffer, lege es dazu und backe alles 15–18 Minuten, bis es gar ist.",
+      "Alles auf einem Teller anrichten und mit dem Saft von Zitrone (30 g) beträufeln – warm genießen."
+    ], tip: "Ein Klecks Kräuterquark oder Joghurt passt als frische Sauce dazu." },
+  { n: "Seelachs mit Ofengemüse & Feta", t: "35 Min", s: [
+      "Heize den Ofen auf 200 °C Ober-/Unterhitze vor und lege ein Blech mit Backpapier aus.",
+      "Putze Zucchini (120 g), Paprika (100 g) und Aubergine (100 g), schneide alles mundgerecht und verteile es mit dem restlichen Öl auf dem Blech.",
+      "Würze Seelachs-/Kabeljaufilet (220 g) mit Salz und Pfeffer, lege es dazu und backe alles 15–18 Minuten, bis es gar ist. Streue in den letzten 5 Minuten Feta (70 g) darüber.",
+      "Alles auf einem Teller anrichten – warm genießen."
+    ], tip: "Röste das Gemüse ruhig scharf an – die Röstaromen machen den Unterschied." },
+  { n: "Miso-Lachs-Ramen-Bowl", t: "20 Min", s: [
+      "Bereite Udon-Nudeln (frisch) (140 g) nach Packungsanweisung zu und lasse sie abtropfen.",
+      "Schneide Lachsfilet (160 g) in mundgerechte Stücke und Pak Choi (100 g) in feine Streifen.",
+      "Erhitze Sesamöl (6 g) im Wok sehr heiß und brate Lachsfilet (160 g) unter Rühren scharf an.",
+      "Das Gemüse mit Ingwer (6 g) dazugeben und 3–4 Minuten knackig mitbraten.",
+      "Mit Sojasauce (15 g) ablöschen, die Nudeln unterheben und alles einmal kräftig durchschwenken.",
+      "Mit Frühlingszwiebeln (20 g) bestreuen und sofort heiß servieren."
+    ], tip: "Wok richtig heiß werden lassen und zügig schwenken – das hält das Gemüse knackig." },
+  { n: "Sesam-Thunfisch mit Wokgemüse", t: "20 Min", s: [
+      "Schneide Thunfisch (in Wasser) (190 g) in mundgerechte Stücke und Brokkoli (150 g) und Karotten (80 g) in feine Streifen.",
+      "Erhitze Sesamöl (18 g) im Wok sehr heiß und brate Thunfisch (in Wasser) (190 g) unter Rühren scharf an.",
+      "Das Gemüse mit Ingwer (6 g) dazugeben und 3–4 Minuten knackig mitbraten.",
+      "Mit Sojasauce (12 g) ablöschen und alles einmal kräftig durchschwenken.",
+      "Mit Sesam (15 g) bestreuen und sofort heiß servieren."
+    ], tip: "Ein paar Tropfen Sesamöl ganz zum Schluss geben den typischen Asia-Duft." },
+  { n: "Garnelen-Feta-Pfanne mit Tomaten", t: "25 Min", s: [
+      "Erhitze Olivenöl (17 g) in einer großen Pfanne und brate Garnelen (190 g) bei kräftiger Hitze rundum an.",
+      "Gib Knoblauch (8 g) dazu und dünste es kurz glasig.",
+      "Cherrytomaten (150 g) und Spinat (100 g) putzen, klein schneiden, dazugeben und einige Minuten mitbraten.",
+      "Feta (70 g) darüberstreuen bzw. -bröseln und alles servieren."
+    ], tip: "Ein Spritzer Zitrone am Ende sorgt für Frische." },
+  { n: "Durchgebratenes Steak mit Süßkartoffel-Pommes", t: "20 Min", s: [
+      "Heize den Ofen auf 210 °C vor, schneide Süßkartoffel (200 g) in Spalten, mische sie mit Olivenöl (8 g) und backe sie 25 Minuten knusprig.",
+      "Rindersteak (190 g) etwa 20 Minuten vor dem Braten aus dem Kühlschrank nehmen und trockentupfen.",
+      "Eine Grillpfanne sehr heiß werden lassen und Rindersteak (190 g) je nach Dicke von jeder Seite kräftig braten, bis es durch ist.",
+      "Brokkoli (120 g) in der Zwischenzeit garen bzw. kurz mitbraten.",
+      "Das Fleisch mit Salz und Pfeffer würzen, kurz ruhen lassen und aufschneiden.",
+      "Zusammen mit den Beilagen anrichten und servieren."
+    ], tip: "Das Steak vor dem Anschneiden ein paar Minuten ruhen lassen, dann bleibt es saftig." },
+  { n: "Steak-Bowl mit Reis & Avocado", t: "20 Min", s: [
+      "Bereite Reis (roh) (55 g) nach Packungsanweisung zu.",
+      "Rindersteak (170 g) garen bzw. anbraten und würzen.",
+      "Avocado (40 g), Cherrytomaten (100 g), Rucola (40 g) und Mais (Dose) (40 g) waschen und klein schneiden.",
+      "Alle Komponenten nebeneinander in einer Schüssel anrichten.",
+      "Nach Geschmack abschmecken – fertig."
+    ], tip: "Alle Komponenten getrennt anrichten, dann kann jeder selbst mischen." },
+  { n: "Steaksalat mit Parmesan & Balsamico", t: "15 Min", s: [
+      "Rindersteak (180 g) bei Bedarf garen bzw. abtropfen lassen und mundgerecht vorbereiten.",
+      "Rucola (60 g), Cherrytomaten (120 g) und Gurke (80 g) waschen, klein schneiden und in eine große Schüssel geben.",
+      "Parmesan (35 g) würfeln oder bröseln und dazugeben.",
+      "Aus Olivenöl (8 g), Balsamico-Essig (8 g), Salz und Pfeffer ein Dressing rühren.",
+      "Alles vorsichtig vermengen – frisch servieren."
+    ], tip: "Röste ein paar Kerne als Topping für extra Biss." },
+  { n: "Rinderhack-Bolognese auf Zucchininudeln", t: "20 Min", s: [
+      "Koche die Nudeln in reichlich Salzwasser bissfest und behalte etwas Nudelwasser zurück.",
+      "Erhitze Olivenöl (6 g), brate Rinderhack (mager) (160 g) an und dünste Zwiebel (60 g) und Knoblauch (6 g) mit.",
+      "Passierte Tomaten (150 g) zugeben und einige Minuten einköcheln lassen.",
+      "Zucchini (250 g) dazugeben und mitgaren.",
+      "Die Nudeln untermischen, mit etwas Nudelwasser cremig rühren und Parmesan (30 g) unterheben.",
       "Abschmecken und heiß servieren."
-    ], tip: "Ein Löffel Magerquark statt Sahne macht das Gulasch cremig und leicht." },
-  { n: "Rindersteak mit Ofengemüse", t: "35 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Zucchini (120 g), Paprika (120 g) und Champignons (100 g) in Stücke schneiden.",
-      "Das Gemüse mit der Hälfte des Olivenöls (8 g), Salz und Pfeffer mischen und 20 Minuten backen.",
-      "Das Rindersteak (160 g) trockentupfen und salzen. Das restliche Öl in einer Pfanne stark erhitzen.",
-      "Das Steak pro Seite 2–3 Minuten scharf anbraten (medium), dann 3 Minuten ruhen lassen.",
-      "Das Steak schräg aufschneiden und mit dem Ofengemüse anrichten."
-    ], tip: "Erst nach dem Braten pfeffern, damit der Pfeffer nicht verbrennt." },
-  { n: "Steak mit grünem Spargel", t: "25 Min", s: [
-      "Den grünen Spargel (200 g) waschen und die holzigen Enden abschneiden. Die Cherrytomaten (100 g) halbieren.",
-      "Die Hälfte des Olivenöls (8 g) in einer Pfanne erhitzen und den Spargel 6–8 Minuten bissfest braten. Mit Salz und Pfeffer würzen.",
-      "Das Rindersteak (160 g) trockentupfen und salzen. Das restliche Öl in einer zweiten Pfanne stark erhitzen.",
-      "Das Steak pro Seite 2–3 Minuten scharf anbraten, dann kurz ruhen lassen.",
-      "Steak aufschneiden und mit Spargel und Tomaten servieren."
-    ], tip: "Ein Hauch Parmesan über den Spargel macht ihn besonders herzhaft." },
-  { n: "Rinderhack-Gemüsepfanne", t: "25 Min", s: [
-      "Die Zwiebel (60 g), Zucchini (150 g) und Paprika (120 g) in Würfel schneiden.",
-      "Das Rinderhack (150 g) in einer Pfanne ohne Fett krümelig anbraten, bis es Farbe nimmt.",
-      "Die Zwiebel mitbraten, dann Zucchini und Paprika zugeben und 6–8 Minuten braten.",
-      "Die passierten Tomaten (100 g) angießen, mit Salz und Pfeffer würzen und 5 Minuten köcheln lassen.",
-      "Abschmecken und servieren."
-    ], tip: "Etwas Paprikapulver und Kreuzkümmel geben der Pfanne mehr Tiefe." },
-  { n: "Low-Carb-Chili con Carne", t: "35 Min", s: [
-      "Die Zwiebel (60 g) und Paprika (80 g) würfeln. Das Rinderhack (150 g) in einem Topf ohne Fett krümelig anbraten.",
-      "Zwiebel und Paprika mitbraten, dann das Chili (5 g) kurz mitrösten.",
-      "Die Kidneybohnen (120 g) abspülen und mit den passierten Tomaten (120 g) zugeben.",
-      "Mit Salz und Pfeffer würzen und 20 Minuten sanft köcheln lassen.",
-      "Kräftig abschmecken und heiß servieren."
-    ], tip: "Ein Löffel Kakao im Chili verstärkt das würzige Aroma – ehrlich!" },
-  { n: "Schweinefilet mit Rahmchampignons", t: "30 Min", s: [
-      "Das Schweinefilet (190 g) in dicke Medaillons schneiden, salzen und pfeffern.",
-      "Das Olivenöl (6 g) in einer Pfanne erhitzen und die Medaillons pro Seite 3–4 Minuten braten. Herausnehmen und warm stellen.",
-      "Die Champignons (150 g) in Scheiben und die Zwiebel (50 g) in Würfel schneiden und im Bratsatz 5 Minuten braten.",
-      "Die saure Sahne (60 g) einrühren, mit Salz, Pfeffer und den Kräutern (5 g) würzen und kurz erwärmen.",
-      "Die Medaillons zurück in die Sauce geben und servieren."
-    ], tip: "Die Filetstücke nach dem Braten kurz ruhen lassen – sie bleiben so saftig." },
-  { n: "Schweinefilet mit Ofenkartoffeln & Brokkoli", t: "35 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Die Kartoffeln (180 g) waschen, in Spalten schneiden, mit der Hälfte des Olivenöls (8 g), Salz und Pfeffer mischen und 15 Minuten vorbacken.",
-      "Den Brokkoli (150 g) in Röschen teilen, mit dem restlichen Öl mischen und dazulegen.",
-      "Das Schweinefilet (160 g) salzen, pfeffern und in einer Pfanne rundum scharf anbraten.",
-      "Das Filet zum Gemüse aufs Blech legen und alles weitere 12–15 Minuten fertig garen.",
-      "Das Filet aufschneiden und mit dem Ofengemüse anrichten."
-    ], tip: "Etwas Senf auf dem Filet vor dem Braten gibt eine würzige Note." },
-  { n: "Rindersteak mit Kräuterbutter-Bohnen", t: "25 Min", s: [
-      "Die grünen Bohnen (200 g) putzen und in kochendem Salzwasser 8–10 Minuten bissfest garen, dann abgießen.",
-      "Den Knoblauch (6 g) fein hacken und die Kräuter (5 g) schneiden. Im Olivenöl (8 g) kurz anschwitzen, die Bohnen dazugeben und schwenken.",
-      "Das Rindersteak (160 g) trockentupfen und salzen. In einer heißen Pfanne pro Seite 2–3 Minuten scharf anbraten.",
-      "Das Steak kurz ruhen lassen und aufschneiden.",
-      "Mit den Kräuterbohnen anrichten und pfeffern."
-    ], tip: "Ein kleiner Klecks Butter über dem heißen Steak macht es besonders saftig." },
-  { n: "Hackfleisch-Zucchini-Auflauf", t: "40 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Die Zucchini (200 g) in Scheiben und die Zwiebel (50 g) in Würfel schneiden.",
-      "Das Rinderhack (150 g) mit der Zwiebel in einer Pfanne krümelig anbraten. Die passierten Tomaten (100 g) zugeben, salzen und pfeffern.",
-      "Die Zucchinischeiben und die Hacksauce abwechselnd in eine Auflaufform schichten.",
-      "Den Käse (40 g) darüberstreuen.",
-      "Im Ofen 20–25 Minuten überbacken, bis der Käse goldbraun ist."
-    ], tip: "Ein Ei unter die Hackmasse gerührt bindet den Auflauf schön." },
-  { n: "Rinderhack-Kohl-Pfanne", t: "25 Min", s: [
-      "Den Weißkohl (200 g) in feine Streifen, die Karotte (80 g) in Stifte und die Zwiebel (60 g) in Würfel schneiden.",
-      "Das Rinderhack (150 g) in einer großen Pfanne ohne Fett krümelig anbraten.",
-      "Die Zwiebel mitbraten, dann Kohl und Karotte zugeben und unter Rühren 8–10 Minuten braten, bis der Kohl weich ist.",
-      "Mit der Sojasauce (12 g), Salz und Pfeffer würzen.",
-      "Kurz durchschwenken und servieren."
-    ], tip: "Ein Spritzer Reisessig und etwas Chili machen daraus eine asiatische Kohlpfanne." },
-  { n: "Schweinefilet-Medaillons mit Rotkohl", t: "35 Min", s: [
-      "Den Rotkohl (200 g) fein hobeln und den Apfel (60 g) raspeln.",
-      "Rotkohl und Apfel in einem Topf mit etwas Wasser, Salz und einem Schuss Essig 20 Minuten weich schmoren.",
-      "Das Schweinefilet (170 g) in Medaillons schneiden, salzen und pfeffern.",
-      "Das Olivenöl (6 g) in einer Pfanne erhitzen und die Medaillons pro Seite 3–4 Minuten braten.",
-      "Die Medaillons kurz ruhen lassen und mit dem Rotkohl anrichten."
-    ], tip: "Eine Prise Zimt oder ein Lorbeerblatt im Rotkohl bringt winterliche Wärme." },
-  { n: "Gefüllte Paprika mit Rinderhack", t: "45 Min", s: [
-      "Den Reis (40 g) in Salzwasser nach Packungsangabe garen. Den Ofen auf 190 °C vorheizen.",
-      "Die Paprika (200 g) halbieren und entkernen. Die Zwiebel (50 g) würfeln.",
-      "Das Rinderhack (130 g) mit der Zwiebel anbraten, den gegarten Reis und die Hälfte der passierten Tomaten (80 g gesamt) untermischen. Salzen und pfeffern.",
-      "Die Paprikahälften mit der Masse füllen, in eine Auflaufform setzen und mit den restlichen Tomaten übergießen.",
-      "25–30 Minuten backen, bis die Paprika weich ist."
-    ], tip: "Etwas geriebener Käse in den letzten 10 Minuten gibt eine leckere Kruste." },
-  { n: "Gefüllte Paprika mit Hähnchen & Feta", t: "40 Min", s: [
-      "Den Ofen auf 190 °C vorheizen. Die Paprika (200 g) halbieren und entkernen.",
-      "Die Hähnchenbrust (130 g) klein würfeln und in einer Pfanne anbraten. Die halbierten Cherrytomaten (80 g) und Kräuter (5 g) untermischen, salzen und pfeffern.",
-      "Die Masse in die Paprikahälften füllen und den Feta (40 g) darüberbröseln.",
-      "In eine Auflaufform setzen und 25 Minuten backen, bis die Paprika weich ist.",
-      "Warm servieren."
-    ], tip: "Ein Schluck Wasser in der Form verhindert, dass die Paprika austrocknet." },
-  { n: "Gefüllte Zucchini mit Putenhack & Käse", t: "40 Min", s: [
-      "Den Ofen auf 190 °C vorheizen. Die Zucchini (250 g) längs halbieren und das Innere mit einem Löffel aushöhlen.",
-      "Das ausgehöhlte Zucchinifleisch und die Zwiebel (40 g) würfeln und mit dem Putenhack (130 g) anbraten. Die passierten Tomaten (80 g) zugeben, salzen und pfeffern.",
-      "Die Zucchinihälften mit der Masse füllen und in eine Auflaufform setzen.",
-      "Den Käse (40 g) darüberstreuen.",
-      "20–25 Minuten backen, bis die Zucchini weich und der Käse goldbraun ist."
-    ], tip: "Etwas Oregano in der Füllung sorgt für mediterranes Aroma." },
-  { n: "Vegetarisch gefüllte Paprika mit Quinoa", t: "40 Min", s: [
-      "Den Quinoa (55 g) abspülen und in der doppelten Menge Salzwasser 15 Minuten garen. Den Ofen auf 190 °C vorheizen.",
-      "Die Paprika (200 g) halbieren und entkernen. Die Zwiebel (40 g) würfeln und andünsten.",
-      "Den Quinoa mit Zwiebel, halbierten Cherrytomaten (80 g) und der Hälfte des Fetas mischen, salzen und pfeffern.",
-      "Die Paprikahälften füllen, in eine Form setzen und den restlichen Feta (40 g gesamt) darüberbröseln.",
-      "25 Minuten backen, bis die Paprika weich ist."
-    ], tip: "Ein Löffel Tomatenmark in der Füllung macht sie besonders würzig." },
-  { n: "Gefüllte Aubergine mit Hackfleisch", t: "45 Min", s: [
-      "Den Ofen auf 190 °C vorheizen. Die Aubergine (250 g) längs halbieren und das Fruchtfleisch bis auf einen Rand aushöhlen.",
-      "Das Auberginenfleisch würfeln und mit dem gehackten Knoblauch (6 g) und dem Rinderhack (130 g) anbraten.",
-      "Die passierten Tomaten (100 g) zugeben, salzen, pfeffern und kurz einköcheln lassen.",
-      "Die Auberginenhälften füllen, in eine Form setzen und den Käse (30 g) darüberstreuen.",
-      "25–30 Minuten backen, bis die Aubergine weich ist."
-    ], tip: "Die ausgehöhlten Auberginen vorher 10 Minuten salzen entzieht Bitterstoffe." },
-  { n: "Rote-Linsen-Suppe mit Kokos", t: "30 Min", s: [
-      "Die Zwiebel (60 g) und Karotte (100 g) würfeln und in einem Topf mit etwas Wasser anschwitzen.",
-      "Das Curry-Gewürz (5 g) einrühren und kurz anrösten.",
-      "Die roten Linsen (70 g) abspülen, mit der Gemüsebrühe (300 g) angießen und 15 Minuten weich köcheln.",
-      "Die Kokosmilch (50 g) einrühren und alles mit dem Stabmixer cremig pürieren. Mit Salz abschmecken.",
+    ], tip: "Etwas Nudelwasser zurückbehalten und in die Sauce rühren, das bindet sie cremig." },
+  { n: "Chili con Carne mit Kidneybohnen", t: "30 Min", s: [
+      "Erhitze etwas Öl im Topf und brate Rinderhack (mager) (160 g) und Kidneybohnen (Dose) (150 g) mit Zwiebel (60 g) und Knoblauch (6 g) an.",
+      "Mais (Dose) (50 g) und Paprika (80 g) klein schneiden und kurz mitrösten.",
+      "Passierte Tomaten (150 g) zugeben, aufkochen und mit Salz, Pfeffer und etwas Kreuzkümmel würzen.",
+      "Alles zugedeckt 20 Minuten sanft köcheln lassen, bis es schön sämig ist.",
+      "Nochmal abschmecken und heiß servieren."
+    ], tip: "Am nächsten Tag schmeckt der Eintopf noch besser durchgezogen." },
+  { n: "Gefüllte Paprika mit Hack & Feta", t: "40 Min", s: [
+      "Heize den Ofen auf 190 °C vor und halbiere die Paprika, entferne die Kerne.",
+      "Koche Reis (roh) (30 g) nach Packungsanweisung.",
+      "Brate Rinderhack (mager) (170 g) an und vermenge es mit Feta (40 g) und Passierte Tomaten (100 g) zu einer Füllung.",
+      "Die Paprikahälften in eine Auflaufform setzen und mit der Füllung befüllen.",
+      "Im Ofen 20–25 Minuten backen, bis die Paprika weich und die Oberfläche goldbraun ist."
+    ], tip: "Die Paprika vorher kurz blanchieren, dann werden sie im Ofen schön zart." },
+  { n: "Smash-Burger mit Cheddar & Salat", t: "20 Min", s: [
+      "Forme aus Rinderhack (mager) (150 g) einen Patty und würze ihn mit Salz und Pfeffer.",
+      "Brate den Patty in einer heißen Pfanne von beiden Seiten kräftig durch. Lege Gouda / Käse (25 g) auf und lasse ihn schmelzen.",
+      "Schneide Vollkorn-Burgerbrötchen (80 g) auf und röste es kurz mit der Schnittfläche nach unten an.",
+      "Tomaten (40 g), Blattsalat (30 g) und Gewürzgurken (20 g) waschen und in Scheiben schneiden.",
+      "Alles auf dem Brötchen stapeln, mit Ketchup (15 g) bestreichen und servieren."
+    ], tip: "Den Patty erst salzen, wenn er in der Pfanne liegt, dann bleibt er saftig." },
+  { n: "Rind-Udon-Wok asiatisch", t: "20 Min", s: [
+      "Bereite Udon-Nudeln (frisch) (150 g) nach Packungsanweisung zu und lasse sie abtropfen.",
+      "Schneide Rindersteak (160 g) in mundgerechte Stücke und Pak Choi (100 g) und Paprika (70 g) in feine Streifen.",
+      "Erhitze Sesamöl (8 g) im Wok sehr heiß und brate Rindersteak (160 g) unter Rühren scharf an.",
+      "Das Gemüse mit Ingwer (6 g) und Knoblauch (6 g) dazugeben und 3–4 Minuten knackig mitbraten.",
+      "Mit Sojasauce (15 g) ablöschen, die Nudeln unterheben und alles einmal kräftig durchschwenken.",
+      "Sofort heiß servieren."
+    ], tip: "Alles klein und gleich groß schneiden, dann gart es im Wok gleichmäßig." },
+  { n: "Steak mit Ofengemüse & Parmesan", t: "35 Min", s: [
+      "Heize den Ofen auf 200 °C Ober-/Unterhitze vor und lege ein Blech mit Backpapier aus.",
+      "Putze Zucchini (120 g) und Paprika (120 g) sowie Rote Zwiebel (60 g), schneide alles mundgerecht und verteile es mit dem restlichen Öl auf dem Blech.",
+      "Würze Rindersteak (180 g) mit Salz und Pfeffer, lege es dazu und backe alles 15–18 Minuten, bis es gar ist. Streue in den letzten 5 Minuten Parmesan (30 g) darüber.",
+      "Alles auf einem Teller anrichten – warm genießen."
+    ], tip: "Gib zum Schluss etwas Zitronenabrieb darüber, das hebt alles frisch an." },
+  { n: "Cheeseburger-Bowl ohne Brot", t: "20 Min", s: [
+      "Rinderhack (mager) (170 g) garen bzw. anbraten und würzen.",
+      "Avocado (40 g), Tomaten (60 g), Blattsalat (40 g) und Gewürzgurken (20 g) waschen und klein schneiden.",
+      "Alle Komponenten samt Gouda / Käse (40 g) nebeneinander in einer Schüssel anrichten.",
+      "Mit Ketchup (10 g) beträufeln – fertig."
+    ], tip: "Ein selbst gerührtes Joghurt-Dressing rundet die Bowl ab." },
+  { n: "Rinderhack-Pfanne mit Blumenkohlreis", t: "25 Min", s: [
+      "Erhitze Olivenöl (8 g) in einer großen Pfanne und brate Rinderhack (mager) (160 g) bei kräftiger Hitze rundum an.",
+      "Gib Zwiebel (60 g) dazu und dünste es kurz glasig.",
+      "Blumenkohl (200 g) und Paprika (80 g) putzen, klein schneiden, dazugeben und einige Minuten mitbraten.",
+      "Mit Passierte Tomaten (80 g) ablöschen, kurz einköcheln lassen und mit Salz und Pfeffer abschmecken.",
+      "Parmesan (25 g) darüberstreuen bzw. -bröseln und alles servieren."
+    ], tip: "Frische Kräuter erst nach dem Braten dazugeben, so bleiben sie aromatisch." },
+  { n: "Steak-Fajita-Bowl", t: "20 Min", s: [
+      "Rindersteak (170 g) garen bzw. anbraten und würzen.",
+      "Paprika (150 g), Tomaten (60 g) und Blattsalat (30 g) waschen und klein schneiden.",
+      "Alle Komponenten nebeneinander in einer Schüssel anrichten.",
+      "Nach Geschmack abschmecken – fertig."
+    ], tip: "Toppe die Bowl mit ein paar Sprossen oder Kernen für Crunch." },
+  { n: "Rinderhack-Zucchini-Auflauf mit Käse", t: "35 Min", s: [
+      "Heize den Ofen auf 200 °C Ober-/Unterhitze vor und lege ein Blech mit Backpapier aus.",
+      "Putze Zucchini (200 g) sowie Zwiebel (60 g) und Knoblauch (6 g), schneide alles mundgerecht und verteile es mit dem restlichen Öl auf dem Blech.",
+      "Würze Rinderhack (mager) (160 g) mit Salz und Pfeffer, lege es dazu und backe alles 15–18 Minuten, bis es gar ist. Streue in den letzten 5 Minuten Gouda / Käse (40 g) darüber.",
+      "Alles auf einem Teller anrichten – warm genießen."
+    ], tip: "Ein Klecks Kräuterquark oder Joghurt passt als frische Sauce dazu." },
+  { n: "Steak-Sandwich mit Rucola & Parmesan", t: "20 Min", s: [
+      "Rindersteak (160 g) garen bzw. anbraten und würzen.",
+      "Rucola (40 g) und Tomaten (60 g) waschen und klein schneiden.",
+      "Alle Komponenten samt Parmesan (20 g) nebeneinander in einer Schüssel anrichten.",
+      "Nach Geschmack abschmecken – fertig."
+    ], tip: "Alle Komponenten getrennt anrichten, dann kann jeder selbst mischen." },
+  { n: "Hähnchen-Parmesan in Tomatensauce", t: "25 Min", s: [
+      "Erhitze Olivenöl (6 g) in einer großen Pfanne und brate Hähnchenbrustfilet (170 g) bei kräftiger Hitze rundum an.",
+      "Gib Kräuter (frisch) (6 g) dazu und dünste es kurz glasig.",
+      "Mit Passierte Tomaten (150 g) ablöschen, kurz einköcheln lassen und mit Salz und Pfeffer abschmecken.",
+      "Parmesan (30 g) und Mozzarella light (40 g) darüberstreuen bzw. -bröseln und alles servieren."
+    ], tip: "Lass der Pfanne Zeit richtig heiß zu werden, dann bekommt alles eine schöne Bräunung." },
+  { n: "Hähnchen-Wok mit Mie-Nudeln", t: "20 Min", s: [
+      "Bereite Asia-Nudeln (Mie) (70 g) nach Packungsanweisung zu und lasse sie abtropfen.",
+      "Schneide Hähnchenbrustfilet (150 g) in mundgerechte Stücke und Brokkoli (120 g) und Karotten (70 g) in feine Streifen.",
+      "Erhitze Sesamöl (8 g) im Wok sehr heiß und brate Hähnchenbrustfilet (150 g) unter Rühren scharf an.",
+      "Das Gemüse mit Ingwer (6 g) und Knoblauch (6 g) dazugeben und 3–4 Minuten knackig mitbraten.",
+      "Mit Sojasauce (15 g) ablöschen, die Nudeln unterheben und alles einmal kräftig durchschwenken.",
+      "Sofort heiß servieren."
+    ], tip: "Wok richtig heiß werden lassen und zügig schwenken – das hält das Gemüse knackig." },
+  { n: "Hähnchen-Ramen-Bowl mit Ei", t: "20 Min", s: [
+      "Bereite Udon-Nudeln (frisch) (150 g) nach Packungsanweisung zu und lasse sie abtropfen.",
+      "Schneide Hähnchenbrustfilet (140 g) in mundgerechte Stücke und Pak Choi (100 g) in feine Streifen.",
+      "Erhitze Sesamöl (6 g) im Wok sehr heiß und brate Hähnchenbrustfilet (140 g) unter Rühren scharf an.",
+      "Das Gemüse mit Ingwer (6 g) dazugeben und 3–4 Minuten knackig mitbraten.",
+      "Mit Sojasauce (15 g) ablöschen, die Nudeln unterheben und alles einmal kräftig durchschwenken.",
+      "Mit Frühlingszwiebeln (20 g) bestreuen und sofort heiß servieren."
+    ], tip: "Ein paar Tropfen Sesamöl ganz zum Schluss geben den typischen Asia-Duft." },
+  { n: "Hähnchen-Curry mit Basmatireis", t: "25 Min", s: [
+      "Setze Reis (roh) (55 g) nach Packungsanweisung auf.",
+      "Erhitze etwas Olivenöl im Topf, dünste Zwiebel (50 g) an und schneide Hähnchenbrustfilet (170 g) in Stücke.",
+      "Hähnchenbrustfilet (170 g) anbraten, Kokosmilch (60 g) und Curry-Gewürz (6 g) zugeben und kurz mitrösten.",
+      "Paprika (80 g) und Spinat (50 g) dazugeben und alles 10–12 Minuten sanft köcheln lassen, bis das Curry cremig ist.",
+      "Mit Salz, Pfeffer abschmecken.",
+      "Zusammen mit Reis (roh) (55 g) heiß servieren."
+    ], tip: "Am nächsten Tag schmeckt das Curry sogar noch intensiver." },
+  { n: "Hähnchen-Bowl mit Quinoa & Avocado", t: "20 Min", s: [
+      "Bereite Quinoa (roh) (55 g) nach Packungsanweisung zu.",
+      "Hähnchenbrustfilet (160 g) garen bzw. anbraten und würzen.",
+      "Avocado (40 g), Cherrytomaten (100 g), Rucola (40 g) und Mais (Dose) (40 g) waschen und klein schneiden.",
+      "Alle Komponenten nebeneinander in einer Schüssel anrichten.",
+      "Nach Geschmack abschmecken – fertig."
+    ], tip: "Ein selbst gerührtes Joghurt-Dressing rundet die Bowl ab." },
+  { n: "Hähnchenspieße mit griechischem Salat", t: "15 Min", s: [
+      "Hähnchenbrustfilet (170 g) bei Bedarf garen bzw. abtropfen lassen und mundgerecht vorbereiten.",
+      "Gurke (120 g), Tomaten (120 g) und Oliven (20 g) waschen, klein schneiden und in eine große Schüssel geben.",
+      "Feta (60 g) würfeln oder bröseln und dazugeben.",
+      "Aus Olivenöl (8 g), Salz und Pfeffer ein Dressing rühren.",
+      "Alles vorsichtig vermengen – frisch servieren."
+    ], tip: "Den Salat einmal kräftig durchmischen, damit sich die Aromen verteilen." },
+  { n: "Putenbrust mit Ratatouille", t: "25 Min", s: [
+      "Erhitze Olivenöl (18 g) in einer großen Pfanne und brate Putenbrustfilet (230 g) bei kräftiger Hitze rundum an.",
+      "Zucchini (120 g), Aubergine (120 g) und Paprika (100 g) putzen, klein schneiden, dazugeben und einige Minuten mitbraten.",
+      "Mit Passierte Tomaten (100 g) ablöschen, kurz einköcheln lassen und mit Salz und Pfeffer abschmecken.",
+      "Alles servieren."
+    ], tip: "Ein Spritzer Zitrone am Ende sorgt für Frische." },
+  { n: "Putengeschnetzeltes mit Champignons", t: "25 Min", s: [
+      "Erhitze Olivenöl (13 g) in einer großen Pfanne und brate Putenbrustfilet (200 g) bei kräftiger Hitze rundum an.",
+      "Gib Zwiebel (60 g) und Kräuter (frisch) (5 g) dazu und dünste es kurz glasig.",
+      "Champignons (150 g) putzen, klein schneiden, dazugeben und einige Minuten mitbraten.",
+      "Schmand / Saure Sahne (80 g) darüberstreuen bzw. -bröseln und alles servieren."
+    ], tip: "Frische Kräuter erst nach dem Braten dazugeben, so bleiben sie aromatisch." },
+  { n: "Hähnchen-Fajita-Pfanne", t: "25 Min", s: [
+      "Erhitze etwas Olivenöl in einer großen Pfanne und brate Hähnchenbrustfilet (180 g) bei kräftiger Hitze rundum an.",
+      "Gib Rote Zwiebel (80 g) dazu und dünste es kurz glasig.",
+      "Paprika (150 g) und Tomaten (60 g) putzen, klein schneiden, dazugeben und einige Minuten mitbraten.",
+      "Alles servieren."
+    ], tip: "Lass der Pfanne Zeit richtig heiß zu werden, dann bekommt alles eine schöne Bräunung." },
+  { n: "Buffalo-Chicken-Salat", t: "15 Min", s: [
+      "Hähnchenbrustfilet (170 g) bei Bedarf garen bzw. abtropfen lassen und mundgerecht vorbereiten.",
+      "Blattsalat (60 g), Gurke (80 g) und Cherrytomaten (100 g) waschen, klein schneiden und in eine große Schüssel geben.",
+      "Gouda / Käse (40 g) und Frischkäse light (40 g) würfeln oder bröseln und dazugeben.",
+      "Aus Olivenöl (8 g), Salz und Pfeffer ein Dressing rühren.",
+      "Alles vorsichtig vermengen – frisch servieren."
+    ], tip: "Das Dressing erst kurz vor dem Servieren untermischen, so bleibt alles knackig." },
+  { n: "Hähnchenschenkel mit Ofengemüse", t: "35 Min", s: [
+      "Heize den Ofen auf 200 °C Ober-/Unterhitze vor und lege ein Blech mit Backpapier aus.",
+      "Putze Karotten (120 g) und Brokkoli (120 g) sowie Zwiebel (60 g), schneide alles mundgerecht und verteile es mit dem restlichen Öl auf dem Blech.",
+      "Würze Hähnchenschenkel (240 g) mit Salz und Pfeffer, lege es dazu und backe alles 15–18 Minuten, bis es gar ist.",
+      "Alles auf einem Teller anrichten – warm genießen."
+    ], tip: "Röste das Gemüse ruhig scharf an – die Röstaromen machen den Unterschied." },
+  { n: "Puten-Zucchini-Feta-Pfanne", t: "25 Min", s: [
+      "Erhitze Olivenöl (12 g) in einer großen Pfanne und brate Putenbrustfilet (180 g) bei kräftiger Hitze rundum an.",
+      "Zucchini (200 g) und Cherrytomaten (100 g) putzen, klein schneiden, dazugeben und einige Minuten mitbraten.",
+      "Feta (70 g) darüberstreuen bzw. -bröseln und alles servieren.",
+      "Mit Salz, Pfeffer und frischen Kräutern abschmecken und servieren."
+    ], tip: "Ein Spritzer Zitrone am Ende sorgt für Frische." },
+  { n: "Teriyaki-Hähnchen mit Reis & Sesam", t: "25 Min", s: [
+      "Koche Reis (roh) (55 g) nach Packungsanweisung.",
+      "Verrühre Sojasauce (15 g) und Honig (8 g) zu einer Teriyaki-Sauce.",
+      "Brate Hähnchenbrustfilet (160 g) in der heißen Pfanne rundum an.",
+      "Brokkoli (120 g) dazugeben und kurz mitbraten.",
+      "Die Sauce angießen und einköcheln lassen, bis sie glänzend das Protein umhüllt.",
+      "Mit Sesam (8 g) bestreuen und zusammen mit dem Reis servieren."
+    ], tip: "Mit Sesam und Frühlingszwiebeln bestreuen für den Feinschliff." },
+  { n: "Hähnchen-Süßkartoffel-Bowl", t: "20 Min", s: [
+      "Bereite Süßkartoffel (240 g) nach Packungsanweisung zu.",
+      "Hähnchenbrustfilet (170 g) garen bzw. anbraten und würzen.",
+      "Spinat (60 g), Avocado (45 g) und Cherrytomaten (80 g) waschen und klein schneiden.",
+      "Alle Komponenten nebeneinander in einer Schüssel anrichten.",
+      "Nach Geschmack abschmecken – fertig."
+    ], tip: "Toppe die Bowl mit ein paar Sprossen oder Kernen für Crunch." },
+  { n: "Hähnchen Cordon bleu aus dem Ofen", t: "35 Min", s: [
+      "Heize den Ofen auf 200 °C Ober-/Unterhitze vor und lege ein Blech mit Backpapier aus.",
+      "Putze Brokkoli (150 g), schneide alles mundgerecht und verteile es mit dem restlichen Öl auf dem Blech.",
+      "Würze Hähnchenbrustfilet (170 g) und Kochschinken (30 g) mit Salz und Pfeffer, lege es dazu und backe alles 15–18 Minuten, bis es gar ist. Streue in den letzten 5 Minuten Gouda / Käse (50 g) darüber.",
+      "Alles auf einem Teller anrichten – warm genießen."
+    ], tip: "Gib zum Schluss etwas Zitronenabrieb darüber, das hebt alles frisch an." },
+  { n: "Hähnchen-Kokos-Curry mit Blumenkohlreis", t: "25 Min", s: [
+      "Erhitze etwas Olivenöl im Topf, dünste Zwiebel (50 g) an und schneide Hähnchenbrustfilet (170 g) in Stücke.",
+      "Hähnchenbrustfilet (170 g) anbraten, Kokosmilch (110 g) und Currypaste (18 g) zugeben und kurz mitrösten.",
+      "Blumenkohl (200 g) und Paprika (80 g) dazugeben und alles 10–12 Minuten sanft köcheln lassen, bis das Curry cremig ist.",
+      "Mit Salz, Pfeffer abschmecken.",
       "Heiß servieren."
-    ], tip: "Ein Spritzer Limette und frischer Koriander machen die Suppe frisch." },
-  { n: "Gemüse-Minestrone mit Bohnen", t: "35 Min", s: [
-      "Die Zwiebel (50 g), Zucchini (100 g) und Karotte (80 g) in kleine Würfel schneiden.",
-      "Das Olivenöl (6 g) in einem Topf erhitzen und das Gemüse 5 Minuten anschwitzen.",
-      "Die passierten Tomaten (120 g) und etwa 400 ml Wasser oder Brühe angießen und aufkochen.",
-      "Die Vollkornnudeln (50 g) und die abgespülten weißen Bohnen (130 g) zugeben und 10–12 Minuten köcheln, bis die Nudeln gar sind.",
-      "Mit Salz und Pfeffer abschmecken und servieren."
-    ], tip: "Ein Löffel Pesto oder etwas Parmesan on top verfeinert die Minestrone." },
-  { n: "Hühnersuppe mit Nudeln & Gemüse", t: "35 Min", s: [
-      "Die Hähnchenbrust (160 g) in der Gemüsebrühe (300 g plus etwas Wasser) 15 Minuten gar ziehen lassen, dann herausnehmen und klein schneiden.",
-      "Karotte (100 g), Lauch (80 g) und Staudensellerie (60 g) in Scheiben schneiden und in die Brühe geben.",
-      "10 Minuten köcheln, dann die Vollkornnudeln (40 g) zugeben und weitere 8 Minuten garen.",
-      "Das Hähnchen zurück in die Suppe geben und mit Salz, Pfeffer und den Kräutern (5 g) abschmecken.",
-      "Heiß servieren."
-    ], tip: "Frisch geschnittene Petersilie erst am Ende zugeben – so bleibt sie aromatisch." },
-  { n: "Kürbissuppe mit Kürbiskernen & Tofu", t: "35 Min", s: [
-      "Den Kürbis (300 g) schälen, entkernen und würfeln. Die Zwiebel (60 g) und den Ingwer (8 g) würfeln.",
-      "Zwiebel und Ingwer in einem Topf anschwitzen, den Kürbis zugeben und mit Wasser knapp bedecken. 15 Minuten weich kochen.",
-      "Die Kokosmilch (60 g) zugeben und alles cremig pürieren. Mit Salz und Pfeffer abschmecken.",
-      "Den Räuchertofu (100 g) würfeln und in einer Pfanne knusprig anbraten.",
-      "Die Suppe mit Tofu und den gerösteten Kürbiskernen (20 g) anrichten."
-    ], tip: "Die Kürbiskerne kurz in der trockenen Pfanne rösten – das bringt Aroma." },
-  { n: "Linseneintopf mit Gemüse", t: "30 Min", s: [
-      "Karotte (100 g), Kartoffel (100 g) und Lauch (60 g) in kleine Würfel schneiden.",
-      "Das Gemüse in einem Topf mit etwas Wasser 5 Minuten anschwitzen.",
-      "Die gekochten Linsen (200 g) und die Gemüsebrühe (250 g) zugeben und aufkochen.",
-      "15 Minuten köcheln, bis Kartoffeln und Karotten weich sind. Mit Salz und Pfeffer würzen.",
-      "Nach Belieben mit einem Schuss Essig abschmecken und servieren."
-    ], tip: "Ein Spritzer Essig am Ende hebt den Geschmack des Eintopfs deutlich." },
-  { n: "Blumenkohl-Cremesuppe mit Hähnchen", t: "30 Min", s: [
-      "Den Blumenkohl (250 g) in Röschen teilen und in der Gemüsebrühe (200 g plus Wasser) 12–15 Minuten weich kochen.",
-      "Den Frischkäse light (50 g) einrühren und die Suppe cremig pürieren. Mit Salz, Pfeffer und den Kräutern (5 g) würzen.",
-      "Die Hähnchenbrust (150 g) salzen, pfeffern und im Olivenöl (8 g) pro Seite 4–5 Minuten braten, dann in Streifen schneiden.",
-      "Die Suppe in einen Teller geben.",
-      "Mit dem Hähnchen belegt servieren."
-    ], tip: "Ein paar geröstete Kürbis- oder Sonnenblumenkerne geben Biss." },
-  { n: "Kichererbsen-Spinat-Eintopf", t: "25 Min", s: [
-      "Die Zwiebel (60 g) und den Knoblauch (6 g) fein würfeln und im Olivenöl (8 g) glasig dünsten.",
-      "Die passierten Tomaten (100 g) angießen und aufkochen.",
-      "Die abgespülten Kichererbsen (180 g) zugeben und 8 Minuten köcheln lassen. Mit Salz und Pfeffer würzen.",
-      "Den Spinat (150 g) unterrühren und zusammenfallen lassen.",
-      "Kurz durchziehen lassen und servieren."
-    ], tip: "Eine Prise Kreuzkümmel und Paprikapulver geben orientalische Tiefe." },
-  { n: "Erbseneintopf mit Räuchertofu", t: "30 Min", s: [
-      "Die Karotte (80 g) und Kartoffel (120 g) in kleine Würfel schneiden.",
-      "Die Würfel in einem Topf mit der Gemüsebrühe (250 g) 12 Minuten kochen.",
-      "Die Erbsen (180 g) zugeben und weitere 5 Minuten garen. Mit Salz und Pfeffer würzen.",
-      "Den Räuchertofu (130 g) würfeln und in einer Pfanne knusprig anbraten.",
-      "Den Tofu in den Eintopf geben und servieren."
-    ], tip: "Etwas Majoran macht den Eintopf schön herzhaft und deftig." },
-  { n: "Scharfe Kokos-Gemüse-Suppe", t: "25 Min", s: [
-      "Die Currypaste (15 g) in einem Topf kurz anrösten, dann mit der Kokosmilch (80 g) und der Gemüsebrühe (250 g) ablöschen und aufkochen.",
-      "Den Brokkoli (120 g) in kleine Röschen und die Paprika (80 g) in Streifen schneiden und zugeben.",
-      "5 Minuten köcheln, bis das Gemüse bissfest ist.",
-      "Den Tofu (100 g) würfeln, hineingeben und kurz erwärmen. Mit Salz abschmecken.",
-      "Heiß servieren."
-    ], tip: "Ein Spritzer Limette und frischer Koriander machen die Suppe rund." },
-  { n: "Gemüse-Omelett mit Käse", t: "15 Min", s: [
-      "Die Paprika (80 g) klein würfeln und den Spinat (60 g) grob schneiden.",
-      "Die Eier (150 g) mit Salz und Pfeffer verquirlen.",
-      "Das Olivenöl (6 g) in einer Pfanne erhitzen und Paprika und Spinat 3 Minuten anbraten.",
-      "Die Eimasse darüber gießen und bei mittlerer Hitze stocken lassen. Den Käse (30 g) darüberstreuen.",
-      "Das Omelett zusammenklappen und servieren."
-    ], tip: "Frische Kräuter in der Eimasse machen das Omelett noch aromatischer." },
-  { n: "Shakshuka mit Feta", t: "25 Min", s: [
-      "Die Zwiebel (60 g) und Paprika (100 g) würfeln und im Olivenöl (8 g) 5 Minuten anbraten.",
-      "Die passierten Tomaten (150 g) angießen, mit Salz und Pfeffer würzen und 5 Minuten köcheln lassen.",
-      "Mit einem Löffel Mulden in die Sauce drücken und die Eier (120 g) hineinschlagen.",
-      "Zugedeckt bei kleiner Hitze 6–8 Minuten stocken lassen, bis das Eiweiß fest ist.",
-      "Den Feta (40 g) darüberbröseln und servieren."
-    ], tip: "Eine Prise Kreuzkümmel und Paprikapulver bringen den echten Shakshuka-Geschmack." },
-  { n: "Champignon-Frittata", t: "25 Min", s: [
-      "Die Champignons (150 g) in Scheiben und die Zwiebel (50 g) in Würfel schneiden.",
-      "In einer ofenfesten Pfanne die Champignons und Zwiebel anbraten, bis die Flüssigkeit verdampft ist.",
-      "Die Eier (180 g) mit dem Parmesan (20 g), den Kräutern (5 g), Salz und Pfeffer verquirlen und über die Pilze gießen.",
-      "Bei kleiner Hitze zugedeckt 8 Minuten stocken lassen.",
-      "Kurz unter dem Grill goldbraun überbacken und in Stücke schneiden."
-    ], tip: "Die Frittata schmeckt auch kalt – ideal zum Mitnehmen." },
-  { n: "Spinat-Feta-Omelett", t: "15 Min", s: [
-      "Den Spinat (100 g) grob schneiden. Die Eier (150 g) mit Salz und Pfeffer verquirlen.",
-      "Das Olivenöl (6 g) in einer Pfanne erhitzen und den Spinat kurz zusammenfallen lassen.",
+    ], tip: "Die Currypaste kurz im Öl anrösten, das entfaltet das volle Aroma." },
+  { n: "Putenspieße mit Ofengemüse & Hummus", t: "35 Min", s: [
+      "Heize den Ofen auf 200 °C Ober-/Unterhitze vor und lege ein Blech mit Backpapier aus.",
+      "Putze Zucchini (120 g) und Paprika (120 g) sowie Rote Zwiebel (50 g), schneide alles mundgerecht und verteile es mit dem restlichen Öl auf dem Blech.",
+      "Würze Putenbrustfilet (180 g) mit Salz und Pfeffer, lege es dazu und backe alles 15–18 Minuten, bis es gar ist.",
+      "Alles auf einem Teller anrichten – warm genießen."
+    ], tip: "Ein Klecks Kräuterquark oder Joghurt passt als frische Sauce dazu." },
+  { n: "Hähnchen-Caesar-Bowl", t: "15 Min", s: [
+      "Hähnchenbrustfilet (170 g) bei Bedarf garen bzw. abtropfen lassen und mundgerecht vorbereiten.",
+      "Blattsalat (80 g), Cherrytomaten (80 g) und Gurke (80 g) waschen, klein schneiden und in eine große Schüssel geben.",
+      "Parmesan (40 g) und Griechischer Joghurt (40 g) würfeln oder bröseln und dazugeben.",
+      "Aus Olivenöl (6 g), Salz und Pfeffer ein Dressing rühren.",
+      "Alles vorsichtig vermengen – frisch servieren."
+    ], tip: "Röste ein paar Kerne als Topping für extra Biss." },
+  { n: "Hähnchen-Piccata mit Zucchini", t: "25 Min", s: [
+      "Erhitze Olivenöl (8 g) in einer großen Pfanne und brate Hähnchenbrustfilet (180 g) bei kräftiger Hitze rundum an.",
+      "Zucchini (200 g) putzen, klein schneiden, dazugeben und einige Minuten mitbraten.",
+      "Ein Ei verquirlen bzw. als Spiegelei dazugeben und stocken lassen.",
+      "Parmesan (35 g) darüberstreuen bzw. -bröseln und alles mit Zitrone (30 g) servieren."
+    ], tip: "Frische Kräuter erst nach dem Braten dazugeben, so bleiben sie aromatisch." },
+  { n: "Pute süß-sauer mit Reis", t: "20 Min", s: [
+      "Bereite Reis (roh) (75 g) nach Packungsanweisung zu und lasse sie abtropfen.",
+      "Schneide Putenbrustfilet (180 g) in mundgerechte Stücke und Paprika (100 g), Ananas (60 g) und Karotten (60 g) in feine Streifen.",
+      "Erhitze etwas Olivenöl im Wok sehr heiß und brate Putenbrustfilet (180 g) unter Rühren scharf an.",
+      "Das Gemüse dazugeben und 3–4 Minuten knackig mitbraten.",
+      "Mit Sojasauce (12 g) ablöschen, die Nudeln unterheben und alles einmal kräftig durchschwenken.",
+      "Sofort heiß servieren."
+    ], tip: "Alles klein und gleich groß schneiden, dann gart es im Wok gleichmäßig." },
+  { n: "Hähnchen-Gyros mit Tzatziki-Quark", t: "20 Min", s: [
+      "Hähnchenbrustfilet (180 g) garen bzw. anbraten und würzen.",
+      "Gurke (80 g) und Tomaten (80 g) waschen und klein schneiden.",
+      "Alle Komponenten samt Magerquark (80 g) nebeneinander in einer Schüssel anrichten.",
+      "Nach Geschmack abschmecken – fertig."
+    ], tip: "Alle Komponenten getrennt anrichten, dann kann jeder selbst mischen." },
+  { n: "Grüne-Curry-Hähnchen mit Reisnudeln", t: "20 Min", s: [
+      "Bereite Asia-Nudeln (Mie) (60 g) nach Packungsanweisung zu und lasse sie abtropfen.",
+      "Schneide Hähnchenbrustfilet (160 g) in mundgerechte Stücke und Pak Choi (100 g) und Paprika (70 g) in feine Streifen.",
+      "Erhitze etwas Olivenöl im Wok sehr heiß und brate Hähnchenbrustfilet (160 g) unter Rühren scharf an.",
+      "Das Gemüse dazugeben und 3–4 Minuten knackig mitbraten.",
+      "Mit Kokosmilch (60 g) und Currypaste (18 g) ablöschen, die Nudeln unterheben und alles einmal kräftig durchschwenken.",
+      "Sofort heiß servieren."
+    ], tip: "Wok richtig heiß werden lassen und zügig schwenken – das hält das Gemüse knackig." },
+  { n: "Tofu-Wok mit Mie-Nudeln", t: "20 Min", s: [
+      "Bereite Asia-Nudeln (Mie) (60 g) nach Packungsanweisung zu und lasse sie abtropfen.",
+      "Schneide Tofu natur (200 g) und Edamame (TK) (80 g) in mundgerechte Stücke und Pak Choi (100 g) in feine Streifen.",
+      "Erhitze Sesamöl (8 g) im Wok sehr heiß und brate Tofu natur (200 g) und Edamame (TK) (80 g) unter Rühren scharf an.",
+      "Das Gemüse mit Ingwer (6 g) und Knoblauch (6 g) dazugeben und 3–4 Minuten knackig mitbraten.",
+      "Mit Sojasauce (15 g) ablöschen, die Nudeln unterheben und alles einmal kräftig durchschwenken.",
+      "Sofort heiß servieren."
+    ], tip: "Ein paar Tropfen Sesamöl ganz zum Schluss geben den typischen Asia-Duft." },
+  { n: "Räuchertofu-Curry mit Reis", t: "25 Min", s: [
+      "Setze Reis (roh) (55 g) nach Packungsanweisung auf.",
+      "Erhitze etwas Olivenöl im Topf, dünste die Zwiebel an und schneide Räuchertofu (220 g) in Stücke.",
+      "Räuchertofu (220 g) anbraten, Kokosmilch (60 g) und Currypaste (18 g) zugeben und kurz mitrösten.",
+      "Paprika (80 g) und Spinat (60 g) dazugeben und alles 10–12 Minuten sanft köcheln lassen, bis das Curry cremig ist.",
+      "Mit Salz, Pfeffer abschmecken.",
+      "Zusammen mit Reis (roh) (55 g) heiß servieren."
+    ], tip: "Mit etwas Limette abschmecken, das macht das Curry lebendig." },
+  { n: "Rote-Linsen-Dal mit Tofu", t: "25 Min", s: [
+      "Setze Reis (roh) (35 g) nach Packungsanweisung auf.",
+      "Erhitze etwas Olivenöl im Topf, dünste Zwiebel (60 g), Knoblauch (6 g) und Ingwer (6 g) an und schneide Rote Linsen (roh) (90 g) und Tofu natur (130 g) in Stücke.",
+      "Rote Linsen (roh) (90 g) und Tofu natur (130 g) anbraten, Kokosmilch (50 g) und Tomatenmark (20 g) zugeben und kurz mitrösten.",
+      "Mit Salz, Pfeffer abschmecken.",
+      "Zusammen mit Reis (roh) (35 g) heiß servieren."
+    ], tip: "Am nächsten Tag schmeckt das Curry sogar noch intensiver." },
+  { n: "Linsen-Bolognese auf Vollkornnudeln", t: "20 Min", s: [
+      "Koche Vollkornnudeln (roh) (35 g) in reichlich Salzwasser bissfest und behalte etwas Nudelwasser zurück.",
+      "Erhitze etwas Olivenöl, brate Rote Linsen (roh) (130 g) an und dünste Zwiebel (60 g) und Knoblauch (6 g) mit.",
+      "Passierte Tomaten (150 g) zugeben und einige Minuten einköcheln lassen.",
+      "Karotten (60 g) dazugeben und mitgaren.",
+      "Die Nudeln untermischen, mit etwas Nudelwasser cremig rühren und Parmesan (20 g) unterheben.",
+      "Abschmecken und heiß servieren."
+    ], tip: "Frisch geriebener Parmesan zum Schluss macht die Sauce samtig." },
+  { n: "Chili sin Carne mit Tofu", t: "30 Min", s: [
+      "Erhitze etwas Öl im Topf und brate Tofu natur (150 g), Kidneybohnen (Dose) (150 g) und Rote Linsen (roh) (40 g) mit Zwiebel (60 g) an.",
+      "Mais (Dose) (50 g) und Paprika (80 g) klein schneiden und kurz mitrösten.",
+      "Passierte Tomaten (150 g) zugeben, aufkochen und mit Salz, Pfeffer und etwas Kreuzkümmel würzen.",
+      "Alles zugedeckt 20 Minuten sanft köcheln lassen, bis es schön sämig ist.",
+      "Nochmal abschmecken und heiß servieren."
+    ], tip: "Mit einem Löffel Joghurt und frischen Kräutern servieren." },
+  { n: "Halloumi-Salat mit Oliven & Hummus", t: "15 Min", s: [
+      "Kichererbsen (Dose) (170 g) bei Bedarf garen bzw. abtropfen lassen und mundgerecht vorbereiten.",
+      "Gurke (100 g), Tomaten (100 g), Rucola (30 g) und Oliven (15 g) waschen, klein schneiden und in eine große Schüssel geben.",
+      "Halloumi (150 g) würfeln oder bröseln und dazugeben.",
+      "Aus etwas Olivenöl, Zitrone (20 g), Hummus (20 g), Salz und Pfeffer ein Dressing rühren.",
+      "Alles vorsichtig vermengen – frisch servieren."
+    ], tip: "Den Salat einmal kräftig durchmischen, damit sich die Aromen verteilen." },
+  { n: "Gebratener Halloumi mit Ofengemüse & Ei", t: "35 Min", s: [
+      "Heize den Ofen auf 200 °C Ober-/Unterhitze vor und lege ein Blech mit Backpapier aus.",
+      "Putze Zucchini (120 g), Paprika (120 g) und Aubergine (100 g), schneide alles mundgerecht und verteile es mit dem restlichen Öl auf dem Blech.",
+      "Würze Halloumi (150 g) mit Salz und Pfeffer, lege es dazu und backe alles 15–18 Minuten, bis es gar ist. Streue in den letzten 5 Minuten Halloumi (150 g) darüber.",
+      "Brate 2 Eier in einer Pfanne als Spiegelei und lege es zum Schluss oben auf.",
+      "Alles auf einem Teller anrichten – warm genießen."
+    ], tip: "Röste das Gemüse ruhig scharf an – die Röstaromen machen den Unterschied." },
+  { n: "Kichererbsen-Feta-Pfanne mit Ei", t: "25 Min", s: [
+      "Erhitze Olivenöl (6 g) in einer großen Pfanne und brate Kichererbsen (Dose) (200 g) bei kräftiger Hitze rundum an.",
+      "Gib Zwiebel (50 g) dazu und dünste es kurz glasig.",
+      "Zucchini (120 g) und Cherrytomaten (120 g) putzen, klein schneiden, dazugeben und einige Minuten mitbraten.",
+      "3 Eier verquirlen bzw. als Spiegelei dazugeben und stocken lassen.",
+      "Feta (60 g) darüberstreuen bzw. -bröseln und alles servieren."
+    ], tip: "Lass der Pfanne Zeit richtig heiß zu werden, dann bekommt alles eine schöne Bräunung." },
+  { n: "Shakshuka mit Feta & Kichererbsen", t: "25 Min", s: [
+      "Erhitze etwas Olivenöl in einer großen Pfanne und brate Kichererbsen (Dose) (180 g) bei kräftiger Hitze rundum an.",
+      "Gib Zwiebel (60 g) und Knoblauch (6 g) dazu und dünste es kurz glasig.",
+      "Paprika (100 g) putzen, klein schneiden, dazugeben und einige Minuten mitbraten.",
+      "Mit Passierte Tomaten (200 g) ablöschen, kurz einköcheln lassen und mit Salz und Pfeffer abschmecken.",
+      "3 Eier verquirlen bzw. als Spiegelei dazugeben und stocken lassen.",
+      "Feta (50 g) darüberstreuen bzw. -bröseln und alles servieren."
+    ], tip: "Ein Spritzer Zitrone am Ende sorgt für Frische." },
+  { n: "Protein-Omelett mit Käse & Spinat", t: "15 Min", s: [
+      "Ei (180 g) und Eiklar (120 g) in einer Schüssel verquirlen und mit Salz und Pfeffer würzen.",
+      "Spinat (100 g) und Tomaten (60 g) klein schneiden und in Olivenöl (6 g) kurz andünsten.",
       "Die Eimasse darüber gießen und bei mittlerer Hitze stocken lassen.",
-      "Den Feta (40 g) darüberbröseln.",
-      "Das Omelett zusammenklappen und servieren."
-    ], tip: "Etwas Muskatnuss passt hervorragend zu Spinat und Ei." },
-  { n: "Zucchini-Frittata mit Tomaten", t: "25 Min", s: [
-      "Die Zucchini (120 g) in dünne Scheiben und die Cherrytomaten (100 g) halbieren.",
-      "In einer ofenfesten Pfanne die Zucchini im Olivenöl (6 g) 4 Minuten anbraten.",
-      "Die Eier (150 g) mit dem Parmesan (20 g), Salz und Pfeffer verquirlen und über die Zucchini gießen. Die Tomaten darauf verteilen.",
-      "Bei kleiner Hitze zugedeckt 8 Minuten stocken lassen.",
-      "Kurz unter dem Grill überbacken und in Stücke schneiden."
-    ], tip: "Ein wenig frischer Basilikum obendrauf macht die Frittata sommerlich." },
-  { n: "Rührei mit Räucherlachs & Spinat", t: "15 Min", s: [
-      "Die Eier (180 g) mit Salz und Pfeffer verquirlen. Den Räucherlachs (60 g) in Streifen schneiden.",
-      "Das Olivenöl (6 g) in einer Pfanne erhitzen und den Spinat (80 g) kurz zusammenfallen lassen.",
-      "Die Eimasse dazugeben und bei mittlerer Hitze unter Rühren zu cremigem Rührei stocken lassen.",
-      "Den Räucherlachs erst am Ende unterheben, damit er nicht zäh wird.",
-      "Sofort servieren."
-    ], tip: "Ein Spritzer Zitrone und Schnittlauch runden das Rührei ab." },
-  { n: "Bauernomelett mit Kartoffeln", t: "25 Min", s: [
-      "Die Kartoffeln (120 g) waschen, in kleine Würfel schneiden und in Salzwasser 8 Minuten vorkochen, dann abgießen.",
-      "Zwiebel (50 g) und Paprika (70 g) würfeln. Das Olivenöl (8 g) in einer Pfanne erhitzen.",
-      "Kartoffeln, Zwiebel und Paprika 6–8 Minuten goldbraun braten.",
-      "Die Eier (150 g) mit Salz und Pfeffer verquirlen und über das Gemüse gießen.",
-      "Bei mittlerer Hitze stocken lassen, bis das Ei fest ist, und servieren."
-    ], tip: "Etwas gewürfelter Kochschinken macht das Bauernomelett noch herzhafter." },
-  { n: "Shakshuka verde mit Spinat & Erbsen", t: "25 Min", s: [
-      "Die Zwiebel (50 g) würfeln und im Olivenöl (8 g) glasig dünsten.",
-      "Den Spinat (120 g) und die Erbsen (100 g) zugeben und 3–4 Minuten dünsten. Mit Salz und Pfeffer würzen.",
-      "Mit einem Löffel Mulden formen und die Eier (150 g) hineinschlagen.",
-      "Zugedeckt bei kleiner Hitze 6–8 Minuten stocken lassen.",
-      "Den Feta (30 g) darüberbröseln und servieren."
-    ], tip: "Ein Spritzer Zitrone bringt Frische in die grüne Shakshuka." },
-  { n: "Tofu-Gemüse-Pfanne mit Sesam", t: "25 Min", s: [
-      "Den Räuchertofu (150 g) würfeln, den Brokkoli (150 g) in Röschen und die Paprika (100 g) in Streifen schneiden.",
-      "Den Tofu in einer heißen Pfanne rundum knusprig anbraten. Herausnehmen.",
-      "Das Gemüse in der Pfanne mit etwas Wasser 5–6 Minuten bissfest braten.",
-      "Den Tofu zurückgeben, mit der Sojasauce (15 g) und dem geriebenen Ingwer (8 g) würzen.",
-      "Mit dem Sesam (8 g) bestreuen und servieren."
-    ], tip: "Ein Teelöffel Sesamöl am Ende verstärkt den nussigen Geschmack." },
-  { n: "Tofu-Curry mit Blumenkohlreis", t: "30 Min", s: [
-      "Den Blumenkohl (200 g) in einer Küchenmaschine zu Reiskörnern zerkleinern (Blumenkohlreis).",
-      "Den Tofu (150 g) würfeln und in einem Topf rundum anbraten.",
-      "Die Currypaste (20 g) einrühren, kurz anrösten, dann mit der Kokosmilch (60 g) ablöschen.",
-      "Die Paprikastreifen (80 g) zugeben und 8 Minuten köcheln. Mit Salz abschmecken.",
-      "Den Blumenkohlreis in einer Pfanne 4–5 Minuten anbraten und das Curry dazu servieren."
-    ], tip: "Tofu vorher trockentupfen – so wird er in der Pfanne schön knusprig." },
-  { n: "Tofu mit Ofengemüse", t: "35 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Zucchini (120 g), Paprika (120 g) und rote Zwiebel (60 g) in Stücke schneiden.",
-      "Den Tofu (130 g) würfeln und mit dem Gemüse, dem Olivenöl (8 g), Salz und Pfeffer mischen.",
-      "Alles auf ein Blech geben und gleichmäßig verteilen.",
-      "25 Minuten backen, dabei einmal wenden, bis der Tofu goldbraun und das Gemüse weich ist.",
-      "Direkt vom Blech servieren."
-    ], tip: "Den Tofu vorher in Sojasauce marinieren gibt ihm mehr Würze." },
-  { n: "Knuspertofu mit Erdnusssauce & Brokkoli", t: "25 Min", s: [
-      "Den Räuchertofu (150 g) würfeln und in einer Pfanne rundum knusprig anbraten.",
-      "Den Brokkoli (180 g) in Röschen teilen und mit etwas Wasser in der Pfanne 5–6 Minuten bissfest garen.",
-      "Die Erdnüsse (20 g) hacken und mit der Sojasauce (15 g), dem geriebenen Ingwer (6 g) und etwas Wasser zu einer Sauce verrühren.",
-      "Die Sauce über Tofu und Brokkoli geben und kurz durchschwenken.",
-      "Mit den restlichen Erdnüssen bestreut servieren."
-    ], tip: "Ein Löffel Erdnussbutter macht die Sauce noch cremiger." },
-  { n: "Linsen-Bolognese mit Vollkornnudeln", t: "30 Min", s: [
-      "Die Vollkornnudeln (60 g) in Salzwasser nach Packungsangabe bissfest kochen.",
-      "Die Zwiebel (60 g) und den Knoblauch (6 g) fein würfeln und im Olivenöl (8 g) glasig dünsten.",
-      "Die roten Linsen (40 g) abspülen, zugeben und die passierten Tomaten (120 g) plus etwas Wasser angießen.",
-      "15 Minuten köcheln, bis die Linsen weich sind. Mit Salz und Pfeffer würzen.",
-      "Die Bolognese über die Nudeln geben und servieren."
-    ], tip: "Etwas Tomatenmark und Oregano vertiefen den Bolognese-Geschmack." },
-  { n: "Räuchertofu-Bowl mit Quinoa & Edamame", t: "25 Min", s: [
-      "Den Quinoa (55 g) abspülen und in der doppelten Menge Salzwasser 15 Minuten garen.",
-      "Die Edamame (80 g) 5 Minuten in kochendem Salzwasser garen und abgießen.",
-      "Den Räuchertofu (120 g) würfeln und in einer Pfanne knusprig anbraten. Die Karotte (60 g) fein raspeln.",
-      "Quinoa, Edamame, Karotte und Tofu in einer Schüssel anrichten.",
-      "Mit der Sojasauce (12 g) beträufeln und servieren."
-    ], tip: "Ein paar geröstete Sesamsamen geben der Bowl einen nussigen Crunch." },
-  { n: "Tofu-Teriyaki mit Pak Choi", t: "25 Min", s: [
-      "Den Tofu (150 g) würfeln und in einer Pfanne rundum knusprig anbraten.",
-      "Den Weißkohl (150 g) in feine Streifen und die Karotte (70 g) in Stifte schneiden.",
-      "Das Olivenöl (6 g) zugeben und das Gemüse 5–6 Minuten bissfest braten.",
-      "Den Tofu zurückgeben und mit der Sojasauce (15 g) glasieren.",
-      "Mit dem Sesam (10 g) bestreuen und servieren."
-    ], tip: "Ein Teelöffel Honig in der Sojasauce macht die Glasur schön süßlich." },
-  { n: "Gebackener Tofu mit Rosenkohl", t: "30 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Den Tofu (160 g) würfeln, mit der Sojasauce (12 g) und der Hälfte des Olivenöls (6 g) mischen.",
-      "Den Brokkoli (200 g) in Röschen teilen und mit dem restlichen Öl mischen.",
-      "Tofu und Brokkoli auf ein Blech geben.",
-      "20 Minuten backen, dabei einmal wenden, bis beides goldbraun ist.",
-      "Mit dem Sesam (6 g) bestreuen und servieren."
-    ], tip: "Etwas Speisestärke am Tofu vor dem Backen macht ihn extra knusprig." },
-  { n: "Kichererbsen-Curry mit Spinat", t: "25 Min", s: [
-      "Die Zwiebel (60 g) würfeln und in einem Topf anschwitzen. Die Tomate (80 g) würfeln und zugeben.",
-      "Die Currypaste (18 g) einrühren, kurz anrösten, dann mit der Kokosmilch (80 g) ablöschen.",
-      "Die abgespülten Kichererbsen (180 g) zugeben und 8 Minuten köcheln.",
-      "Den Spinat (120 g) unterrühren und zusammenfallen lassen. Mit Salz abschmecken.",
-      "Heiß servieren, nach Belieben mit Reis."
-    ], tip: "Ein Spritzer Limette hebt das Aroma des Currys spürbar an." },
-  { n: "Linsen-Dal mit Blumenkohl", t: "30 Min", s: [
-      "Die Zwiebel (60 g) würfeln und in einem Topf anschwitzen. Das Curry-Gewürz (6 g) einrühren und kurz anrösten.",
-      "Die roten Linsen (70 g) abspülen, mit der Gemüsebrühe (200 g) angießen und aufkochen.",
-      "Den Blumenkohl (150 g) in kleine Röschen teilen und zugeben.",
-      "15 Minuten köcheln, bis Linsen und Blumenkohl weich sind, dann die Kokosmilch (50 g) einrühren.",
-      "Mit Salz abschmecken und servieren."
-    ], tip: "Frischer Ingwer und Koriander machen das Dal besonders authentisch." },
-  { n: "Bohnen-Gemüse-Pfanne mit Ei", t: "20 Min", s: [
-      "Die Paprika (100 g) und Zucchini (100 g) würfeln. Die Kidneybohnen (150 g) abspülen.",
-      "Das Olivenöl (8 g) in einer Pfanne erhitzen und Paprika und Zucchini 5 Minuten anbraten.",
-      "Die Bohnen und die passierten Tomaten (80 g) zugeben, salzen, pfeffern und kurz köcheln.",
-      "Mit einem Löffel Mulden formen und die Eier (120 g) hineinschlagen.",
-      "Zugedeckt 5–6 Minuten stocken lassen und servieren."
-    ], tip: "Etwas Chili und Kreuzkümmel geben der Pfanne mexikanisches Aroma." },
-  { n: "Griechischer Bauernsalat mit Kichererbsen", t: "15 Min", s: [
-      "Die Kichererbsen (150 g) abspülen und abtropfen lassen.",
-      "Gurke (120 g) und Tomate (120 g) in mundgerechte Stücke schneiden.",
-      "Gurke, Tomate, Kichererbsen und Oliven (25 g) in einer Schüssel vermengen.",
-      "Mit dem Olivenöl (10 g), Salz und Pfeffer anmachen.",
-      "Den Feta (50 g) darüberbröseln und servieren."
-    ], tip: "Etwas Oregano und ein Spritzer Zitrone bringen echtes Griechenland-Flair." },
-  { n: "Ofen-Kichererbsen mit Süßkartoffel & Feta", t: "35 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Die Süßkartoffel (180 g) schälen und würfeln.",
-      "Die Kichererbsen (150 g) abspülen und trocken tupfen. Mit der Süßkartoffel, dem Olivenöl (8 g), Salz und Pfeffer mischen.",
-      "Alles auf ein Blech geben und 25 Minuten backen, dabei einmal wenden.",
-      "Den Spinat (60 g) unter das heiße Gemüse mischen, bis er zusammenfällt.",
-      "Den Feta (40 g) darüberbröseln und servieren."
-    ], tip: "Ein wenig Paprikapulver auf den Kichererbsen macht sie schön würzig." },
-  { n: "Linsensalat mit Feta & Rucola", t: "15 Min", s: [
-      "Die gekochten Linsen (200 g) abtropfen lassen und in eine Schüssel geben.",
-      "Die Cherrytomaten (100 g) halbieren und zu den Linsen geben.",
-      "Mit dem Olivenöl (8 g), Salz und Pfeffer anmachen.",
-      "Den Rucola (40 g) unterheben.",
-      "Den Feta (40 g) darüberbröseln und servieren."
-    ], tip: "Ein Löffel Balsamico macht den Linsensalat angenehm frisch-säuerlich." },
-  { n: "Edamame-Quinoa-Bowl", t: "25 Min", s: [
-      "Den Quinoa (55 g) abspülen und in der doppelten Menge Salzwasser 15 Minuten garen.",
-      "Die Edamame (120 g) 5 Minuten in kochendem Salzwasser garen und abgießen.",
-      "Die Karotte (60 g) fein raspeln und die Gurke (80 g) würfeln.",
-      "Quinoa, Edamame, Karotte und Gurke in einer Schüssel anrichten.",
-      "Mit der Sojasauce (12 g) beträufeln und mit Sesam (6 g) bestreuen."
-    ], tip: "Ein Spritzer Limette und etwas Chili machen die Bowl lebendig." },
-  { n: "Gebratener Halloumi mit Ofengemüse", t: "30 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Zucchini (120 g), Paprika (100 g) und Aubergine (80 g) in Stücke schneiden.",
-      "Das Gemüse mit dem Olivenöl (8 g), Salz und Pfeffer mischen und 20 Minuten backen.",
-      "Den Halloumi (120 g) in Scheiben schneiden.",
-      "In einer beschichteten Pfanne ohne Fett den Halloumi pro Seite 2 Minuten goldbraun braten.",
-      "Den Halloumi auf dem Ofengemüse anrichten."
-    ], tip: "Ein Spritzer Zitrone über den Halloumi macht ihn frisch und weniger salzig." },
-  { n: "Halloumi-Salat mit Trauben", t: "15 Min", s: [
-      "Den Rucola (50 g) waschen und die Gurke (100 g) in Scheiben schneiden. Die Weintrauben (40 g) halbieren.",
-      "Rucola, Gurke und Trauben in einer Schüssel anrichten und mit dem Olivenöl (8 g), Salz und Pfeffer beträufeln.",
-      "Den Halloumi (100 g) in Scheiben schneiden.",
-      "In einer beschichteten Pfanne ohne Fett pro Seite 2 Minuten goldbraun braten.",
-      "Den warmen Halloumi auf dem Salat anrichten."
-    ], tip: "Ein Klecks Honig über den Halloumi ergibt ein tolles süß-salziges Spiel." },
-  { n: "Caprese-Salat mit Avocado", t: "10 Min", s: [
-      "Die Tomate (150 g) und den Mozzarella light (100 g) in Scheiben schneiden.",
-      "Die Avocado (60 g) in Spalten schneiden.",
-      "Tomate, Mozzarella und Avocado abwechselnd auf einem Teller anrichten.",
-      "Den Rucola (30 g) darüber verteilen.",
-      "Mit dem Olivenöl (8 g), Salz und Pfeffer beträufeln und servieren."
-    ], tip: "Ein paar Tropfen Balsamico und frischer Basilikum machen den Caprese perfekt." },
-  { n: "Blumenkohl-Käse-Auflauf", t: "40 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Den Blumenkohl (250 g) in Röschen teilen und in Salzwasser 8 Minuten vorkochen, dann abgießen.",
-      "Das Ei (60 g) mit dem Frischkäse light (40 g), den Kräutern (5 g), Salz und Pfeffer verquirlen.",
-      "Den Blumenkohl in eine Auflaufform geben und mit der Ei-Frischkäse-Masse übergießen.",
-      "Den Käse (50 g) darüberstreuen.",
-      "20–25 Minuten backen, bis der Auflauf goldbraun ist."
-    ], tip: "Etwas Muskatnuss in der Masse gibt dem Auflauf eine feine Würze." },
-  { n: "Poke-Bowl mit Lachs & Edamame", t: "25 Min", s: [
-      "Den Reis (45 g) in Salzwasser nach Packungsangabe garen und lauwarm abkühlen lassen.",
-      "Die Edamame (60 g) 5 Minuten garen und abgießen. Gurke (80 g) und Avocado (30 g) in Stücke schneiden.",
-      "Den Lachs (120 g) roh in kleine Würfel schneiden (Sushi-Qualität) und mit der Sojasauce (12 g) marinieren.",
-      "Den Reis in eine Schüssel geben und Edamame, Gurke, Avocado darauf anrichten.",
-      "Den marinierten Lachs darüber verteilen und servieren."
-    ], tip: "Wer keinen rohen Fisch mag, brät den Lachs kurz an – schmeckt genauso gut." },
-  { n: "Hähnchen-Cäsar-Salat", t: "20 Min", s: [
-      "Die Hähnchenbrust (160 g) salzen, pfeffern und im Olivenöl (8 g) pro Seite 4–5 Minuten braten, dann in Streifen schneiden.",
-      "Den Blattsalat (100 g) waschen und zupfen. Die Cherrytomaten (80 g) halbieren.",
-      "Aus dem griechischen Joghurt (40 g), etwas Wasser, Salz und Pfeffer ein cremiges Dressing rühren.",
-      "Salat und Tomaten mit dem Dressing vermengen und auf einen Teller geben.",
-      "Das Hähnchen darauflegen und den Parmesan (20 g) darüberhobeln."
-    ], tip: "Ein Spritzer Zitrone und etwas Senf im Dressing sorgen für den Cäsar-Kick." },
-  { n: "Thunfisch-Ei-Salat", t: "15 Min", s: [
-      "Die Eier (120 g) hart kochen (8–9 Minuten), abschrecken, pellen und vierteln.",
-      "Den Blattsalat (80 g) waschen. Tomate (100 g) und Gurke (80 g) in Stücke schneiden.",
-      "Den Thunfisch (120 g) abtropfen lassen und mit dem Gemüse und Salat vermengen.",
-      "Mit dem Olivenöl (8 g), Salz und Pfeffer anmachen.",
-      "Die Eierviertel darauf anrichten und servieren."
-    ], tip: "Ein Löffel Joghurt oder Senf im Dressing macht den Salat cremiger." },
-  { n: "Quinoa-Salat mit Gemüse & Feta", t: "25 Min", s: [
-      "Den Quinoa (55 g) abspülen und in der doppelten Menge Salzwasser 15 Minuten garen, dann abkühlen lassen.",
-      "Cherrytomaten (100 g), Gurke (100 g) und Paprika (80 g) klein würfeln.",
-      "Den abgekühlten Quinoa mit dem Gemüse vermengen.",
-      "Mit dem Olivenöl (8 g), Salz und Pfeffer anmachen.",
-      "Den Feta (40 g) darüberbröseln und servieren."
-    ], tip: "Ein Spritzer Zitrone und frische Kräuter machen den Salat schön frisch." },
-  { n: "Rindersteak-Salat mit Rucola", t: "20 Min", s: [
-      "Das Rindersteak (140 g) trockentupfen und salzen. In einer heißen Pfanne pro Seite 2–3 Minuten scharf anbraten (medium), dann ruhen lassen.",
-      "Den Rucola (50 g) waschen und die Cherrytomaten (100 g) halbieren.",
-      "Rucola und Tomaten auf einem Teller anrichten und mit dem Olivenöl (8 g) und dem Balsamico (8 g) beträufeln.",
-      "Das Steak in dünne Scheiben schneiden und auf dem Salat verteilen.",
-      "Den Parmesan (20 g) darüberhobeln und pfeffern."
-    ], tip: "Das Steak quer zur Faser aufschneiden – so wird es besonders zart." },
-  { n: "Bulgur-Salat mit Kichererbsen & Minze", t: "25 Min", s: [
-      "Den Bulgur (55 g) mit der doppelten Menge kochendem Salzwasser übergießen und 15 Minuten quellen lassen.",
-      "Die Kichererbsen (100 g) abspülen. Gurke (100 g) und Tomate (100 g) klein würfeln.",
-      "Den gequollenen Bulgur mit Kichererbsen und Gemüse vermengen.",
-      "Die frischen Kräuter (8 g, z. B. Minze und Petersilie) hacken und untermischen.",
-      "Mit dem Olivenöl (8 g), Salz und Pfeffer abschmecken und servieren."
-    ], tip: "Reichlich Zitronensaft macht den Bulgur-Salat wunderbar frisch (Tabbouleh-Stil)." },
-  { n: "Couscous-Salat mit Ofengemüse", t: "30 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Zucchini (100 g), Paprika (100 g) und rote Zwiebel (50 g) in Stücke schneiden, mit dem Olivenöl (8 g), Salz und Pfeffer mischen und 20 Minuten backen.",
-      "Den Couscous (55 g) mit der gleichen Menge kochendem Salzwasser übergießen und 5 Minuten quellen lassen, dann mit einer Gabel auflockern.",
-      "Das Ofengemüse unter den Couscous mischen.",
-      "Mit Salz und Pfeffer abschmecken.",
-      "Den Feta (40 g) darüberbröseln und servieren."
-    ], tip: "Etwas Zitrone und Minze machen den Couscous-Salat besonders frisch." },
-  { n: "Zucchini-Lasagne mit Hackfleisch", t: "45 Min", s: [
-      "Den Ofen auf 190 °C vorheizen. Die Zucchini (250 g) längs in dünne Streifen hobeln (als Lasagneplatten-Ersatz).",
-      "Die Zwiebel (50 g) würfeln und mit dem Rinderhack (130 g) anbraten. Die passierten Tomaten (100 g) zugeben, salzen und pfeffern.",
-      "In einer Auflaufform abwechselnd Zucchinistreifen und Hacksauce schichten.",
-      "Den Käse (40 g) darüberstreuen.",
-      "25 Minuten backen, bis der Käse goldbraun ist."
-    ], tip: "Die Zucchinistreifen vorher kurz salzen und abtupfen – so wird die Lasagne nicht wässrig." },
-  { n: "Ofengemüse mit Kichererbsen & Tahin-Alternative", t: "35 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Karotte (100 g), Kürbis (150 g) und rote Zwiebel (60 g) in Stücke schneiden.",
-      "Die Kichererbsen (120 g) abspülen und trocken tupfen. Mit dem Gemüse, dem Olivenöl (8 g), Salz und Pfeffer mischen.",
-      "Alles auf ein Blech geben und 25 Minuten backen, dabei einmal wenden.",
-      "Den Hummus (30 g) mit etwas Wasser zu einer cremigen Sauce verrühren.",
-      "Das Ofengemüse anrichten und mit der Hummus-Sauce beträufeln."
-    ], tip: "Etwas Kreuzkümmel und Paprikapulver auf dem Gemüse geben orientalisches Aroma." },
-  { n: "Überbackener Blumenkohl mit Hähnchen", t: "40 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Blumenkohl (200 g) und Brokkoli (80 g) in Röschen teilen und 8 Minuten in Salzwasser vorkochen, dann abgießen.",
-      "Die Hähnchenbrust (150 g) würfeln, salzen, pfeffern und in einer Pfanne anbraten.",
-      "Gemüse und Hähnchen in eine Auflaufform geben und den Frischkäse light (30 g) daruntermischen.",
-      "Den Käse (40 g) darüberstreuen.",
-      "20 Minuten überbacken, bis der Käse goldbraun ist."
-    ], tip: "Ein wenig Muskatnuss unter den Frischkäse gerührt macht das Gratin klassisch." },
-  { n: "Süßkartoffel-Ofen mit Hähnchen & Brokkoli", t: "35 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Die Süßkartoffel (150 g) schälen, würfeln, mit der Hälfte des Olivenöls (8 g), Salz und Pfeffer mischen und 10 Minuten vorbacken.",
-      "Den Brokkoli (120 g) in Röschen teilen, mit dem restlichen Öl und den Kräutern (5 g) mischen und dazulegen.",
-      "Die Hähnchenbrust (150 g) würfeln, salzen und mit auf das Blech geben.",
-      "Alles weitere 20 Minuten backen, dabei einmal wenden.",
-      "Vom Blech in Portionsdosen füllen oder direkt servieren."
-    ], tip: "Perfekt für Meal-Prep: hält sich luftdicht 3 Tage im Kühlschrank." },
-  { n: "Gnocchi-Gemüse-Pfanne mit Mozzarella", t: "20 Min", s: [
-      "Die Gnocchi (180 g) in einer Pfanne mit etwas Öl 5–6 Minuten goldbraun und knusprig braten.",
-      "Den Knoblauch (6 g) hacken und die Cherrytomaten (120 g) halbieren, beides zu den Gnocchi geben und 3 Minuten mitbraten.",
-      "Den Spinat (80 g) unterrühren und zusammenfallen lassen. Mit Salz und Pfeffer würzen.",
-      "Den Mozzarella light (60 g) zupfen und darübergeben.",
-      "Kurz schmelzen lassen und servieren."
-    ], tip: "Ein wenig Pesto unter die Gnocchi gemischt bringt viel Geschmack." },
-  { n: "Polenta mit Pilzragout", t: "30 Min", s: [
-      "Die Polenta (60 g) nach Packungsangabe in kochendem Salzwasser einrühren und unter Rühren cremig quellen lassen.",
-      "Die Champignons (180 g) in Scheiben und die Zwiebel (60 g) in Würfel schneiden.",
-      "Das Olivenöl (8 g) in einer Pfanne erhitzen und Zwiebel und Pilze 6–8 Minuten braten, bis die Flüssigkeit verdampft ist.",
-      "Mit Salz, Pfeffer und den Kräutern (5 g) würzen.",
-      "Die Polenta auf einen Teller geben, das Pilzragout darauf verteilen und mit dem Parmesan (20 g) bestreuen."
-    ], tip: "Etwas Parmesan direkt in die Polenta gerührt macht sie besonders cremig." },
-  { n: "Hähnchen-Wrap mit Gemüse", t: "20 Min", s: [
-      "Die Hähnchenbrust (120 g) in Streifen schneiden, salzen, pfeffern und in einer Pfanne 5–6 Minuten braten, bis sie durch ist.",
-      "Den Vollkorn-Wrap (64 g) kurz in der Pfanne oder im Ofen erwärmen.",
-      "Den Frischkäse light (20 g) auf dem Wrap verstreichen.",
-      "Blattsalat (40 g), Tomate (60 g) und Paprikastreifen (50 g) darauf verteilen und das Hähnchen dazugeben.",
-      "Den Wrap fest einrollen und in der Mitte durchschneiden."
-    ], tip: "Ein Klecks Joghurt-Kräuter-Dip statt Frischkäse macht den Wrap noch leichter." },
-  { n: "Falafel-Wrap mit Hummus", t: "20 Min", s: [
-      "Die Kichererbsen (100 g) abspülen, mit Salz, Pfeffer und etwas Gewürz zerdrücken und zu kleinen Bratlingen formen.",
-      "Die Bratlinge in einer Pfanne mit etwas Öl rundum knusprig braten.",
-      "Den Vollkorn-Wrap (64 g) kurz erwärmen und den Hummus (30 g) darauf verstreichen.",
-      "Gurke (60 g), Tomate (60 g) und Blattsalat (30 g) darauf verteilen und die Falafel dazugeben.",
-      "Den Wrap fest einrollen und durchschneiden."
-    ], tip: "Etwas Kreuzkümmel und Knoblauch in der Masse geben den echten Falafel-Geschmack." },
-  { n: "Puten-Gyros mit Zaziki", t: "30 Min", s: [
-      "Die Putenbrust (170 g) in dünne Streifen schneiden, mit Salz, Pfeffer und etwas Paprikapulver würzen.",
-      "In einer Pfanne kräftig anbraten, bis die Streifen gar und leicht knusprig sind.",
-      "Die Gurke (60 g) fein raspeln, ausdrücken und mit dem griechischen Joghurt (80 g) und dem gepressten Knoblauch (5 g) zu Zaziki verrühren. Salzen.",
-      "Die rote Zwiebel (40 g) in feine Ringe schneiden. Die Pita (50 g) kurz aufbacken.",
-      "Gyros mit Zaziki, Zwiebeln und Pita anrichten."
-    ], tip: "Ein Spritzer Zitrone und etwas Dill machen das Zaziki besonders frisch." },
-  { n: "Antipasti-Teller mit Halloumi", t: "30 Min", s: [
-      "Den Ofen auf 200 °C vorheizen. Aubergine (100 g), Zucchini (100 g) und Paprika (100 g) in Scheiben schneiden.",
-      "Das Gemüse mit dem Olivenöl (8 g), Salz und Pfeffer mischen und 20 Minuten backen.",
-      "Den Halloumi (100 g) in Scheiben schneiden und in einer beschichteten Pfanne pro Seite 2 Minuten goldbraun braten.",
-      "Das Ofengemüse mit den Oliven (25 g) auf einem Teller anrichten.",
-      "Den warmen Halloumi dazulegen und servieren."
-    ], tip: "Ein Spritzer Balsamico über das Antipasti-Gemüse rundet alles ab." },
-  { n: "Deutscher Wurstsalat-Ersatz mit Ei & Käse", t: "15 Min", s: [
-      "Die Eier (120 g) hart kochen (8–9 Minuten), abschrecken, pellen und in Scheiben schneiden.",
-      "Den Käse (40 g) in Streifen, die Gewürzgurken (40 g) und die Zwiebel (40 g) in feine Ringe schneiden.",
-      "Ei, Käse, Gurken und Zwiebel in einer Schüssel mischen.",
-      "Aus dem Senf (8 g), dem Olivenöl (6 g), etwas Gurkenwasser, Salz und Pfeffer ein Dressing rühren.",
-      "Über den Salat geben, durchziehen lassen und servieren."
-    ], tip: "10 Minuten durchziehen lassen macht den Wurstsalat-Ersatz noch aromatischer." },
-  { n: "Sauerkraut-Pfanne mit Räuchertofu", t: "25 Min", s: [
-      "Die Kartoffel (100 g) waschen, würfeln und in Salzwasser 10 Minuten vorkochen, dann abgießen.",
-      "Die Zwiebel (50 g) würfeln und im Olivenöl (6 g) glasig dünsten.",
-      "Den Räuchertofu (130 g) würfeln, zugeben und knusprig anbraten. Die Kartoffelwürfel mitbraten.",
-      "Das Sauerkraut (200 g) untermischen und 8–10 Minuten mitbraten, bis alles heiß ist. Mit Salz und Pfeffer würzen.",
+      "Gouda / Käse (50 g) darüberstreuen und schmelzen lassen.",
+      "Das Omelett zusammenklappen bzw. wenden und goldgelb fertig garen.",
+      "Auf einen Teller gleiten lassen und servieren."
+    ], tip: "Die Eier bei mittlerer Hitze stocken lassen, dann bleibt das Omelett fluffig." },
+  { n: "Gefüllte Paprika mit Quinoa & Feta-Quark", t: "40 Min", s: [
+      "Heize den Ofen auf 190 °C vor und halbiere die Paprika, entferne die Kerne.",
+      "Koche Quinoa (roh) (40 g) nach Packungsanweisung.",
+      "Brate Kichererbsen (Dose) (140 g) an und vermenge es mit Magerquark (180 g) und Feta (50 g) und Passierte Tomaten (60 g) zu einer Füllung.",
+      "Die Paprikahälften in eine Auflaufform setzen und mit der Füllung befüllen.",
+      "Im Ofen 20–25 Minuten backen, bis die Paprika weich und die Oberfläche goldbraun ist."
+    ], tip: "Reste der Füllung einfach mit in die Form geben." },
+  { n: "Tofu-Teriyaki mit Reis & Brokkoli", t: "25 Min", s: [
+      "Koche Reis (roh) (55 g) nach Packungsanweisung.",
+      "Verrühre Sojasauce (15 g) und Ahornsirup (8 g) zu einer Teriyaki-Sauce.",
+      "Brate Räuchertofu (210 g) in der heißen Pfanne rundum an.",
+      "Brokkoli (120 g) dazugeben und kurz mitbraten.",
+      "Die Sauce angießen und einköcheln lassen, bis sie glänzend das Protein umhüllt.",
+      "Mit Sesam (8 g) bestreuen und zusammen mit dem Reis servieren."
+    ], tip: "Wende das Protein einmal in der Sauce, damit es rundum glasiert." },
+  { n: "Kichererbsen-Tofu-Curry", t: "25 Min", s: [
+      "Setze Reis (roh) (35 g) nach Packungsanweisung auf.",
+      "Erhitze etwas Olivenöl im Topf, dünste Zwiebel (60 g) an und schneide Tofu natur (200 g) und Kichererbsen (Dose) (150 g) in Stücke.",
+      "Tofu natur (200 g) und Kichererbsen (Dose) (150 g) anbraten, Kokosmilch (60 g), Curry-Gewürz (6 g) und Tomatenmark (20 g) zugeben und kurz mitrösten.",
+      "Spinat (60 g) dazugeben und alles 10–12 Minuten sanft köcheln lassen, bis das Curry cremig ist.",
+      "Mit Salz, Pfeffer abschmecken.",
+      "Zusammen mit Reis (roh) (35 g) heiß servieren."
+    ], tip: "Die Currypaste kurz im Öl anrösten, das entfaltet das volle Aroma." },
+  { n: "Edamame-Poke-Bowl mit Tofu", t: "20 Min", s: [
+      "Koche Sushi-Reis (roh) (60 g) nach Packungsanweisung und lasse ihn lauwarm abkühlen.",
+      "Schneide Tofu natur (190 g) und Edamame (TK) (100 g) in Würfel und mariniere es kurz in Sojasauce (12 g).",
+      "Gurke (80 g) und Avocado (40 g) in feine Scheiben oder Würfel schneiden.",
+      "Den Reis in eine Bowl geben und Tofu natur (190 g) und Edamame (TK) (100 g) sowie Gurke (80 g) und Avocado (40 g) dekorativ darauf anrichten.",
+      "Mit Sesam (5 g) bestreuen und servieren."
+    ], tip: "Den Reis lauwarm statt heiß verwenden, dann bleibt die Bowl schön frisch." },
+  { n: "Linsen-Feta-Salat mit Ei", t: "15 Min", s: [
+      "Linsen (gekocht) (220 g) bei Bedarf garen bzw. abtropfen lassen und mundgerecht vorbereiten.",
+      "Tomaten (100 g), Gurke (80 g) und Rucola (40 g) waschen, klein schneiden und in eine große Schüssel geben.",
+      "Feta (70 g) würfeln oder bröseln und dazugeben.",
+      "Aus Olivenöl (8 g), Salz und Pfeffer ein Dressing rühren.",
+      "Alles vorsichtig vermengen – frisch servieren."
+    ], tip: "Das Dressing erst kurz vor dem Servieren untermischen, so bleibt alles knackig." },
+  { n: "Hüttenkäse-Bowl mit Ei & Gemüse", t: "20 Min", s: [
+      "Hüttenkäse (230 g) garen bzw. anbraten und würzen.",
+      "Gurke (100 g), Cherrytomaten (100 g) und Rucola (30 g) waschen und klein schneiden.",
+      "2 Eier kochen oder braten.",
+      "Alle Komponenten samt Hüttenkäse (230 g) nebeneinander in einer Schüssel anrichten.",
+      "Nach Geschmack abschmecken – fertig."
+    ], tip: "Ein selbst gerührtes Joghurt-Dressing rundet die Bowl ab." },
+  { n: "Ofen-Feta-Pasta mit Hähnchen", t: "35 Min", s: [
+      "Heize den Ofen auf 200 °C Ober-/Unterhitze vor und lege ein Blech mit Backpapier aus.",
+      "Koche Vollkornnudeln (roh) (55 g) nach Packungsanweisung und stelle sie beiseite.",
+      "Putze Cherrytomaten (200 g) sowie Knoblauch (6 g), schneide alles mundgerecht und verteile es mit dem restlichen Öl auf dem Blech.",
+      "Würze Hähnchenbrustfilet (140 g) mit Salz und Pfeffer, lege es dazu und backe alles 15–18 Minuten, bis es gar ist. Streue in den letzten 5 Minuten Feta (70 g) darüber.",
+      "Alles auf einem Teller anrichten – warm genießen."
+    ], tip: "Gib zum Schluss etwas Zitronenabrieb darüber, das hebt alles frisch an." },
+  { n: "Tofu-Ramen-Bowl", t: "20 Min", s: [
+      "Bereite Udon-Nudeln (frisch) (150 g) nach Packungsanweisung zu und lasse sie abtropfen.",
+      "Schneide Räuchertofu (180 g) und Edamame (TK) (60 g) in mundgerechte Stücke und Pak Choi (100 g) in feine Streifen.",
+      "Erhitze Sesamöl (6 g) im Wok sehr heiß und brate Räuchertofu (180 g) und Edamame (TK) (60 g) unter Rühren scharf an.",
+      "Das Gemüse mit Ingwer (6 g) dazugeben und 3–4 Minuten knackig mitbraten.",
+      "Mit Sojasauce (15 g) ablöschen, die Nudeln unterheben und alles einmal kräftig durchschwenken.",
+      "Sofort heiß servieren."
+    ], tip: "Alles klein und gleich groß schneiden, dann gart es im Wok gleichmäßig." },
+  { n: "Quark-Kräuter-Bowl mit Ei & Kartoffeln", t: "20 Min", s: [
+      "Bereite Kartoffeln (220 g) nach Packungsanweisung zu.",
+      "Magerquark (250 g) garen bzw. anbraten und würzen.",
+      "Gurke (100 g) und Tomaten (80 g) waschen und klein schneiden.",
+      "2 Eier kochen oder braten.",
+      "Alle Komponenten samt Magerquark (250 g) nebeneinander in einer Schüssel anrichten.",
+      "Nach Geschmack abschmecken – fertig."
+    ], tip: "Toppe die Bowl mit ein paar Sprossen oder Kernen für Crunch." },
+  { n: "Frittata mit Gemüse & Käse", t: "15 Min", s: [
+      "Ei (200 g) und Eiklar (120 g) in einer Schüssel verquirlen und mit Salz und Pfeffer würzen.",
+      "Zucchini (120 g) und Paprika (100 g) klein schneiden und in Olivenöl (6 g) kurz andünsten.",
+      "Die Eimasse darüber gießen und bei mittlerer Hitze stocken lassen.",
+      "Gouda / Käse (40 g) darüberstreuen und schmelzen lassen.",
+      "Das Omelett zusammenklappen bzw. wenden und goldgelb fertig garen.",
+      "Auf einen Teller gleiten lassen und servieren."
+    ], tip: "Fülle erst auf eine Hälfte und klappe das Omelett dann zusammen." },
+  { n: "Vegane Buddha-Bowl mit Räuchertofu", t: "20 Min", s: [
+      "Bereite Quinoa (roh) (45 g) nach Packungsanweisung zu.",
+      "Räuchertofu (180 g) und Edamame (TK) (70 g) garen bzw. anbraten und würzen.",
+      "Avocado (40 g), Karotten (80 g) und Rucola (40 g) waschen und klein schneiden.",
+      "Alle Komponenten nebeneinander in einer Schüssel anrichten.",
+      "Mit Hummus (30 g) beträufeln – fertig."
+    ], tip: "Alle Komponenten getrennt anrichten, dann kann jeder selbst mischen." },
+  { n: "Linsen-Kokos-Curry mit Tofu & Spinat", t: "25 Min", s: [
+      "Setze Reis (roh) (30 g) nach Packungsanweisung auf.",
+      "Erhitze etwas Olivenöl im Topf, dünste Zwiebel (60 g) und Knoblauch (6 g) an und schneide Rote Linsen (roh) (90 g) und Tofu natur (150 g) in Stücke.",
+      "Rote Linsen (roh) (90 g) und Tofu natur (150 g) anbraten, Kokosmilch (40 g) und Tomatenmark (20 g) zugeben und kurz mitrösten.",
+      "Spinat (120 g) dazugeben und alles 10–12 Minuten sanft köcheln lassen, bis das Curry cremig ist.",
+      "Mit Salz, Pfeffer abschmecken.",
+      "Zusammen mit Reis (roh) (30 g) heiß servieren."
+    ], tip: "Mit etwas Limette abschmecken, das macht das Curry lebendig." },
+  { n: "Mozzarella-Tomaten-Bowl mit Ei", t: "20 Min", s: [
+      "Mozzarella light (130 g) garen bzw. anbraten und würzen.",
+      "Tomaten (150 g) und Rucola (40 g) waschen und klein schneiden.",
+      "2 Eier kochen oder braten.",
+      "Alle Komponenten samt Mozzarella light (130 g) nebeneinander in einer Schüssel anrichten.",
+      "Mit Pesto (15 g) beträufeln – fertig."
+    ], tip: "Ein selbst gerührtes Joghurt-Dressing rundet die Bowl ab." },
+  { n: "Tofu-Steak mit Erdnusssauce & Brokkoli", t: "20 Min", s: [
+      "Bereite Asia-Nudeln (Mie) (40 g) nach Packungsanweisung zu und lasse sie abtropfen.",
+      "Schneide Tofu natur (200 g) in mundgerechte Stücke und Brokkoli (150 g) und Erdnussbutter (25 g) in feine Streifen.",
+      "Erhitze etwas Olivenöl im Wok sehr heiß und brate Tofu natur (200 g) unter Rühren scharf an.",
+      "Das Gemüse mit Ingwer (6 g) dazugeben und 3–4 Minuten knackig mitbraten.",
+      "Mit Sojasauce (12 g) ablöschen, die Nudeln unterheben und alles einmal kräftig durchschwenken.",
+      "Sofort heiß servieren."
+    ], tip: "Wok richtig heiß werden lassen und zügig schwenken – das hält das Gemüse knackig." },
+  { n: "Hähnchen-Cheeseburger-Bowl", t: "20 Min", s: [
+      "Forme aus Hähnchenbrustfilet (170 g) einen Patty und würze ihn mit Salz und Pfeffer.",
+      "Brate den Patty in einer heißen Pfanne von beiden Seiten kräftig durch. Lege Gouda / Käse (25 g) auf und lasse ihn schmelzen.",
+      "Schneide Vollkorn-Burgerbrötchen (70 g) auf und röste es kurz mit der Schnittfläche nach unten an.",
+      "Tomaten (40 g) und Blattsalat (30 g) waschen und in Scheiben schneiden.",
+      "Alles auf dem Brötchen stapeln, mit Ketchup (12 g) bestreichen und servieren."
+    ], tip: "Das Bun kurz in der Pfanne rösten – knuspriger Boden, weiche Krume." },
+  { n: "Putenschnitzel mit Kartoffelsalat", t: "25 Min", s: [
+      "Koche Kartoffeln (280 g) in Salzwasser weich.",
+      "Erhitze etwas Olivenöl in einer großen Pfanne und brate Putenbrustfilet (210 g) bei kräftiger Hitze rundum an.",
+      "Gib Zwiebel (40 g) dazu und dünste es kurz glasig.",
+      "Gurke (80 g) putzen, klein schneiden, dazugeben und einige Minuten mitbraten.",
+      "Mit Senf (6 g) ablöschen, kurz einköcheln lassen und mit Salz und Pfeffer abschmecken.",
+      "Griechischer Joghurt (40 g) darüberstreuen bzw. -bröseln und alles servieren."
+    ], tip: "Frische Kräuter erst nach dem Braten dazugeben, so bleiben sie aromatisch." },
+  { n: "Räucherlachs-Frischkäse-Wrap", t: "20 Min", s: [
+      "Räucherlachs (120 g) garen bzw. anbraten und würzen.",
+      "Gurke (60 g), Rucola (30 g) und Blattsalat (30 g) waschen und klein schneiden.",
+      "Ein Ei kochen oder braten.",
+      "Alle Komponenten samt Frischkäse light (60 g) nebeneinander in einer Schüssel anrichten.",
+      "Nach Geschmack abschmecken – fertig."
+    ], tip: "Toppe die Bowl mit ein paar Sprossen oder Kernen für Crunch." },
+  { n: "Thunfisch-Melt auf Vollkornbrot", t: "20 Min", s: [
+      "Thunfisch (in Wasser) (150 g) garen bzw. anbraten und würzen.",
+      "Tomaten (60 g) und Mais (Dose) (30 g) waschen und klein schneiden.",
+      "Alle Komponenten samt Gouda / Käse (40 g) nebeneinander in einer Schüssel anrichten.",
+      "Nach Geschmack abschmecken – fertig."
+    ], tip: "Alle Komponenten getrennt anrichten, dann kann jeder selbst mischen." },
+  { n: "Hähnchen-Pesto-Pasta", t: "20 Min", s: [
+      "Koche Vollkornnudeln (roh) (55 g) in reichlich Salzwasser bissfest und behalte etwas Nudelwasser zurück.",
+      "Erhitze etwas Olivenöl, brate Hähnchenbrustfilet (140 g) an.",
+      "Pesto (20 g) zugeben und einige Minuten einköcheln lassen.",
+      "Cherrytomaten (120 g) und Rucola (30 g) dazugeben und mitgaren.",
+      "Die Nudeln untermischen, mit etwas Nudelwasser cremig rühren und Parmesan (20 g) unterheben.",
+      "Abschmecken und heiß servieren."
+    ], tip: "Die Nudeln bissfest kochen, sie garen in der heißen Sauce nach." },
+  { n: "Garnelen-Aglio-Olio mit Vollkornnudeln", t: "20 Min", s: [
+      "Koche Vollkornnudeln (roh) (65 g) in reichlich Salzwasser bissfest und behalte etwas Nudelwasser zurück.",
+      "Erhitze Olivenöl (10 g), brate Garnelen (180 g) an und dünste Knoblauch (10 g) und Chili (4 g) mit.",
+      "Rucola (30 g) dazugeben und mitgaren.",
+      "Die Nudeln untermischen, mit etwas Nudelwasser cremig rühren und Parmesan (20 g) unterheben.",
+      "Abschmecken und heiß servieren."
+    ], tip: "Etwas Nudelwasser zurückbehalten und in die Sauce rühren, das bindet sie cremig." },
+  { n: "Steak-Quesadilla mit Käse", t: "25 Min", s: [
+      "Erhitze etwas Olivenöl in einer großen Pfanne und brate Rindersteak (150 g) bei kräftiger Hitze rundum an.",
+      "Gib Rote Zwiebel (40 g) dazu und dünste es kurz glasig.",
+      "Paprika (80 g) und Tomaten (40 g) putzen, klein schneiden, dazugeben und einige Minuten mitbraten.",
+      "Gouda / Käse (40 g) darüberstreuen bzw. -bröseln und alles servieren."
+    ], tip: "Lass der Pfanne Zeit richtig heiß zu werden, dann bekommt alles eine schöne Bräunung." },
+  { n: "Hähnchen-Enchilada-Bowl", t: "20 Min", s: [
+      "Bereite Reis (roh) (30 g) nach Packungsanweisung zu.",
+      "Hähnchenbrustfilet (140 g) und Kidneybohnen (Dose) (80 g) garen bzw. anbraten und würzen.",
+      "Mais (Dose) (40 g) und Paprika (80 g) waschen und klein schneiden.",
+      "Alle Komponenten samt Gouda / Käse (30 g) nebeneinander in einer Schüssel anrichten.",
+      "Mit Passierte Tomaten (120 g) beträufeln – fertig."
+    ], tip: "Ein selbst gerührtes Joghurt-Dressing rundet die Bowl ab." },
+  { n: "Poke-Bowl mit Lachs & Mango", t: "20 Min", s: [
+      "Koche Sushi-Reis (roh) (60 g) nach Packungsanweisung und lasse ihn lauwarm abkühlen.",
+      "Schneide Lachsfilet (170 g) und Edamame (TK) (70 g) in Würfel und mariniere es kurz in Sojasauce (12 g).",
+      "Mango (50 g), Gurke (80 g) und Avocado (30 g) in feine Scheiben oder Würfel schneiden.",
+      "Den Reis in eine Bowl geben und Lachsfilet (170 g) und Edamame (TK) (70 g) sowie Mango (50 g), Gurke (80 g) und Avocado (30 g) dekorativ darauf anrichten.",
+      "Nach Geschmack würzen und servieren."
+    ], tip: "Ordne die Zutaten getrennt an – sieht toll aus und jeder mischt selbst." },
+  { n: "Hähnchen-Halloumi-Spieße mit Couscous", t: "25 Min", s: [
+      "Koche Couscous (roh) (40 g) nach Packungsanweisung.",
+      "Erhitze Olivenöl (6 g) in einer großen Pfanne und brate Hähnchenbrustfilet (120 g) bei kräftiger Hitze rundum an.",
+      "Zucchini (120 g) und Paprika (120 g) putzen, klein schneiden, dazugeben und einige Minuten mitbraten.",
+      "Halloumi (80 g) darüberstreuen bzw. -bröseln und alles servieren."
+    ], tip: "Ein Spritzer Zitrone am Ende sorgt für Frische." },
+  { n: "Hähnchen-Döner-Bowl mit Joghurtsauce", t: "20 Min", s: [
+      "Hähnchenbrustfilet (190 g) garen bzw. anbraten und würzen.",
+      "Weißkohl (80 g), Tomaten (80 g) und Gurke (80 g) waschen und klein schneiden.",
+      "Alle Komponenten samt Griechischer Joghurt (50 g) nebeneinander in einer Schüssel anrichten.",
+      "Nach Geschmack abschmecken – fertig."
+    ], tip: "Toppe die Bowl mit ein paar Sprossen oder Kernen für Crunch." },
+  { n: "Rindfleisch-Pho-Bowl", t: "20 Min", s: [
+      "Bereite Udon-Nudeln (frisch) (150 g) nach Packungsanweisung zu und lasse sie abtropfen.",
+      "Schneide Rindersteak (160 g) in mundgerechte Stücke und Sojasprossen (60 g) und Pak Choi (80 g) in feine Streifen.",
+      "Erhitze etwas Olivenöl im Wok sehr heiß und brate Rindersteak (160 g) unter Rühren scharf an.",
+      "Das Gemüse mit Ingwer (8 g) dazugeben und 3–4 Minuten knackig mitbraten.",
+      "Mit Sojasauce (12 g) ablöschen, die Nudeln unterheben und alles einmal kräftig durchschwenken.",
+      "Mit Frühlingszwiebeln (20 g) bestreuen und sofort heiß servieren."
+    ], tip: "Ein paar Tropfen Sesamöl ganz zum Schluss geben den typischen Asia-Duft." },
+  { n: "Lachs-Nudel-Wok in Sojasauce", t: "20 Min", s: [
+      "Bereite Asia-Nudeln (Mie) (60 g) nach Packungsanweisung zu und lasse sie abtropfen.",
+      "Schneide Lachsfilet (180 g) in mundgerechte Stücke und Brokkoli (120 g) und Karotten (60 g) in feine Streifen.",
+      "Erhitze Sesamöl (8 g) im Wok sehr heiß und brate Lachsfilet (180 g) unter Rühren scharf an.",
+      "Das Gemüse mit Ingwer (6 g) dazugeben und 3–4 Minuten knackig mitbraten.",
+      "Mit Sojasauce (15 g) ablöschen, die Nudeln unterheben und alles einmal kräftig durchschwenken.",
+      "Sofort heiß servieren."
+    ], tip: "Alles klein und gleich groß schneiden, dann gart es im Wok gleichmäßig." },
+  { n: "Hähnchen-Brokkoli-Auflauf mit Käse", t: "35 Min", s: [
+      "Heize den Ofen auf 200 °C Ober-/Unterhitze vor und lege ein Blech mit Backpapier aus.",
+      "Putze Brokkoli (200 g) sowie Zwiebel (50 g), schneide alles mundgerecht und verteile es mit dem restlichen Öl auf dem Blech.",
+      "Würze Hähnchenbrustfilet (140 g) mit Salz und Pfeffer, lege es dazu und backe alles 15–18 Minuten, bis es gar ist. Streue in den letzten 5 Minuten Gouda / Käse (40 g) und Schmand / Saure Sahne (50 g) darüber.",
+      "Alles auf einem Teller anrichten – warm genießen."
+    ], tip: "Ein Klecks Kräuterquark oder Joghurt passt als frische Sauce dazu." },
+  { n: "Feurige Garnelen-Tacos", t: "20 Min", s: [
+      "Garnelen (210 g) garen bzw. anbraten und würzen.",
+      "Avocado (90 g), Blattsalat (40 g) und Tomaten (60 g) waschen und klein schneiden.",
+      "Alle Komponenten nebeneinander in einer Schüssel anrichten.",
+      "Nach Geschmack abschmecken und Limette (20 g) darüberpressen – fertig."
+    ], tip: "Alle Komponenten getrennt anrichten, dann kann jeder selbst mischen." },
+  { n: "Putencurry mit Süßkartoffel", t: "25 Min", s: [
+      "Erhitze etwas Olivenöl im Topf, dünste Zwiebel (50 g) an und schneide Putenbrustfilet (180 g) in Stücke.",
+      "Putenbrustfilet (180 g) anbraten, Kokosmilch (60 g) und Curry-Gewürz (6 g) zugeben und kurz mitrösten.",
+      "Spinat (60 g) dazugeben und alles 10–12 Minuten sanft köcheln lassen, bis das Curry cremig ist.",
+      "Mit Salz, Pfeffer abschmecken.",
       "Heiß servieren."
-    ], tip: "Ein Teelöffel Kümmel im Sauerkraut macht es bekömmlicher und würziger." },
-  { n: "Kohlrabi-Möhren-Curry mit Hähnchen", t: "30 Min", s: [
-      "Die Hähnchenbrust (150 g) in Streifen schneiden, die Karotte (120 g) in Scheiben und den Brokkoli (120 g) in Röschen teilen.",
-      "Das Hähnchen in einem Topf anbraten, dann die Currypaste (15 g) und den geriebenen Ingwer (6 g) einrühren.",
-      "Mit der Kokosmilch (50 g) plus etwas Wasser ablöschen und aufkochen.",
-      "Karotte und Brokkoli zugeben und 10 Minuten köcheln, bis das Gemüse bissfest ist. Mit Salz abschmecken.",
-      "Heiß servieren."
-    ], tip: "Ein Spritzer Limette am Ende bringt Frische ins Curry." },
-  { n: "Spargel-Frittata mit Schinken", t: "25 Min", s: [
-      "Den Spargel (150 g) putzen, die holzigen Enden abschneiden und in Stücke schneiden. Den Kochschinken (40 g) würfeln.",
-      "Das Olivenöl (6 g) in einer ofenfesten Pfanne erhitzen und den Spargel 6 Minuten anbraten. Den Schinken kurz mitbraten.",
-      "Die Eier (150 g) mit dem Parmesan (20 g), Salz und Pfeffer verquirlen und über den Spargel gießen.",
-      "Bei kleiner Hitze zugedeckt 8 Minuten stocken lassen.",
-      "Kurz unter dem Grill goldbraun überbacken und in Stücke schneiden."
-    ], tip: "Die Frittata schmeckt warm wie kalt – ideal auch für den nächsten Tag." }
+    ], tip: "Am nächsten Tag schmeckt das Curry sogar noch intensiver." },
+  { n: "Sushi-Bowl mit Lachs & Gurke", t: "20 Min", s: [
+      "Koche Sushi-Reis (roh) (60 g) nach Packungsanweisung und lasse ihn lauwarm abkühlen.",
+      "Schneide Lachsfilet (160 g) und Edamame (TK) (70 g) in Würfel und mariniere es kurz in Sojasauce (12 g).",
+      "Gurke (100 g) und Avocado (40 g) in feine Scheiben oder Würfel schneiden.",
+      "Den Reis in eine Bowl geben und Lachsfilet (160 g) und Edamame (TK) (70 g) sowie Gurke (100 g) und Avocado (40 g) dekorativ darauf anrichten.",
+      "Mit Noriblätter (3 g) und Sesam (5 g) bestreuen und servieren."
+    ], tip: "Ein Spritzer Limette und etwas Sriracha bringen extra Kick." },
+  { n: "Hähnchen-Saltimbocca mit Schinken", t: "25 Min", s: [
+      "Koche Kartoffeln (180 g) in Salzwasser weich.",
+      "Erhitze Olivenöl (8 g) in einer großen Pfanne und brate Hähnchenbrustfilet (150 g) und Kochschinken (30 g) bei kräftiger Hitze rundum an.",
+      "Spinat (150 g) putzen, klein schneiden, dazugeben und einige Minuten mitbraten.",
+      "Parmesan (15 g) darüberstreuen bzw. -bröseln und alles servieren."
+    ], tip: "Frische Kräuter erst nach dem Braten dazugeben, so bleiben sie aromatisch." },
+  { n: "Linsen-Hackpfanne mit Feta", t: "25 Min", s: [
+      "Erhitze etwas Olivenöl in einer großen Pfanne und brate Rinderhack (mager) (140 g) und Linsen (gekocht) (150 g) bei kräftiger Hitze rundum an.",
+      "Gib Zwiebel (60 g) dazu und dünste es kurz glasig.",
+      "Spinat (60 g) putzen, klein schneiden, dazugeben und einige Minuten mitbraten.",
+      "Mit Passierte Tomaten (120 g) ablöschen, kurz einköcheln lassen und mit Salz und Pfeffer abschmecken.",
+      "Feta (40 g) darüberstreuen bzw. -bröseln und alles servieren."
+    ], tip: "Lass der Pfanne Zeit richtig heiß zu werden, dann bekommt alles eine schöne Bräunung." },
+  { n: "Halloumi-Burger mit Spiegelei", t: "20 Min", s: [
+      "Forme aus Halloumi (130 g) einen Patty bzw. brate die Scheibe und würze ihn mit Salz und Pfeffer.",
+      "Brate den Patty in einer heißen Pfanne von beiden Seiten kräftig durch. Lege Halloumi (130 g) auf und lasse ihn schmelzen.",
+      "Schneide Vollkorn-Burgerbrötchen (60 g) auf und röste es kurz mit der Schnittfläche nach unten an.",
+      "Brate 2 Spiegeleier und lege es dazu.",
+      "Tomaten (40 g) und Blattsalat (30 g) waschen und in Scheiben schneiden.",
+      "Alles auf dem Brötchen stapeln und servieren."
+    ], tip: "Eine Scheibe Käse in den letzten Sekunden auflegen und schmelzen lassen." },
 ];
