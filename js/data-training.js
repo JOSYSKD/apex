@@ -1,21 +1,22 @@
 /* APEX – Heim-Trainingsplan (ohne Geräte, Klimmzugstange vorhanden)
    ZWEI Einheiten pro Tag: 06:00 (Früh) + 16:00 (Nachmittag).
-   2-Tage-Zyklus deckt alle Muskelgruppen ab. Beine dediziert nur an
-   NICHT-Fußballtagen und NICHT am Morgen nach Fußball (Di/Fr + Ganzkörper Sa).
-   Fußball ist MONTAG & MITTWOCH abends – dort nur Oberkörper & Core.
+   Strikter OBER-/UNTERKÖRPER-WECHSEL → an keinem Tag überschneidet sich
+   etwas mit dem Vortag. Fußball MONTAG & MITTWOCH abends = Oberkörpertage
+   (KEINE Beine an Fußballtagen). Jede Muskelgruppe wird 3× pro Woche getroffen.
+   Ober = Brust/Rücken/Schulter/Arme (Push am + Pull pm) · Unter = Beine (am) + Core (pm).
    Format je Tag: { day, football, am:{Session}, pm:{Session} }
    Session: { focus, sub, emoji, type, minutes, kcal, warmup[], blocks[], finisher } */
 
 window.TRAINING = {
   meta: {
-    name: "APEX 2× täglich – Ganzkörper alle 2 Tage",
+    name: "APEX 2× täglich – Ober/Unter im Wechsel",
     goal: "Muskelaufbau & Fettabbau · Körpergewicht + Klimmzugstange · 06:00 & 16:00",
     progression: [
-      "Zwei Einheiten pro Tag: morgens 06:00, nachmittags 16:00. Jede Muskelgruppe wird spätestens alle 2 Tage getroffen.",
-      "Fußball (Mo & Mi) = deine Bein-/Ausdauer-Einheit am Abend – an diesen Tagen KEIN schwerer Beintag, nur Oberkörper & Core. Beintage liegen auf Di & Fr.",
-      "Klimmzüge sauber aus dem vollen Hang: unten komplett strecken, oben Kinn über die Stange. Schaffst du keine sauberen? Negativ-Klimmzüge (langsam 3–5 Sek. ablassen).",
+      "Ober- und Unterkörper wechseln sich Tag für Tag ab – so überschneidet sich NIE etwas mit dem Vortag und alles ist zwischen den Einheiten erholt.",
+      "Fußball (Mo & Mi) fällt auf Oberkörpertage → an Fußballtagen keine Beine, die ruhen fürs Spiel.",
+      "Klimmzüge sauber aus dem vollen Hang: unten strecken, Kinn über die Stange. Noch keine sauberen? Negativ-Klimmzüge (3–5 Sek. langsam ablassen).",
       "Ab Woche 3: +1–2 Wiederholungen pro Satz ODER Tempo verlangsamen (3 Sek. runter, 1 Sek. hoch).",
-      "1–2 Wiederholungen „im Tank“ lassen – außer beim Finisher, da gibst du alles. Sonntag bewusst leicht = da wächst der Muskel."
+      "1–2 Wiederholungen „im Tank“ lassen – außer beim Finisher. Sonntag ist bewusst locker: da wächst der Muskel."
     ]
   },
   days: [
@@ -105,35 +106,6 @@ window.TRAINING = {
     {
       day: "Donnerstag", football: false,
       am: {
-        focus: "Schulter · Arme · Brust", sub: "Push/Arms · Klimmzüge", emoji: "🦾",
-        type: "kraft", minutes: 32, kcal: 255,
-        warmup: ["Armkreisen je 15", "Schultern lockern", "Dead Hang 15 Sek."],
-        blocks: [
-          { name: "Chin-ups (Bizeps-Fokus)", sets: 4, reps: "6–10", rest: 90, tip: "Untergriff, bewusst mit dem Bizeps ziehen." },
-          { name: "Dips an der Stuhlkante", sets: 4, reps: "10–15", rest: 60, tip: "Zwei stabile Stühle / Sofakante, Ellbogen nach hinten – Trizeps." },
-          { name: "Pike-Liegestütze", sets: 3, reps: "8–12", rest: 60, tip: "Schulter-Drücken mit dem eigenen Gewicht." },
-          { name: "Breite Liegestütze", sets: 3, reps: "10–15", rest: 60, tip: "Hände weiter als schulterbreit – hält die Brust im 2-Tages-Rhythmus." },
-          { name: "Handtuch-Bizeps-Curl (isometrisch)", sets: 3, reps: "30 Sek. / Arm", rest: 30, tip: "Auf ein Handtuch-Ende steigen, mit dem Arm dagegen ziehen." }
-        ],
-        finisher: { name: "Arm-Pump-Zirkel", detail: "2 Runden: max. Chin-ups + max. Dips, direkt hintereinander." }
-      },
-      pm: {
-        focus: "HIIT · Fatburn", sub: "Cardio", emoji: "🔥",
-        type: "hiit", minutes: 25, kcal: 360,
-        warmup: ["60 Sek. lockeres Laufen auf der Stelle", "Arme & Hüfte mobilisieren"],
-        blocks: [
-          { name: "Burpees", sets: 4, reps: "40 Sek.", rest: 20, tip: "Tempo hoch – Ganzkörper-Fettkiller Nr. 1." },
-          { name: "Mountain Climbers", sets: 4, reps: "40 Sek.", rest: 20, tip: "Knie schnell zur Brust, Rumpf stabil." },
-          { name: "Hampelmänner", sets: 4, reps: "40 Sek.", rest: 20, tip: "Durchgehend, gleichmäßig atmen." },
-          { name: "High Knees (Knieheben)", sets: 4, reps: "40 Sek.", rest: 20, tip: "Knie auf Hüfthöhe, schnelle Füße." },
-          { name: "Squat Jumps", sets: 4, reps: "40 Sek.", rest: 60, tip: "Explosiv hoch, weich landen. 60 Sek. Rundenpause danach." }
-        ],
-        finisher: { name: "Tabata-Finish", detail: "8× (20 Sek. Burpees / 10 Sek. Pause) = 4 Minuten Vollgas." }
-      }
-    },
-    {
-      day: "Freitag", football: false,
-      am: {
         focus: "Beine · Po · Waden", sub: "Legs", emoji: "🦵",
         type: "kraft", minutes: 35, kcal: 320,
         warmup: ["30 Hampelmänner", "Ausfallschritt-Walk 10 Schritte", "Hüftöffner"],
@@ -147,47 +119,75 @@ window.TRAINING = {
         finisher: { name: "Wall Sit auf Zeit", detail: "So lange wie möglich in der Wandsitz-Position halten." }
       },
       pm: {
-        focus: "Core · Bauch", sub: "Core", emoji: "🧱",
-        type: "kraft", minutes: 28, kcal: 220,
-        warmup: ["Katze-Kuh 10×", "Beckenkippen 15×", "Dead Hang 15 Sek."],
+        focus: "Core & Cardio", sub: "Bauch · Fatburn", emoji: "🔥",
+        type: "hiit", minutes: 26, kcal: 330,
+        warmup: ["Katze-Kuh 10×", "60 Sek. Laufen auf der Stelle"],
         blocks: [
           { name: "Hängendes Beinheben (an der Stange)", sets: 4, reps: "10", rest: 45, tip: "Knie zur Brust ziehen – unterer Bauch + Griffkraft." },
-          { name: "Unterarmstütz (Plank)", sets: 4, reps: "60 Sek.", rest: 45, tip: "Bauch und Po fest, nicht durchhängen." },
-          { name: "Bicycle Crunches", sets: 4, reps: "20", rest: 30, tip: "Ellbogen zum gegenüberliegenden Knie – seitliche Bauchmuskeln." },
-          { name: "Russian Twists", sets: 3, reps: "24", rest: 30, tip: "Kontrolliert drehen, Blick folgt den Händen." },
-          { name: "Hollow Hold", sets: 3, reps: "30 Sek.", rest: 30, tip: "Schulterblätter & Beine leicht vom Boden, unterer Rücken bleibt unten." }
+          { name: "Mountain Climbers", sets: 4, reps: "40 Sek.", rest: 20, tip: "Knie schnell zur Brust, Rumpf stabil." },
+          { name: "High Knees (Knieheben)", sets: 4, reps: "40 Sek.", rest: 20, tip: "Knie auf Hüfthöhe, schnelle Füße." },
+          { name: "Squat Jumps", sets: 4, reps: "40 Sek.", rest: 20, tip: "Explosiv hoch, weich landen." },
+          { name: "Unterarmstütz (Plank)", sets: 3, reps: "45 Sek.", rest: 30, tip: "Bauch fest, nicht durchhängen." }
         ],
-        finisher: { name: "Plank-Rekord", detail: "1× Plank auf Zeit – schlag deinen Rekord von Dienstag!" }
+        finisher: { name: "Bauch-Tabata", detail: "8× (20 Sek. Mountain Climbers / 10 Sek. Pause) = 4 Min Vollgas." }
+      }
+    },
+    {
+      day: "Freitag", football: false,
+      am: {
+        focus: "Brust · Schulter · Arme", sub: "Push/Arms", emoji: "💪",
+        type: "kraft", minutes: 32, kcal: 255,
+        warmup: ["Armkreisen je 15", "20 Hampelmänner", "10 langsame Liegestütze"],
+        blocks: [
+          { name: "Liegestütze (Standard)", sets: 4, reps: "12", rest: 60, tip: "Sauber und tief – Brust fast zum Boden." },
+          { name: "Pike-Liegestütze", sets: 3, reps: "10", rest: 60, tip: "Schulter-Drücken mit dem eigenen Gewicht." },
+          { name: "Dips an der Stuhlkante", sets: 4, reps: "12", rest: 60, tip: "Trizeps – Ellbogen eng nach hinten." },
+          { name: "Breite Liegestütze", sets: 3, reps: "12", rest: 60, tip: "Hände weiter außen – äußere Brust." },
+          { name: "Handtuch-Bizeps-Curl (isometrisch)", sets: 3, reps: "30 Sek. / Arm", rest: 30, tip: "Auf ein Handtuch-Ende steigen, mit dem Arm dagegen ziehen." }
+        ],
+        finisher: { name: "Arm-Pump-Zirkel", detail: "2 Runden: max. Liegestütze + max. Dips, direkt hintereinander." }
+      },
+      pm: {
+        focus: "Rücken · Bizeps", sub: "Pull · Klimmzüge", emoji: "🎽",
+        type: "kraft", minutes: 33, kcal: 275,
+        warmup: ["Schulterkreisen je 15", "Dead Hang 20 Sek.", "Katze-Kuh 10×"],
+        blocks: [
+          { name: "Klimmzüge (Obergriff)", sets: 4, reps: "6–10", rest: 90, tip: "Voller Hang, Kinn über die Stange." },
+          { name: "Chin-ups (Untergriff)", sets: 3, reps: "6–10", rest: 90, tip: "Bizeps-Fokus, sauber ziehen." },
+          { name: "Handtuch-Rudern an der Stange", sets: 4, reps: "12", rest: 60, tip: "Australian Pull-up – Brust zur tiefen Stange ziehen." },
+          { name: "Superman", sets: 3, reps: "15", rest: 45, tip: "Arme & Beine heben, oben 1 Sek. halten." }
+        ],
+        finisher: { name: "Klimmzug-Leiter", detail: "1, 2, 3 … hochzählen, bis nichts mehr geht." }
       }
     },
     {
       day: "Samstag", football: false,
       am: {
-        focus: "Ganzkörper-Power", sub: "Full Body", emoji: "⚡",
-        type: "kraft", minutes: 40, kcal: 380,
-        warmup: ["40 Hampelmänner", "dynamisches Dehnen 2 Min.", "Dead Hang 15 Sek."],
+        focus: "Beine · Po · Waden", sub: "Legs", emoji: "🦵",
+        type: "kraft", minutes: 38, kcal: 340,
+        warmup: ["40 Hampelmänner", "Hüftkreisen je 10", "15 langsame Kniebeugen"],
         blocks: [
-          { name: "Klimmzüge", sets: 4, reps: "6–10", rest: 60, tip: "Zirkel-Modus: eine Übung nach der anderen, wenig Pause." },
-          { name: "Liegestütze", sets: 4, reps: "15", rest: 30, tip: "Sauber und zügig." },
-          { name: "Kniebeugen", sets: 4, reps: "20", rest: 30, tip: "Tief und gleichmäßig." },
-          { name: "Ausfallschritte", sets: 3, reps: "10 / Bein", rest: 30, tip: "Abwechselnd links/rechts." },
-          { name: "Burpees", sets: 4, reps: "10", rest: 30, tip: "Der Herzschlag-Booster im Zirkel." },
-          { name: "Plank", sets: 3, reps: "45 Sek.", rest: 30, tip: "Rundenabschluss – Rumpf hält alles zusammen." }
+          { name: "Kniebeugen (Air Squats)", sets: 4, reps: "22", rest: 60, tip: "Tief, gleichmäßig, Ferse am Boden." },
+          { name: "Ausfallschritte (Lunges)", sets: 4, reps: "12 / Bein", rest: 60, tip: "Abwechselnd links/rechts, aufrecht bleiben." },
+          { name: "Bulgarian Split Squat", sets: 3, reps: "10 / Bein", rest: 75, tip: "Hinterer Fuß auf dem Stuhl." },
+          { name: "Beckenheben (Glute Bridge)", sets: 3, reps: "20", rest: 45, tip: "Po oben fest anspannen." },
+          { name: "Wall Sit", sets: 3, reps: "45 Sek.", rest: 45, tip: "Oberschenkel parallel zum Boden." },
+          { name: "Wadenheben", sets: 4, reps: "20", rest: 30, tip: "Ganz hoch, langsam ab." }
         ],
-        finisher: { name: "Ganzkörper-Zirkel", detail: "3–4 komplette Runden. Wer mehr will: 5 Runden." }
+        finisher: { name: "Kniebeugen-Sprünge", detail: "3× 15 explosive Squat Jumps – Beine ausbrennen." }
       },
       pm: {
-        focus: "HIIT & Core", sub: "Cardio · Core", emoji: "🔥",
-        type: "hiit", minutes: 25, kcal: 350,
-        warmup: ["60 Sek. Laufen auf der Stelle", "Hüfte & Schultern mobilisieren"],
+        focus: "Core & Kondition", sub: "Bauch · Core", emoji: "🧱",
+        type: "kraft", minutes: 28, kcal: 240,
+        warmup: ["Katze-Kuh 10×", "Beckenkippen 15×", "Dead Hang 15 Sek."],
         blocks: [
-          { name: "Burpees", sets: 4, reps: "40 Sek.", rest: 20, tip: "Explosiv, sauber landen." },
-          { name: "Plank-to-Push-up", sets: 4, reps: "40 Sek.", rest: 20, tip: "Vom Unterarmstütz in den Liegestütz und zurück." },
-          { name: "Mountain Climbers", sets: 4, reps: "40 Sek.", rest: 20, tip: "Schnelle Knie, Hüfte tief." },
-          { name: "High Knees", sets: 4, reps: "40 Sek.", rest: 20, tip: "Knie hoch, Arme mitnehmen." },
-          { name: "Russian Twists", sets: 4, reps: "40 Sek.", rest: 45, tip: "Bauch-Abschluss, dann 45 Sek. Rundenpause." }
+          { name: "Unterarmstütz (Plank)", sets: 4, reps: "60 Sek.", rest: 45, tip: "Bauch und Po fest, gerade Linie." },
+          { name: "Bicycle Crunches", sets: 4, reps: "20", rest: 30, tip: "Ellbogen zum gegenüberliegenden Knie." },
+          { name: "Beinheben (liegend)", sets: 4, reps: "15", rest: 45, tip: "Unteren Rücken angedrückt lassen." },
+          { name: "Russian Twists", sets: 4, reps: "24", rest: 30, tip: "Kontrolliert von Seite zu Seite." },
+          { name: "Hollow Hold", sets: 3, reps: "30 Sek.", rest: 30, tip: "Schulterblätter & Beine leicht vom Boden." }
         ],
-        finisher: { name: "Tabata Burpees", detail: "8× (20 Sek. Vollgas / 10 Sek. Pause) – der Wochen-Peak." }
+        finisher: { name: "Plank-Rekord", detail: "1× Plank auf Zeit – schlag deinen Rekord von Dienstag!" }
       }
     },
     {
