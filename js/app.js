@@ -60,22 +60,27 @@
   ];
   // Tagesablauf: feste Empfehlungszeiten (Aufstehen 6:30). Mo (0) & Di (1) = Fußball.
   const DAYPLAN = {
-    wake: "06:30", sleep: "21:00",
+    wake: "05:45", sleep: "21:00",
     school: { start: "07:30", end: "13:00", days: [0, 1, 2, 3, 4] },
     times: { breakfast: "07:00", snack: "10:00", lunch: "14:30" },
     dinnerNormal: "18:30", dinnerFootball: "20:15",
-    trainNormal: "16:30", trainFootball: "16:00",
+    trainAM: "06:00", trainPM: "16:00",
     footballStart: "18:30", footballEnd: "20:00", footballDays: [0, 1],
-    cold: { morning: "06:35", sportNormal: "17:20", sportFootball: "20:05" },
-    skin: { morning: "06:45", evening: "20:40" }
+    cold: { morning: "06:45", sportNormal: "16:55", sportFootball: "20:05" },
+    skin: { morning: "06:55", evening: "20:40" }
   };
   function diffLevel() { return DIFF_LEVELS[Math.min(DIFF_LEVELS.length - 1, Math.max(0, S.diff | 0))]; }
   function scaleReps(str, f) { return String(str).replace(/\d+/g, (m) => Math.max(1, Math.round(parseInt(m, 10) * f))); }
-  function scaledDay(wd) {
-    const d = TRAINING.days[wd]; if (!d || d.type === "rest") return d;
+  function scaleSession(sess) {
+    if (!sess || sess.type === "rest") return sess;
     const L = diffLevel();
-    const blocks = (d.blocks || []).map((b) => ({ ...b, sets: Math.max(1, b.sets + L.setB), reps: scaleReps(b.reps, L.repF), rest: b.rest ? Math.max(10, b.rest + L.restB) : b.rest }));
-    return { ...d, blocks, kcal: Math.round(d.kcal * (0.7 + 0.35 * L.repF)), minutes: Math.round(d.minutes * (0.8 + 0.28 * L.repF)) };
+    const blocks = (sess.blocks || []).map((b) => ({ ...b, sets: Math.max(1, b.sets + L.setB), reps: scaleReps(b.reps, L.repF), rest: b.rest ? Math.max(10, b.rest + L.restB) : b.rest }));
+    return { ...sess, blocks, kcal: Math.round(sess.kcal * (0.7 + 0.35 * L.repF)), minutes: Math.round(sess.minutes * (0.8 + 0.28 * L.repF)) };
+  }
+  // Liefert die skalierte Session (am|pm) eines Wochentags inkl. Tagesname.
+  function scaledSession(wd, slot) {
+    const d = TRAINING.days[wd]; if (!d || !d[slot]) return null;
+    return Object.assign({}, scaleSession(d[slot]), { day: d.day, slot: slot, football: !!d.football });
   }
   const QUOTES = [
     { t: "Der Körper erreicht, was der Geist glaubt.", a: "Napoleon Hill" },
@@ -147,8 +152,8 @@
   function daysBetween(a, b) { if (!a) return 999; return Math.round((new Date(b + "T12:00:00") - new Date(a + "T12:00:00")) / 86400000); }
   function dayRec(date) {
     date = date || todayStr();
-    if (!S.days[date]) S.days[date] = { burned: 0, manual: [], checked: {}, workoutDone: false };
-    const r = S.days[date]; r.manual = r.manual || []; r.checked = r.checked || {};
+    if (!S.days[date]) S.days[date] = { burned: 0, manual: [], checked: {}, workoutDone: false, workout: { am: false, pm: false } };
+    const r = S.days[date]; r.manual = r.manual || []; r.checked = r.checked || {}; r.workout = r.workout || { am: !!r.workoutDone, pm: false };
     return r;
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
@@ -312,17 +317,21 @@
   }
   function clearWeek() { S.plan = {}; save(); renderActive(); }
 
-  function completeWorkout(wd) {
-    const rec = dayRec(); const already = rec.workoutDone; rec.workoutDone = true;
-    const day = TRAINING.days[wd] || {}; const sd = scaledDay(wd) || day;
+  function completeWorkout(wd, slot) {
+    slot = slot || "am";
+    const rec = dayRec(); rec.workout = rec.workout || { am: false, pm: false };
+    const already = !!rec.workout[slot];
+    rec.workout[slot] = true; rec.workoutDone = true;
+    const sd = scaledSession(wd, slot) || {};
     if (!already) {
       S.stats.workoutsTotal = (S.stats.workoutsTotal || 0) + 1;
       if (new Date().getHours() < 9) S.stats.earlyWorkouts = (S.stats.earlyWorkouts || 0) + 1;
-      addXp(50);
-      pendingCele.push({ ico: day.emoji || "💪", title: "Training geschafft!", sub: (day.focus || "") + " – stark durchgezogen!" });
+      addXp(45);
+      const both = rec.workout.am && rec.workout.pm;
+      pendingCele.push({ ico: sd.emoji || "💪", title: both ? "Beide Einheiten geschafft! 🔥" : "Einheit geschafft!", sub: (sd.focus || "") + " – stark durchgezogen!" });
     }
     refresh(); renderActive(); flushCele();
-    if (!already && day.type !== "rest") openWorkoutFeedback(sd.kcal || day.kcal);
+    if (!already && sd.type && sd.type !== "rest") openWorkoutFeedback(sd.kcal);
   }
   function openWorkoutFeedback(kcal) {
     const cur = diffLevel();
@@ -518,7 +527,8 @@
   function buildTimeline(wd) {
     const rec = dayRec(); const plan = S.plan[wd] || {};
     const isFb = DAYPLAN.footballDays.indexOf(wd) >= 0;
-    const d = scaledDay(wd); const done = rec.workoutDone;
+    const amS = scaledSession(wd, "am"), pmS = scaledSession(wd, "pm");
+    const wdone = rec.workout || { am: false, pm: false };
     const items = [];
     items.push({ t: DAYPLAN.wake, ico: "☀️", title: "Aufstehen", sub: "Guten Morgen – erstmal ein großes Glas Wasser." });
     items.push({ t: DAYPLAN.cold.morning, ico: "❄️", cold: 1, title: "Kaltdusche", sub: "2–3 Min · Energie & Fokus für den Tag" });
@@ -528,13 +538,13 @@
       const s = SLOTS.find((x) => x.key === key);
       items.push({ t: DAYPLAN.times[key], ico: s.ico, meal: 1, slot: key, m: resolveMeal(plan[key]), on: !!rec.checked[key], label: s.label });
     }
-    if (d && d.type !== "rest") items.push({ t: isFb ? DAYPLAN.trainFootball : DAYPLAN.trainNormal, ico: d.emoji, training: 1, done, focus: d.focus, minutes: d.minutes, kcal: d.kcal, optional: isFb });
-    else items.push({ t: DAYPLAN.trainNormal, ico: "🌱", title: "Aktive Erholung", sub: "Spaziergang & Dehnen – heute wächst der Muskel." });
-    if (isFb) items.push({ t: DAYPLAN.footballStart, ico: "⚽", title: "Fußballtraining", sub: "1:30 Std im Verein (" + DAYPLAN.footballStart + "–" + DAYPLAN.footballEnd + ")" });
+    if (amS) items.push({ t: DAYPLAN.trainAM, ico: amS.emoji, training: 1, slot: "am", wd, done: !!wdone.am, focus: amS.focus, sub: amS.sub, minutes: amS.minutes, kcal: amS.kcal, rest: amS.type === "rest" });
+    if (pmS) items.push({ t: DAYPLAN.trainPM, ico: pmS.emoji, training: 1, slot: "pm", wd, done: !!wdone.pm, focus: pmS.focus, sub: pmS.sub, minutes: pmS.minutes, kcal: pmS.kcal, rest: pmS.type === "rest" });
+    if (isFb) items.push({ t: DAYPLAN.footballStart, ico: "⚽", title: "Fußballtraining", sub: "1:30 Std im Verein (" + DAYPLAN.footballStart + "–" + DAYPLAN.footballEnd + ") · deine Bein-/Ausdauer-Einheit" });
     items.push({ t: isFb ? DAYPLAN.cold.sportFootball : DAYPLAN.cold.sportNormal, ico: "❄️", cold: 1, title: "Kaltdusche (Regeneration)", sub: "2–3 Min kalt · Regeneration & mentale Härte" });
     { const s = SLOTS.find((x) => x.key === "dinner"); items.push({ t: isFb ? DAYPLAN.dinnerFootball : DAYPLAN.dinnerNormal, ico: s.ico, meal: 1, slot: "dinner", m: resolveMeal(plan.dinner), on: !!rec.checked.dinner, label: s.label }); }
     items.push({ t: DAYPLAN.skin.evening, ico: "🌙", skin: 1, title: "Skincare (abends)", sub: "Reinigen · Wirkstoff · Feuchtigkeit" });
-    items.push({ t: DAYPLAN.sleep, ico: "😴", title: "Schlafen gehen", sub: "9,5 Std bis 6:30 – jeden Tag zur gleichen Zeit für besten Schlaf." });
+    items.push({ t: DAYPLAN.sleep, ico: "😴", title: "Schlafen gehen", sub: "Früh ins Bett – morgen 06:00 die erste Einheit. Schlaf = Muskelaufbau." });
     for (const ap of (S.appointments || [])) {
       const match = ap.mode === "weekly" ? (ap.days || []).indexOf(wd) >= 0 : ap.date === todayStr();
       if (match) items.push({ t: ap.time || "12:00", ico: ap.ico || "📌", appt: 1, id: ap.id, title: ap.title || "Termin", sub: ap.sub || (ap.mode === "weekly" ? "Wöchentlicher Termin" : "Eigener Termin") });
@@ -564,10 +574,10 @@
         </div>
         ${it.m ? `<div class="check ${it.on ? "on" : ""}" data-action="toggle-meal" data-slot="${it.slot}">${it.on ? "✓" : ""}</div>` : `<div style="color:var(--acc);font-size:20px;padding-right:6px">＋</div>`}
       </div>`;
-      if (it.training) return `<div class="tl-row" data-action="start-workout" data-wd="${wd}">
+      if (it.training) return `<div class="tl-row" data-action="start-workout" data-wd="${it.wd}" data-slot="${it.slot}">
         <div class="tl-time">${it.t}</div><div class="tl-ico">${it.ico}</div>
-        <div class="tl-body"><div class="tl-title">APEX-Training${it.done ? " ✓" : ""}</div>
-          <div class="tl-sub">${esc(it.focus)} · ~${it.minutes} Min · ~${it.kcal} kcal${it.optional ? " · optional (heute Fußball)" : ""}</div></div>
+        <div class="tl-body"><div class="tl-title">${esc(it.focus)}${it.done ? " ✓" : ""}</div>
+          <div class="tl-sub">${it.slot === "am" ? "🌅 Früh-Einheit" : "🏋️ Nachmittag"}${it.rest ? " · locker" : ""} · ~${it.minutes} Min · ~${it.kcal} kcal</div></div>
         <div style="color:var(--muted2);font-size:19px;padding-right:6px">${it.done ? "✓" : "▶︎"}</div>
       </div>`;
       return `<div class="tl-row dim">
@@ -756,23 +766,31 @@
         <div class="wkmeta" style="margin-top:6px">Stufe ${(S.diff | 0) + 1}/${DIFF_LEVELS.length} · passt sich nach jedem Training an dein Feedback an. Höhere Stufe = mehr Wiederholungen & Sätze, kürzere Pausen.</div>
         <div class="diffscroll">${DIFF_LEVELS.map((x, i) => `<button class="diffchip ${i === (S.diff | 0) ? "on" : ""}" data-action="set-diff" data-i="${i}"><span class="di">${x.ico}</span><span>${esc(x.n)}</span></button>`).join("")}</div>
       </div>`;
+    const recToday = S.days[todayStr()];
     for (let wd = 0; wd < TRAINING.days.length; wd++) {
-      const d = scaledDay(wd); const isToday = wd === todayWd();
-      const done = (S.days[todayStr()] && isToday) ? S.days[todayStr()].workoutDone : false;
-      html += `<div class="card wkday" data-action="start-workout" data-wd="${wd}">
-        <div class="row">
-          <div class="wkicon">${d.emoji}</div>
-          <div class="grow">
-            <div class="dayhead" style="margin:0">
-              <div class="d">${d.day} ${isToday ? '<span class="today-badge">HEUTE</span>' : ""}</div>
-              ${done ? '<span class="pill" style="color:var(--good)">✓ erledigt</span>' : ""}
+      const day = TRAINING.days[wd]; const isToday = wd === todayWd();
+      const isFb = DAYPLAN.footballDays.indexOf(wd) >= 0;
+      html += `<div class="card">
+        <div class="dayhead" style="margin:0 0 6px">
+          <div class="d">${day.day} ${isToday ? '<span class="today-badge">HEUTE</span>' : ""}</div>
+          ${isFb ? '<span class="pill" style="color:var(--info)">⚽ Fußball 18:30</span>' : ""}
+        </div>`;
+      for (const slot of ["am", "pm"]) {
+        const s = scaledSession(wd, slot); if (!s) continue;
+        const done = isToday && recToday && recToday.workout && recToday.workout[slot];
+        const time = slot === "am" ? DAYPLAN.trainAM : DAYPLAN.trainPM;
+        html += `<div class="wkday" data-action="start-workout" data-wd="${wd}" data-slot="${slot}" style="padding:9px 0;border-top:1px solid var(--line);cursor:pointer">
+          <div class="row">
+            <div class="wkicon" style="width:40px;height:40px;font-size:20px">${s.emoji}</div>
+            <div class="grow">
+              <div class="mealname" style="font-size:14px">${time} · ${esc(s.focus)}${done ? ' <span style="color:var(--good)">✓</span>' : ""}</div>
+              <div class="wkmeta">${s.sub}${s.type === "rest" ? " · aktive Erholung" : " · " + s.blocks.length + " Übungen · ~" + s.minutes + " Min · ~" + s.kcal + " kcal"}</div>
             </div>
-            <div class="mealname" style="font-size:14px;color:var(--muted);font-weight:700">${esc(d.focus)}</div>
-            <div class="wkmeta">${d.type === "rest" ? "Aktive Erholung" : d.blocks.length + " Übungen · ~" + d.minutes + " Min · ~" + d.kcal + " kcal"}</div>
+            <div style="font-size:20px;color:var(--muted2)">›</div>
           </div>
-          <div style="font-size:22px;color:var(--muted2)">›</div>
-        </div>
-      </div>`;
+        </div>`;
+      }
+      html += `</div>`;
     }
     html += `<div class="sectitle">So wirst du stärker</div><div class="card"><ul style="margin:0;padding-left:18px;line-height:1.6;color:var(--muted);font-size:14px">` +
       (TRAINING.meta.progression || []).map((p) => `<li>${esc(p)}</li>`).join("") + `</ul></div><div style="height:8px"></div>`;
@@ -1176,8 +1194,10 @@
   }
 
   /* ---------- WORKOUT-PLAYER ---------- */
-  function openWorkout(wd) {
-    const d = scaledDay(wd); if (!d) return;
+  function openWorkout(wd, slot) {
+    slot = slot || "am";
+    const d = scaledSession(wd, slot); if (!d) return;
+    const timeLbl = slot === "am" ? "🌅 " + DAYPLAN.trainAM : "🏋️ " + DAYPLAN.trainPM;
     const done = new Array((d.blocks || []).length).fill(0);
     const warm = (d.warmup && d.warmup.length) ? `<div class="card tight"><div class="slotlabel">🔥 Aufwärmen</div><ul style="margin:8px 0 0;padding-left:18px;line-height:1.6;font-size:14px">${d.warmup.map((w) => `<li>${esc(w)}</li>`).join("")}</ul></div>` : "";
     const blocksHtml = (d.blocks || []).map((b, i) => `
@@ -1193,7 +1213,7 @@
       `<div class="grip"></div>
        <div class="sheet-head"><h2>${d.emoji} ${esc(d.focus)}</h2><button class="closex" data-close>✕</button></div>
        <div class="sheet-body">
-         <div class="wkmeta" style="margin:-4px 0 12px">${d.day} · ${d.type === "rest" ? "Aktive Erholung" : "~" + d.minutes + " Min · ~" + d.kcal + " kcal · " + diffLevel().ico + " " + diffLevel().n}</div>
+         <div class="wkmeta" style="margin:-4px 0 12px">${d.day} · ${timeLbl} · ${d.type === "rest" ? "Aktive Erholung" : "~" + d.minutes + " Min · ~" + d.kcal + " kcal · " + diffLevel().ico + " " + diffLevel().n}</div>
          ${warm}
          ${blocksHtml ? '<div class="card">' + blocksHtml + "</div>" : ""}
          ${fin}
@@ -1211,7 +1231,7 @@
         blockEl.querySelectorAll(".setdot").forEach((el, k) => el.classList.toggle("on", k < done[bi]));
         vibrate(10); return;
       }
-      if (e.target.closest("[data-finish]")) { closeSheet(bd); completeWorkout(wd); return; }
+      if (e.target.closest("[data-finish]")) { closeSheet(bd); completeWorkout(wd, slot); return; }
       if (e.target.closest("[data-close]")) closeSheet(bd);
     });
     wireRestTimer(bd);
@@ -1322,7 +1342,7 @@
     else if (a === "del-manual") delManual(+el.dataset.idx);
     else if (a === "add-appointment") openAppointment(null);
     else if (a === "open-appointment") { const ap = (S.appointments || []).find((x) => x.id === el.dataset.id); if (ap) openAppointment(ap); }
-    else if (a === "start-workout") openWorkout(+el.dataset.wd);
+    else if (a === "start-workout") openWorkout(+el.dataset.wd, el.dataset.slot || "am");
     else if (a === "set-diff") { S.diff = +el.dataset.i; save(); vibrate(10); renderActive(); }
     else if (a === "cold-therapy") openColdTherapy();
     else if (a === "skincare") openSkincare();
