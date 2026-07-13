@@ -65,7 +65,7 @@
     times: { breakfast: "07:00", snack: "10:00", lunch: "14:30" },
     dinnerNormal: "18:30", dinnerFootball: "20:15",
     trainAM: "06:00", trainPM: "16:00",
-    footballStart: "18:30", footballEnd: "20:00", footballDays: [0, 1],
+    footballStart: "18:30", footballEnd: "20:00", footballDays: [0, 2],
     cold: { morning: "06:45", sportNormal: "16:55", sportFootball: "20:05" },
     skin: { morning: "06:55", evening: "20:40" }
   };
