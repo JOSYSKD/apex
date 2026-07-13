@@ -317,7 +317,7 @@
   }
   function clearWeek() { S.plan = {}; save(); renderActive(); }
 
-  function completeWorkout(wd, slot) {
+  function completeWorkout(wd, slot, skipFeedback) {
     slot = slot || "am";
     const rec = dayRec(); rec.workout = rec.workout || { am: false, pm: false };
     const already = !!rec.workout[slot];
@@ -331,7 +331,19 @@
       pendingCele.push({ ico: sd.emoji || "💪", title: both ? "Beide Einheiten geschafft! 🔥" : "Einheit geschafft!", sub: (sd.focus || "") + " – stark durchgezogen!" });
     }
     refresh(); renderActive(); flushCele();
-    if (!already && sd.type && sd.type !== "rest") openWorkoutFeedback(sd.kcal);
+    if (!already && !skipFeedback && sd.type && sd.type !== "rest") openWorkoutFeedback(sd.kcal);
+  }
+  // Timeline-Checkbox: Session direkt abhaken (mit XP/Feier, ohne Feedback-Dialog) bzw. wieder abwählen.
+  function toggleSession(wd, slot) {
+    const rec = dayRec(); rec.workout = rec.workout || { am: false, pm: false };
+    if (rec.workout[slot]) { rec.workout[slot] = false; refresh(); renderActive(); }
+    else { completeWorkout(wd, slot, true); }
+  }
+  // Generische Tages-Checkliste (Aufstehen, Kaltdusche, Skincare, Schule, Fußball, Termine, Schlafen).
+  function toggleItem(key) {
+    const rec = dayRec(); rec.checked[key] = !rec.checked[key];
+    if (rec.checked[key]) { addXp(2); vibrate(12); }
+    refresh(); renderActive(); flushCele();
   }
   function openWorkoutFeedback(kcal) {
     const cur = diffLevel();
@@ -530,41 +542,42 @@
     const amS = scaledSession(wd, "am"), pmS = scaledSession(wd, "pm");
     const wdone = rec.workout || { am: false, pm: false };
     const items = [];
-    items.push({ t: DAYPLAN.wake, ico: "☀️", title: "Aufstehen", sub: "Guten Morgen – erstmal ein großes Glas Wasser." });
-    items.push({ t: DAYPLAN.cold.morning, ico: "❄️", cold: 1, title: "Kaltdusche", sub: "2–3 Min · Energie & Fokus für den Tag" });
-    items.push({ t: DAYPLAN.skin.morning, ico: "✨", skin: 1, title: "Skincare (morgens)", sub: "Reinigen · Creme · Sonnenschutz LSF 50" });
-    if (DAYPLAN.school.days.indexOf(wd) >= 0) items.push({ t: DAYPLAN.school.start, ico: "🎒", title: "Schule", sub: "bis " + DAYPLAN.school.end + " Uhr · Brotzeit in der Pause um 10:00" });
+    items.push({ t: DAYPLAN.wake, ico: "☀️", key: "wake", title: "Aufstehen", sub: "Guten Morgen – erstmal ein großes Glas Wasser." });
+    items.push({ t: DAYPLAN.cold.morning, ico: "❄️", cold: 1, key: "cold:m", title: "Kaltdusche", sub: "2–3 Min · Energie & Fokus für den Tag" });
+    items.push({ t: DAYPLAN.skin.morning, ico: "✨", skin: 1, key: "skin:m", title: "Skincare (morgens)", sub: "Reinigen · Creme · Sonnenschutz LSF 50" });
+    if (DAYPLAN.school.days.indexOf(wd) >= 0) items.push({ t: DAYPLAN.school.start, ico: "🎒", key: "school", title: "Schule", sub: "bis " + DAYPLAN.school.end + " Uhr · Brotzeit in der Pause um 10:00" });
     for (const key of ["breakfast", "snack", "lunch"]) {
       const s = SLOTS.find((x) => x.key === key);
       items.push({ t: DAYPLAN.times[key], ico: s.ico, meal: 1, slot: key, m: resolveMeal(plan[key]), on: !!rec.checked[key], label: s.label });
     }
     if (amS) items.push({ t: DAYPLAN.trainAM, ico: amS.emoji, training: 1, slot: "am", wd, done: !!wdone.am, focus: amS.focus, sub: amS.sub, minutes: amS.minutes, kcal: amS.kcal, rest: amS.type === "rest" });
     if (pmS) items.push({ t: DAYPLAN.trainPM, ico: pmS.emoji, training: 1, slot: "pm", wd, done: !!wdone.pm, focus: pmS.focus, sub: pmS.sub, minutes: pmS.minutes, kcal: pmS.kcal, rest: pmS.type === "rest" });
-    if (isFb) items.push({ t: DAYPLAN.footballStart, ico: "⚽", title: "Fußballtraining", sub: "1:30 Std im Verein (" + DAYPLAN.footballStart + "–" + DAYPLAN.footballEnd + ") · deine Bein-/Ausdauer-Einheit" });
-    items.push({ t: isFb ? DAYPLAN.cold.sportFootball : DAYPLAN.cold.sportNormal, ico: "❄️", cold: 1, title: "Kaltdusche (Regeneration)", sub: "2–3 Min kalt · Regeneration & mentale Härte" });
+    if (isFb) items.push({ t: DAYPLAN.footballStart, ico: "⚽", key: "football", title: "Fußballtraining", sub: "1:30 Std im Verein (" + DAYPLAN.footballStart + "–" + DAYPLAN.footballEnd + ") · deine Bein-/Ausdauer-Einheit" });
+    items.push({ t: isFb ? DAYPLAN.cold.sportFootball : DAYPLAN.cold.sportNormal, ico: "❄️", cold: 1, key: "cold:s", title: "Kaltdusche (Regeneration)", sub: "2–3 Min kalt · Regeneration & mentale Härte" });
     { const s = SLOTS.find((x) => x.key === "dinner"); items.push({ t: isFb ? DAYPLAN.dinnerFootball : DAYPLAN.dinnerNormal, ico: s.ico, meal: 1, slot: "dinner", m: resolveMeal(plan.dinner), on: !!rec.checked.dinner, label: s.label }); }
-    items.push({ t: DAYPLAN.skin.evening, ico: "🌙", skin: 1, title: "Skincare (abends)", sub: "Reinigen · Wirkstoff · Feuchtigkeit" });
-    items.push({ t: DAYPLAN.sleep, ico: "😴", title: "Schlafen gehen", sub: "Früh ins Bett – morgen 06:00 die erste Einheit. Schlaf = Muskelaufbau." });
+    items.push({ t: DAYPLAN.skin.evening, ico: "🌙", skin: 1, key: "skin:e", title: "Skincare (abends)", sub: "Reinigen · Wirkstoff · Feuchtigkeit" });
+    items.push({ t: DAYPLAN.sleep, ico: "😴", key: "sleep", title: "Schlafen gehen", sub: "Früh ins Bett – morgen 06:00 die erste Einheit. Schlaf = Muskelaufbau." });
     for (const ap of (S.appointments || [])) {
       const match = ap.mode === "weekly" ? (ap.days || []).indexOf(wd) >= 0 : ap.date === todayStr();
-      if (match) items.push({ t: ap.time || "12:00", ico: ap.ico || "📌", appt: 1, id: ap.id, title: ap.title || "Termin", sub: ap.sub || (ap.mode === "weekly" ? "Wöchentlicher Termin" : "Eigener Termin") });
+      if (match) items.push({ t: ap.time || "12:00", ico: ap.ico || "📌", appt: 1, id: ap.id, key: "appt:" + ap.id, title: ap.title || "Termin", sub: ap.sub || (ap.mode === "weekly" ? "Wöchentlicher Termin" : "Eigener Termin") });
     }
     items.sort((a, b) => a.t.localeCompare(b.t));
+    const chk = (on, action, attrs) => `<div class="check ${on ? "on" : ""}" data-action="${action}" ${attrs || ""}>${on ? "✓" : ""}</div>`;
     return items.map((it) => {
-      if (it.cold) return `<div class="tl-row" data-action="cold-therapy">
+      if (it.cold) return `<div class="tl-row">
         <div class="tl-time">${it.t}</div><div class="tl-ico" style="background:rgba(92,200,255,.12)">${it.ico}</div>
-        <div class="tl-body"><div class="tl-title">${esc(it.title)}</div><div class="tl-sub">${esc(it.sub)}</div></div>
-        <div style="color:var(--info);font-size:16px;padding-right:8px">›</div>
+        <div class="tl-body" data-action="cold-therapy"><div class="tl-title">${esc(it.title)}</div><div class="tl-sub">${esc(it.sub)} · antippen</div></div>
+        ${chk(!!rec.checked[it.key], "toggle-item", `data-key="${it.key}"`)}
       </div>`;
-      if (it.skin) return `<div class="tl-row" data-action="skincare">
+      if (it.skin) return `<div class="tl-row">
         <div class="tl-time">${it.t}</div><div class="tl-ico" style="background:rgba(109,255,143,.12)">${it.ico}</div>
-        <div class="tl-body"><div class="tl-title">${esc(it.title)}</div><div class="tl-sub">${esc(it.sub)}</div></div>
-        <div style="color:var(--acc);font-size:16px;padding-right:8px">›</div>
+        <div class="tl-body" data-action="skincare"><div class="tl-title">${esc(it.title)}</div><div class="tl-sub">${esc(it.sub)} · antippen</div></div>
+        ${chk(!!rec.checked[it.key], "toggle-item", `data-key="${it.key}"`)}
       </div>`;
-      if (it.appt) return `<div class="tl-row" data-action="open-appointment" data-id="${esc(it.id)}">
+      if (it.appt) return `<div class="tl-row">
         <div class="tl-time">${it.t}</div><div class="tl-ico" style="background:rgba(180,140,255,.16)">${it.ico}</div>
-        <div class="tl-body"><div class="tl-title">${esc(it.title)}</div><div class="tl-sub">${esc(it.sub)}</div></div>
-        <div style="color:var(--muted2);font-size:16px;padding-right:8px">✎</div>
+        <div class="tl-body" data-action="open-appointment" data-id="${esc(it.id)}"><div class="tl-title">${esc(it.title)}</div><div class="tl-sub">${esc(it.sub)} · ✎ antippen</div></div>
+        ${chk(!!rec.checked[it.key], "toggle-item", `data-key="${it.key}"`)}
       </div>`;
       if (it.meal) return `<div class="tl-row">
         <div class="tl-time">${it.t}</div><div class="tl-ico">${it.ico}</div>
@@ -572,17 +585,18 @@
           <div class="tl-title ${it.m ? "" : "muted"}">${it.m ? esc(it.m.n) : "Gericht wählen"}</div>
           <div class="tl-sub">${it.label}${it.m ? " · " + mealKcal(it.m) + " kcal" + (mealTime(it.m) ? " · ⏱️ " + mealTime(it.m) : "") : " · antippen"}</div>
         </div>
-        ${it.m ? `<div class="check ${it.on ? "on" : ""}" data-action="toggle-meal" data-slot="${it.slot}">${it.on ? "✓" : ""}</div>` : `<div style="color:var(--acc);font-size:20px;padding-right:6px">＋</div>`}
+        ${it.m ? chk(it.on, "toggle-meal", `data-slot="${it.slot}"`) : `<div style="color:var(--acc);font-size:20px;padding-right:6px" data-action="view-recipe" data-wd="${wd}" data-slot="${it.slot}">＋</div>`}
       </div>`;
-      if (it.training) return `<div class="tl-row" data-action="start-workout" data-wd="${it.wd}" data-slot="${it.slot}">
+      if (it.training) return `<div class="tl-row">
         <div class="tl-time">${it.t}</div><div class="tl-ico">${it.ico}</div>
-        <div class="tl-body"><div class="tl-title">${esc(it.focus)}${it.done ? " ✓" : ""}</div>
-          <div class="tl-sub">${it.slot === "am" ? "🌅 Früh-Einheit" : "🏋️ Nachmittag"}${it.rest ? " · locker" : ""} · ~${it.minutes} Min · ~${it.kcal} kcal</div></div>
-        <div style="color:var(--muted2);font-size:19px;padding-right:6px">${it.done ? "✓" : "▶︎"}</div>
+        <div class="tl-body" data-action="start-workout" data-wd="${it.wd}" data-slot="${it.slot}"><div class="tl-title">${esc(it.focus)}${it.done ? " ✓" : ""}</div>
+          <div class="tl-sub">${it.slot === "am" ? "🌅 Früh-Einheit" : "🏋️ Nachmittag"}${it.rest ? " · locker" : ""} · ~${it.minutes} Min · ~${it.kcal} kcal · ▶︎ antippen</div></div>
+        ${chk(it.done, "toggle-session", `data-wd="${it.wd}" data-slot="${it.slot}"`)}
       </div>`;
       return `<div class="tl-row dim">
-        <div class="tl-time">${it.t}</div><div class="tl-ico">${it.ico}</div>
-        <div class="tl-body"><div class="tl-title">${esc(it.title)}</div><div class="tl-sub">${esc(it.sub || "")}</div></div>
+        <div class="tl-time">${it.t}</div><div class="tl-ico" data-action="toggle-item" data-key="${it.key}">${it.ico}</div>
+        <div class="tl-body" data-action="toggle-item" data-key="${it.key}"><div class="tl-title">${esc(it.title)}</div><div class="tl-sub">${esc(it.sub || "")}</div></div>
+        ${chk(!!rec.checked[it.key], "toggle-item", `data-key="${it.key}"`)}
       </div>`;
     }).join("");
   }
@@ -1343,6 +1357,8 @@
     else if (a === "add-appointment") openAppointment(null);
     else if (a === "open-appointment") { const ap = (S.appointments || []).find((x) => x.id === el.dataset.id); if (ap) openAppointment(ap); }
     else if (a === "start-workout") openWorkout(+el.dataset.wd, el.dataset.slot || "am");
+    else if (a === "toggle-session") toggleSession(+el.dataset.wd, el.dataset.slot);
+    else if (a === "toggle-item") toggleItem(el.dataset.key);
     else if (a === "set-diff") { S.diff = +el.dataset.i; save(); vibrate(10); renderActive(); }
     else if (a === "cold-therapy") openColdTherapy();
     else if (a === "skincare") openSkincare();
