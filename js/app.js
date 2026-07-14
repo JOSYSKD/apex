@@ -179,7 +179,7 @@
   function resolveMeal(val) {
     if (!val) return null;
     if (typeof val === "string") return mealByKey(val);
-    if (val.cd) { const d = (S.customDishes || []).find((x) => x.id === val.cd); if (!d) return null; return { _direct: true, _custom: true, _key: "cd:" + d.id, _type: "custom", n: d.n, i: [], kcal: d.kcal || 0, p: d.p || 0, c: d.c || 0, f: d.f || 0, t: d.t || ["eigenes"] }; }
+    if (val.cd) { const d = (S.customDishes || []).find((x) => x.id === val.cd); if (!d) return null; return { _direct: true, _custom: true, _key: "cd:" + d.id, _type: "custom", n: d.n, i: [], kcal: d.kcal || 0, p: d.p || 0, c: d.c || 0, f: d.f || 0, time: d.time || "", steps: d.steps || [], tip: d.tip || "", t: d.t || ["eigenes"] }; }
     if (val.i) return { _custom: true, _key: null, _type: val.base ? val.base.slice(0, val.base.indexOf(":")) : "custom", base: val.base || null, n: val.n, i: val.i, t: val.t || [] };
     return null;
   }
@@ -189,7 +189,7 @@
   function itemsKcalProt(items) { let k = 0, p = 0; for (const it of items) { const ing = ING[it[0]]; if (ing) { k += ing.kcal * it[1] / 100; p += ing.p * it[1] / 100; } } return [Math.round(k), Math.round(p)]; }
   function sameItems(a, b) { if (!a || !b || a.length !== b.length) return false; const norm = (x) => x.map((e) => e[0] + ":" + e[1]).sort().join("|"); return norm(a) === norm(b); }
   function isCustom(val) { return val && typeof val === "object"; }
-  function mealTime(m) { const r = m && RECIPES[m.n]; return r && r.t ? r.t : null; }
+  function mealTime(m) { if (m && m._direct) return m.time || null; const r = m && RECIPES[m.n]; return r && r.t ? r.t : null; }
 
   /* ---------------- Tages-Berechnung ---------------- */
   function computeDay(date) {
@@ -326,7 +326,7 @@
   function addCustomDish(d) {
     const id = "cd" + Date.now().toString(36) + Math.floor(Math.random() * 1e4).toString(36);
     S.customDishes = S.customDishes || [];
-    S.customDishes.push({ id, n: d.n, kcal: Math.round(d.kcal || 0), p: Math.round(d.p || 0), c: Math.round(d.c || 0), f: Math.round(d.f || 0) });
+    S.customDishes.push({ id, n: d.n, kcal: Math.round(d.kcal || 0), p: Math.round(d.p || 0), c: Math.round(d.c || 0), f: Math.round(d.f || 0), time: d.time || "", steps: (d.steps || []).slice(), tip: d.tip || "" });
     save(); return id;
   }
   function delCustomDish(id) {
@@ -933,7 +933,12 @@
       ? rec.s.map((st, i) => `<div class="recipe-step"><div class="num">${i + 1}</div><div class="tx">${esc(st)}</div></div>`).join("")
       : `<div class="empty-note">Für dieses Gericht ist noch keine Schritt-Anleitung hinterlegt.<br>Zutaten frisch zubereiten und nach Geschmack anrichten.</div>`;
     const bodyMid = direct
-      ? `<div class="recipe-note" style="margin-top:2px">🍽️ Dein eigenes Gericht – manuell eingetragen mit <b>${k} kcal</b> und <b>${p} g Eiweiß</b>.</div>`
+      ? ((m.steps && m.steps.length)
+          ? `<div class="recipe-note" style="margin-top:2px">🍽️ Dein eigenes Gericht (${k} kcal · ${p} g Eiweiß).</div>
+             <div class="sectitle">👨‍🍳 Zubereitung</div>
+             <div class="card">${m.steps.map((st, i) => `<div class="recipe-step"><div class="num">${i + 1}</div><div class="tx">${esc(st)}</div></div>`).join("")}</div>
+             ${m.tip ? `<div class="recipe-tip"><b>💡 Tipp:</b> ${esc(m.tip)}</div>` : ""}`
+          : `<div class="recipe-note" style="margin-top:2px">🍽️ Dein eigenes Gericht – manuell eingetragen mit <b>${k} kcal</b> und <b>${p} g Eiweiß</b>.</div>`)
       : `<div class="sectitle" style="margin-top:2px">🧺 Zutaten</div>
          <div class="card">${ingRows}</div>
          <div class="sectitle">👨‍🍳 Zubereitung</div>
@@ -943,7 +948,7 @@
       <div class="sheet-head"><h2 style="font-size:17px">${esc(m.n)}</h2>
         <div class="row" style="gap:6px">${favKey ? `<button class="iconbtn" data-favbtn style="color:${fav ? "var(--warn)" : "var(--muted2)"}">${fav ? "★" : "☆"}</button>` : ""}<button class="closex" data-close>✕</button></div></div>
       <div class="sheet-body">
-        <div class="recipe-meta"><span class="pill">⏱️ ${esc(rec && rec.t ? rec.t : (direct ? "—" : "—"))}</span><span class="pill">🔥 ${k} kcal</span><span class="pill">🥩 ${p} g Eiweiß</span><span class="pill">1 Portion</span></div>
+        <div class="recipe-meta"><span class="pill">⏱️ ${esc(rec && rec.t ? rec.t : (m.time || "—"))}</span><span class="pill">🔥 ${k} kcal</span><span class="pill">🥩 ${p} g Eiweiß</span><span class="pill">1 Portion</span></div>
         ${custom ? '<div class="recipe-note">ℹ️ Du hast dieses Grundrezept angepasst – die Schritte beziehen sich aufs Originalgericht, die Mengen unten auf deine Version.</div>' : ""}
         ${bodyMid}
         <div style="height:14px"></div>
@@ -1125,11 +1130,15 @@
 
   function openCustomDish(wd, slot) {
     const slotObj = SLOTS.find((s) => s.key === slot) || {};
+    const stepLine = (val) => `<div class="steplinerow" style="display:flex;gap:8px;margin-bottom:8px;align-items:center">
+        <input class="search" style="margin:0;flex:1" data-step placeholder="Schritt beschreiben …" value="${esc(val || "")}">
+        <button data-rmstep style="width:40px;height:44px;border-radius:11px;background:var(--card);border:1px solid var(--line2);color:var(--bad);flex:0 0 auto;font-size:15px">✕</button>
+      </div>`;
     const bd = openSheet(
       `<div class="grip"></div>
        <div class="sheet-head"><h2>➕ Eigenes Gericht</h2><button class="closex" data-close>✕</button></div>
        <div class="sheet-body">
-         <p class="muted" style="margin:0 0 12px;line-height:1.5">Eigenes Gericht mit Kalorien & Eiweiß anlegen. Es wird gespeichert und ist danach in jedem Gericht-Menü auswählbar${slotObj.label ? " (jetzt direkt für " + esc(slotObj.label) + ")" : ""}.</p>
+         <p class="muted" style="margin:0 0 12px;line-height:1.5">Eigenes Gericht mit Kalorien, Eiweiß und optional eigener Schritt-für-Schritt-Anleitung anlegen. Wird gespeichert und ist in jedem Gericht-Menü auswählbar${slotObj.label ? " (jetzt für " + esc(slotObj.label) + ")" : ""}.</p>
          <div class="field"><label>Name des Gerichts</label><input data-n placeholder="z. B. Mamas Lasagne"></div>
          <div class="row" style="gap:12px">
            <div class="field" style="flex:1"><label>Kalorien (kcal)</label><input data-k type="number" inputmode="numeric" placeholder="0"></div>
@@ -1139,16 +1148,26 @@
            <div class="field" style="flex:1"><label>KH (g) – optional</label><input data-c type="number" inputmode="numeric" placeholder="0"></div>
            <div class="field" style="flex:1"><label>Fett (g) – optional</label><input data-f type="number" inputmode="numeric" placeholder="0"></div>
          </div>
+         <div class="field"><label>Zubereitungszeit – optional</label><input data-time placeholder="z. B. 25 Min"></div>
+         <div class="field"><label>Zubereitung – Schritte (optional)</label>
+           <div data-steps>${stepLine("") + stepLine("") + stepLine("")}</div>
+           <button class="btn btn-ghost btn-sm" data-addstep>➕ Schritt hinzufügen</button>
+         </div>
+         <div class="field"><label>Tipp – optional</label><input data-tip placeholder="z. B. Mit frischem Parmesan bestreuen"></div>
          <button class="btn btn-primary" data-save>Gericht erstellen${wd != null ? " & einplanen" : ""}</button>
          <div style="height:10px"></div>
-       </div>`);
+       </div>`, { full: true });
     bd.addEventListener("click", (e) => {
+      if (e.target.closest("[data-addstep]")) { bd.querySelector("[data-steps]").insertAdjacentHTML("beforeend", stepLine("")); return; }
+      const rm = e.target.closest("[data-rmstep]");
+      if (rm) { const rows = bd.querySelectorAll(".steplinerow"); if (rows.length > 1) rm.closest(".steplinerow").remove(); else rm.closest(".steplinerow").querySelector("[data-step]").value = ""; return; }
       if (e.target.closest("[data-save]")) {
         const n = bd.querySelector("[data-n]").value.trim();
         const k = parseInt(bd.querySelector("[data-k]").value || 0, 10);
         if (!n) { toast("Bitte einen Namen eingeben", "⚠️"); return; }
         if (!k) { toast("Bitte Kalorien eingeben", "⚠️"); return; }
-        const id = addCustomDish({ n, kcal: k, p: parseInt(bd.querySelector("[data-p]").value || 0, 10), c: parseInt(bd.querySelector("[data-c]").value || 0, 10), f: parseInt(bd.querySelector("[data-f]").value || 0, 10) });
+        const steps = [].slice.call(bd.querySelectorAll("[data-step]")).map((i) => i.value.trim()).filter(Boolean);
+        const id = addCustomDish({ n, kcal: k, p: parseInt(bd.querySelector("[data-p]").value || 0, 10), c: parseInt(bd.querySelector("[data-c]").value || 0, 10), f: parseInt(bd.querySelector("[data-f]").value || 0, 10), time: bd.querySelector("[data-time]").value.trim(), steps: steps, tip: bd.querySelector("[data-tip]").value.trim() });
         if (wd != null && slot) setPlan(wd, slot, { cd: id });
         vibrate(15); toast("Eigenes Gericht gespeichert 🍽️", "🍽️"); closeSheet(bd); renderActive();
         return;
